@@ -1,33 +1,37 @@
-import { Link, useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import './Navbar.css';
 
 const Navbar = ({ isLoggedIn, isOrganizer, setLoggedIn }) => {
-  const navigate = useNavigate();
-
-  const handleLogout = () => {
-    setLoggedIn(false);
-    navigate('/');
-  };
-
   return (
-    <nav>
-      <Link to="/">Logo</Link>
-      {isOrganizer ? (
-        <>
-          <Link to="/my-events">My Events</Link>
-          <Link to="/create-event">Create Event</Link>
-        </>
-      ) : (
-        <>
-          <Link to="/search-events">Find Events</Link>
-          <Link to="/itinerary">View Itinerary</Link>
-        </>
-      )}
-      {isLoggedIn ? (
-        <button onClick={handleLogout}>Logout</button>
-      ) : (
-        <Link to="/login">Login/Register</Link>
-      )}
+    <nav className="navbar">
+      <div className="navbar-left">
+        <Link to="/" className="logo">
+          <img src="/logo.jpg" alt="Logo" className="logo-img" />
+        </Link>
+      </div>
+      
+      <div className="navbar-center">
+        {isOrganizer ? (
+          <>
+            <Link to="/my-events" className="nav-link">My Events</Link>
+            <Link to="/create-event" className="nav-link">Create Event</Link>
+          </>
+        ) : (
+          <>
+            <Link to="/search-events" className="nav-link">Find Events</Link>
+            <Link to="/itinerary" className="nav-link">View Itinerary</Link>
+          </>
+        )}
+      </div>
+
+      <div className="navbar-right">
+        {isLoggedIn ? (
+          <Link to="/login" className="nav-link" onClick={() => setLoggedIn(false)}>Logout</Link>
+        ) : (
+          <Link to="/login" className="nav-link">Login/Register</Link>
+        )}
+      </div>
     </nav>
   );
 };
