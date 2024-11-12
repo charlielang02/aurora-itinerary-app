@@ -4,10 +4,16 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'DM Sans', sans-serif !important;
+      
   }
   
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
+
   body {
     font-family: 'DM Sans', sans-serif;
+    padding: 0;
+    box-sizing: border-box;
   }
   
   /* Navbar Styling */
@@ -32,11 +38,11 @@
     width: auto; /* Maintain aspect ratio */
     object-fit: contain; /* Ensure the logo fits within the container without distortion */
     transition: transform 0.3s ease-in-out; /* Smooth transition for scaling */
-}
+  }
 
-.navbar-left .logo-img:hover {
+  .navbar-left .logo-img:hover {
     transform: scale(1.1); /* Increase the size by 10% when hovered */
-}
+  }
 
   .navbar-left .logo {
     display: inline-block;
@@ -44,6 +50,11 @@
   }
   
   /* Navbar Links */
+
+  .navbar-center, .navbar-right {
+    font-family: 'DM Sans', sans-serif;
+  }
+
   .navbar-center {
     display: flex;
     flex-grow: 1; /* Ensures links take up available space and are evenly spaced */
@@ -56,10 +67,11 @@
     text-decoration: none;
     padding: 10px 20px;
     line-height: 1;
+    font-family: 'DM Sans', sans-serif;
   }
   
   .navbar-center .nav-link:hover {
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: #004573; /* Darker shade on hover */
     border-radius: 5px;
   }
   
@@ -79,29 +91,35 @@
   }
   
   .navbar-right .nav-link:hover {
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: #004573; /* Darker shade on hover */
     border-radius: 5px;
   }
   
-  /* Adjust navbar links and logo for small screens */
+/* Responsive styles for smaller screens */
 @media (max-width: 768px) {
-  .navbar {
-    flex-direction: column;
-    height: auto; /* Allow the navbar height to adjust based on content */
-    padding: 10px; /* Add some padding for mobile */
-  }
-
-  .navbar-links {
-    flex-direction: column; /* Stack the links vertically on small screens */
-    gap: 10px; /* Reduce the space between links */
-  }
-
-  .navbar-links a {
-    font-size: 4vw; /* Larger font size for readability on smaller screens */
-    padding: 5px 0; /* Add vertical padding */
-  }
+    .navbar {
+      flex-direction: column;
+      align-items: center;
+      padding: 0px;
+      height: auto;
+    }
+  
+    /* Stack links in navbar-center vertically */
+    .navbar-center {
+      flex-direction: column;
+      align-items: center;
+      margin-top: 10px;
+    }
 
   .navbar-left .logo-img {
     max-height: 8vh /* Adjust logo size for smaller screens */
   }
+
+  .navbar-center .nav-link {
+    font-size: 4vw; /* Adjust font size for smaller screens */
+  }
+
+    .navbar-right .nav-link {
+        font-size: 3vw; /* Adjust font size for smaller screens */
+    }
 }
