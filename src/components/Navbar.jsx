@@ -20,7 +20,7 @@ const Navbar = ({ isLoggedIn, isOrganizer, setLoggedIn }) => {
         ) : (
           <>
             <Link to="/search-events" className="nav-link">Find Events</Link>
-            <Link to="/itinerary" className="nav-link">View Itinerary</Link>
+            <Link to="/view-itinerary" className="nav-link">View Itinerary</Link>
           </>
         )}
       </div>
