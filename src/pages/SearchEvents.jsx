@@ -92,7 +92,7 @@ const EventCard = ({ data, id }) => {
 const SearchEvents = () => {
   return (
     <div>
-      <div className={styles.nav}></div>
+      {/* temp, used this for testing <div className={styles.nav}></div> */}
       <div className={styles.left_panel}></div>
       <div className={styles.page_content}>
         <div className={styles.events}>

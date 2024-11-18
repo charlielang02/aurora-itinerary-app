@@ -14,7 +14,7 @@ function App() {
 
   return (
     <Router>
-      {/* <Navbar isLoggedIn={isLoggedIn} isOrganizer={isOrganizer} setLoggedIn={setLoggedIn} /> */}
+      <Navbar isLoggedIn={isLoggedIn} isOrganizer={isOrganizer} setLoggedIn={setLoggedIn} />
       <Routes>
       <Route path="/" element={<LandingPage />} />
         <Route path="/search-events" element={<SearchEvents />} />
