@@ -51,7 +51,7 @@ const LandingPage = ({setLoggedIn, isLoggedIn, setIsOrganizer, isOrganizer }) =>
 
             <p className="register-prompt">
               New to Aurora? 
-              <Link to="/" onClick={handleRegister} className="register-link">
+              <Link to="/" onClick={handleRegister} className="register-links">
                 Register Here
               </Link>
             </p>

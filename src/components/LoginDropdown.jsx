@@ -57,10 +57,12 @@ const LoginDropdown = ({ setLoggedIn, setIsOrganizer }) => {
         <button type="submit" className="login-btn">Login</button>
         <p className="register-prompt">
             Don't have an account?
+        </p>
+        <div>
             <Link to="/" onClick={handleRegister} className="register-link">
                 Register Here
             </Link>
-        </p>
+        </div>
       </form>
     </div>
   );

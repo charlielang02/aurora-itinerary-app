@@ -54,5 +54,7 @@
   .register-link {
     color: #ebe9ec;
     text-decoration: underline;
+    display: flex;
+    justify-content: center;
   }
   
