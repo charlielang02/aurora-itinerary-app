@@ -72,6 +72,8 @@ body {
     background-color: #003052; /* Button background color */
     color: #ebe9ec !important; /* Keep text color consistent on hover */
     font-size: 1.2rem;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
     border-radius: 100px; /* Rounded corners */
     text-decoration: none;
     margin-bottom: 20px; /* Space below the button */
@@ -82,6 +84,16 @@ body {
     background-color: #004573; /* Darker shade for hover */
     transform: scale(1.1); /* Enlarge by 10% on hover */
     color: #ebe9ec !important; /* Keep text color consistent on hover */
+  }
+  
+  .login-area {
+    position: relative;
+  }
+  
+  .login-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
   }
   
   
