@@ -52,6 +52,16 @@
   margin: 5px 0 0;
 }
 
+.destination-card-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.destination-card-link:hover {
+  text-decoration: none;
+}
+
+
 /* For smaller screens */
 @media (max-width: 768px) {
     .destination-card {

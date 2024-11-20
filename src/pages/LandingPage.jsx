@@ -1,6 +1,8 @@
 import React from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import DestinationCard from '../components/DestinationCard';
+import LoginDropdown from '../components/LoginDropdown';
 import './LandingPage.css';
 
 const destinations = [
@@ -10,7 +12,24 @@ const destinations = [
     { image: '/sydney.jpg', city: 'Sydney', country: 'Australia' },
   ];
 
-const LandingPage = () => {
+const LandingPage = ({setLoggedIn, isLoggedIn, setIsOrganizer, isOrganizer }) => {
+  const [showLoginDropdown, setShowLoginDropdown] = useState(false);
+
+  const toggleLoginDropdown = () => {
+    setShowLoginDropdown(!showLoginDropdown);
+  };
+
+  useEffect(() => {
+    if (!isLoggedIn) {
+      setShowLoginDropdown(false);
+    }
+  }, [isLoggedIn]);
+
+  const handleRegister = () => {
+    setLoggedIn(true);
+    setIsOrganizer(false);
+  };
+
   return (
     <div className="landing-page">
       <div className="landing-content">
@@ -18,11 +37,26 @@ const LandingPage = () => {
         <h2 className="main-heading">Aurora Travel Companion</h2>
         <h3 className="sub-heading">Trip Planning - All In One Place</h3>
         
-        <Link to="/login" className="login-button">Login</Link>
-        
-        <p className="register-prompt">
-          New to Aurora? <Link to="/register" className="register-link">Register Here</Link>
-        </p>
+        {!isLoggedIn && (
+          <div>
+            <div className="login-area">
+              <button className="login-button" onClick={toggleLoginDropdown}>
+                Login
+              </button>
+
+              {showLoginDropdown && (
+                    <LoginDropdown setLoggedIn={setLoggedIn} setIsOrganizer={setIsOrganizer} />
+                  )}
+            </div>
+
+            <p className="register-prompt">
+              New to Aurora? 
+              <Link to="/" onClick={handleRegister} className="register-links">
+                Register Here
+              </Link>
+            </p>
+          </div>
+        )}
 
         <div className="top-destinations-section">
             <h2 className="top-destinations-header">Top Destinations</h2>

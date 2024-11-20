@@ -1,8 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
 import './Navbar.css';
+import LoginDropdown from './LoginDropdown';
 
-const Navbar = ({ isLoggedIn, isOrganizer, setLoggedIn }) => {
+const Navbar = ({ isLoggedIn, isOrganizer, setLoggedIn, setIsOrganizer }) => {
+  const [showLoginDropdown, setShowLoginDropdown] = useState(false);
+
   return (
     <nav className="navbar">
       <div className="navbar-left">
@@ -27,9 +31,20 @@ const Navbar = ({ isLoggedIn, isOrganizer, setLoggedIn }) => {
 
       <div className="navbar-right">
         {isLoggedIn ? (
-          <Link to="/login" className="nav-link" onClick={() => setLoggedIn(false)}>Logout</Link>
+          <Link to="/" className="nav-link" onClick={() => {setLoggedIn(false); setIsOrganizer(false); setShowLoginDropdown(false);}}>Logout</Link>
         ) : (
-          <Link to="/login" className="nav-link">Login/Register</Link>
+          <div className="login-register">
+            <span 
+              className="nav-link" 
+              onClick={() => setShowLoginDropdown(prev => !prev)}
+            >
+              Login/Register
+            </span>
+
+            {showLoginDropdown && (
+              <LoginDropdown setLoggedIn={setLoggedIn} setIsOrganizer={setIsOrganizer} />
+            )}
+          </div>
         )}
       </div>
     </nav>
