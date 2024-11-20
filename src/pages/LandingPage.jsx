@@ -1,6 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import DestinationCard from '../components/DestinationCard';
 import LoginDropdown from '../components/LoginDropdown';
 import './LandingPage.css';
@@ -25,6 +25,11 @@ const LandingPage = ({setLoggedIn, isLoggedIn, setIsOrganizer, isOrganizer }) =>
     }
   }, [isLoggedIn]);
 
+  const handleRegister = () => {
+    setLoggedIn(true);
+    setIsOrganizer(false);
+  };
+
   return (
     <div className="landing-page">
       <div className="landing-content">
@@ -45,7 +50,10 @@ const LandingPage = ({setLoggedIn, isLoggedIn, setIsOrganizer, isOrganizer }) =>
             </div>
 
             <p className="register-prompt">
-              New to Aurora? <Link to="/register" className="register-link">Register Here</Link>
+              New to Aurora? 
+              <Link to="/" onClick={handleRegister} className="register-link">
+                Register Here
+              </Link>
             </p>
           </div>
         )}
