@@ -1,0 +1,60 @@
+.login-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #003052;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    width: 200px;
+    z-index: 10;
+  }
+  
+  .login-form .input-group {
+    margin-bottom: 10px;
+  }
+  
+  .login-form label {
+    display: block;
+    color: #ebe9ec;
+  }
+  
+  .login-form input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: none;
+    font-size: 1rem;
+  }
+  
+  .login-btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #005a79;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 700;
+  }
+  
+  .login-btn:hover {
+    background-color: #004060;
+  }
+
+.register-prompt {
+    color: #ebe9ec;
+    font-size: 0.9rem;
+    text-align: center;
+    cursor: default;
+  }
+  
+  .register-link {
+    color: #ebe9ec;
+    text-decoration: underline;
+    display: flex;
+    justify-content: center;
+  }
+  
