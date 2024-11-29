@@ -165,10 +165,9 @@ body {
 /* Right Section */
 .right-section {
   width: 30%;
-  padding-top: 100px;
-  padding-bottom: 20px;
   display: flex;
   justify-content: center; /* Center content horizontally */
+  align-items: center; /* Center content vertically */
 }
 
 /* Top Reviews Section */
@@ -183,6 +182,7 @@ body {
   gap: 15px; /* Smaller gap between reviews */
   box-sizing: border-box;
   overflow: hidden; /* Prevent any content from overflowing */
+  height: fit-content;
 }
 
 /* Title Style */

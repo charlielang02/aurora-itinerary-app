@@ -88,25 +88,31 @@ const EventDetails = () => {
         <div className="right-section">
           <div className="top-reviews">
             <h2 className="reviews-header">Top Reviews</h2>
-            {event.reviews.map((review, index) => (
-              <div key={index} className="review">
-                <img
-                  src={ReviewerIcon}
-                  alt="Reviewer Icon"
-                  className="review-icon"
-                />
-                <p className="review-text">
-                  &ldquo;{review.comment}&rdquo; - {review.reviewer}
-                </p>
-                <div className="review-stars">
-                  {Array.from({ length: 5 }).map((_, starIndex) => (
-                    <span key={starIndex} className={starIndex < review.rating ? 'star filled' : 'star'}>
-                      ★
-                    </span>
-                  ))}
+            {event1.userReviews // Assuming `event1` is the selected event object
+              ?.sort((a, b) => b.rating - a.rating) // Sort reviews by rating (highest first)
+              .slice(0, 3) // Take the top 3 reviews
+              .map((review, index) => (
+                <div key={index} className="review">
+                  <img
+                    src={ReviewerIcon}
+                    alt="Reviewer Icon"
+                    className="review-icon"
+                  />
+                  <p className="review-text">
+                    &ldquo;{review.comment}&rdquo; - {review.reviewer}
+                  </p>
+                  <div className="review-stars">
+                    {Array.from({ length: 5 }).map((_, starIndex) => (
+                      <span
+                        key={starIndex}
+                        className={starIndex < review.rating ? "star filled" : "star"}
+                      >
+                        ★
+                      </span>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
           </div>
         </div>
       </div>
@@ -128,7 +134,25 @@ const EventDetails = () => {
       {/* Reviews Section */}
       <div className="reviews-section">
         <h2>Reviews</h2>
-        <p>Placeholder content for the reviews section.</p>
+        {event1.userReviews.map((review, index) => (
+          <div key={index} className="review">
+            <img
+              src={ReviewerIcon}
+              alt="Reviewer Icon"
+              className="review-icon"
+            />
+            <p className="review-text">
+              &ldquo;{review.comment}&rdquo; - {review.reviewer}
+            </p>
+            <div className="review-stars">
+              {Array.from({ length: 5 }).map((_, starIndex) => (
+                <span key={starIndex} className={starIndex < review.rating ? 'star filled' : 'star'}>
+                  ★
+                </span>
+              ))}
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );
