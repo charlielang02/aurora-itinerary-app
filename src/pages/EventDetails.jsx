@@ -16,13 +16,21 @@ const EventDetails = () => {
     return <p>Event not found. Please go back to the events page.</p>;
   }
 
-  const relatedEvents = [
-    { name: "Rocky Mountain Hike", location: "Banff, Alberta", image: placeholderImage },
-    { name: "Jazz Festival", location: "Montreal, Quebec", image: placeholderImage },
-    { name: "Food Truck Fiesta", location: "Vancouver, British Columbia", image: placeholderImage },
-    { name: "Maritime Adventures", location: "Halifax, Nova Scotia", image: placeholderImage },
-    { name: "Lighthouse Tour", location: "Charlottetown, PEI", image: placeholderImage },
-  ];
+  const getRandomEvents = (currentEventId, eventData, count = 5) => {
+    const otherEvents = Object.entries(eventData).filter(([key]) => key !== currentEventId);
+    const shuffled = otherEvents.sort(() => 0.5 - Math.random());
+    return shuffled.slice(0, count).map(([key, event]) => ({ id: key, ...event }));
+  };
+
+  const relatedEvents = getRandomEvents(eventId, EventData);
+
+  // const relatedEvents = [
+  //   { name: "Rocky Mountain Hike", location: "Banff, Alberta", image: placeholderImage },
+  //   { name: "Jazz Festival", location: "Montreal, Quebec", image: placeholderImage },
+  //   { name: "Food Truck Fiesta", location: "Vancouver, British Columbia", image: placeholderImage },
+  //   { name: "Maritime Adventures", location: "Halifax, Nova Scotia", image: placeholderImage },
+  //   { name: "Lighthouse Tour", location: "Charlottetown, PEI", image: placeholderImage },
+  // ];
 
   // Placeholder data
   const event = {
@@ -107,11 +115,11 @@ const EventDetails = () => {
       <div className="related-events-section">
         <h2 className="related-events-header">Related Events</h2>
         <div className="related-events-container">
-          {relatedEvents.map((event, index) => (
+          {relatedEvents.map((event) => (
             <DestinationCard
-              key={index}
-              image={event.image}
-              city={event.name}
+              key={event.id}
+              image={event.images[0]}
+              city={event.title}
               country={event.location}
             />
           ))}

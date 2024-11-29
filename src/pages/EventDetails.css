@@ -165,7 +165,10 @@ body {
 /* Right Section */
 .right-section {
   width: 30%;
-  padding-top: 150px;
+  padding-top: 100px;
+  padding-bottom: 20px;
+  display: flex;
+  justify-content: center; /* Center content horizontally */
 }
 
 /* Top Reviews Section */
@@ -173,7 +176,7 @@ body {
   padding: 10px 15px;
   background-color: rgba(109, 100, 185, 0.6);
   border-radius: 10px;
-  width: 100%; /* Adjust to fit the right-section */
+  width: 80%; /* Adjust to fit the right-section */
   display: flex;
   flex-direction: column;
   align-items: center;
