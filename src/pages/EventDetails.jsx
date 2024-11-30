@@ -1,11 +1,10 @@
 import React from "react";
 import { useParams, Link } from "react-router-dom";
 import "./EventDetails.css";
-import LargeEventImage from "../assets/stampede.jpg";
 import ReviewerIcon from "../assets/person-symbol.png";
 import DestinationCard from "../components/DestinationCard";
-import placeholderImage from "../assets/morainelake.jpg";
 import { EventData } from "./SearchEvents";
+import { useState, useMemo } from "react";
 
 
 const EventDetails = () => {
@@ -16,29 +15,43 @@ const EventDetails = () => {
     return <p>Event not found. Please go back to the events page.</p>;
   }
 
-  const getRandomEvents = (currentEventId, eventData, count = 5) => {
-    const otherEvents = Object.entries(eventData).filter(([key]) => key !== currentEventId);
-    const shuffled = otherEvents.sort(() => 0.5 - Math.random());
-    return shuffled.slice(0, count).map(([key, event]) => ({ id: key, ...event }));
+  const relatedEvents = useMemo(() => {
+    const getRandomEvents = (currentEventId, eventData, count = 5) => {
+      const otherEvents = Object.entries(eventData).filter(([key]) => key !== currentEventId);
+      const shuffled = otherEvents.sort(() => 0.5 - Math.random());
+      return shuffled.slice(0, count).map(([key, event]) => ({ id: key, ...event }));
+    };
+    return getRandomEvents(eventId, EventData);
+  }, [eventId]);
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [newReview, setNewReview] = useState({ content: "", reviewer: "", rating: "" });
+  const [reviews, setReviews] = useState(event1.userReviews || []);
+
+  // Toggle the modal
+  const handleModalToggle = () => setIsModalOpen(!isModalOpen);
+
+  // Handle form input changes
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setNewReview({ ...newReview, [name]: value });
   };
 
-  const relatedEvents = getRandomEvents(eventId, EventData);
-
-  // const relatedEvents = [
-  //   { name: "Rocky Mountain Hike", location: "Banff, Alberta", image: placeholderImage },
-  //   { name: "Jazz Festival", location: "Montreal, Quebec", image: placeholderImage },
-  //   { name: "Food Truck Fiesta", location: "Vancouver, British Columbia", image: placeholderImage },
-  //   { name: "Maritime Adventures", location: "Halifax, Nova Scotia", image: placeholderImage },
-  //   { name: "Lighthouse Tour", location: "Charlottetown, PEI", image: placeholderImage },
-  // ];
-
-  // Placeholder data
-  const event = {
-    reviews: [
-      { reviewer: "Alice", rating: 5, comment: "Amazing experience! Loved the rodeo, live music, and family-friendly attractions. We’ll be back!" },
-      { reviewer: "Bob", rating: 4, comment: "Incredible food, great concerts, and the fireworks were stunning! A must-visit event!" },
-      { reviewer: "Ethan", rating: 5, comment: "First time at the Stampede and I loved it! So much to do and worth every penny!" },
-    ],
+  // Add a new review
+  const handleSubmitReview = () => {
+    if (newReview.content && newReview.reviewer && newReview.rating) {
+      const updatedReviews = [
+        ...reviews,
+        {
+          reviewer: newReview.reviewer,
+          rating: parseInt(newReview.rating),
+          comment: newReview.content,
+        },
+      ];
+      setReviews(updatedReviews); // Update the displayed reviews
+      setNewReview({ content: "", reviewer: "", rating: "" }); // Reset the form
+      setIsModalOpen(false); // Close the modal
+    }
   };
 
   return (
@@ -74,9 +87,54 @@ const EventDetails = () => {
             ))}
           </p>
           <p className="event-reviews">{event1.reviews} Reviews</p>
-          <Link to="#" className="write-review-link">
+          <Link to="#" className="write-review-link" onClick={handleModalToggle}>
             Write a Review
           </Link>
+          {isModalOpen && (
+            <div className="modal-overlay">
+              <div className="modal-content">
+                <h2>Write a Review</h2>
+                <div className="form-group">
+                  <label htmlFor="reviewContent">Review:</label>
+                  <textarea
+                    id="reviewContent"
+                    name="content"
+                    value={newReview.content}
+                    onChange={handleInputChange}
+                  ></textarea>
+                </div>
+                <div className="form-group">
+                  <label htmlFor="reviewerName">Your Name:</label>
+                  <input
+                    id="reviewerName"
+                    name="reviewer"
+                    type="text"
+                    value={newReview.reviewer}
+                    onChange={handleInputChange}
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="reviewRating">Rating (1-5):</label>
+                  <input
+                    id="reviewRating"
+                    name="rating"
+                    type="number"
+                    min="1"
+                    max="5"
+                    value={newReview.rating}
+                    onChange={handleInputChange}
+                  />
+                </div>
+                <button className="submit-review" onClick={handleSubmitReview}>
+                  Submit
+                </button>
+                <button className="close-modal" onClick={handleModalToggle}>
+                  Cancel
+                </button>
+              </div>
+            </div>
+          )}
+
           <div className="price-range-box">
             <p>Price Range: {event1.priceRange}</p>
           </div>
@@ -88,31 +146,31 @@ const EventDetails = () => {
         <div className="right-section">
           <div className="top-reviews">
             <h2 className="reviews-header">Top Reviews</h2>
-            {event1.userReviews // Assuming `event1` is the selected event object
-              ?.sort((a, b) => b.rating - a.rating) // Sort reviews by rating (highest first)
-              .slice(0, 3) // Take the top 3 reviews
-              .map((review, index) => (
-                <div key={index} className="review">
-                  <img
-                    src={ReviewerIcon}
-                    alt="Reviewer Icon"
-                    className="review-icon"
-                  />
-                  <p className="review-text">
-                    &ldquo;{review.comment}&rdquo; - {review.reviewer}
-                  </p>
-                  <div className="review-stars">
-                    {Array.from({ length: 5 }).map((_, starIndex) => (
-                      <span
-                        key={starIndex}
-                        className={starIndex < review.rating ? "star filled" : "star"}
-                      >
-                        ★
-                      </span>
-                    ))}
+            {reviews.length > 0 ? (
+              reviews
+                .sort((a, b) => b.rating - a.rating) // Sort reviews by rating
+                .slice(0, 3) // Display top 3 reviews
+                .map((review, index) => (
+                  <div key={index} className="review">
+                    <img src={ReviewerIcon} alt="Reviewer Icon" className="review-icon" />
+                    <p className="review-text">
+                      &ldquo;{review.comment}&rdquo; - {review.reviewer}
+                    </p>
+                    <div className="review-stars">
+                      {Array.from({ length: 5 }).map((_, starIndex) => (
+                        <span
+                          key={starIndex}
+                          className={starIndex < review.rating ? "star filled" : "star"}
+                        >
+                          ★
+                        </span>
+                      ))}
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))
+            ) : (
+              <p>No reviews yet. Be the first to write one!</p>
+            )}
           </div>
         </div>
       </div>
@@ -134,7 +192,7 @@ const EventDetails = () => {
       {/* Reviews Section */}
       <div className="reviews-section">
         <h2>Reviews</h2>
-        {event1.userReviews.map((review, index) => (
+        {reviews.map((review, index) => (
           <div key={index} className="review">
             <img
               src={ReviewerIcon}
