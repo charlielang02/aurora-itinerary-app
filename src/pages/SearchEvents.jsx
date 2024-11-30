@@ -6,6 +6,10 @@ import calgary_tower from '../assets/calgary-tower.jpg';
 import calgary_stampede from '../assets/stampede.jpg';
 import banff_skiing from '../assets/banff-skiing.jpg';
 import lake_louise_skiing from '../assets/lake-louise-skiing.jpg';
+import lake_louise_skiing2 from '../assets/lake-louise-skiing2.jpg';
+import lake_louise_skiing3 from '../assets/lake-louise-skiing3.jpg';
+import lake_louise_skiing4 from '../assets/lake-louise-skiing4.jpg';
+import lake_louise_skiing5 from '../assets/lake-louise-skiing5.jpg';
 import toronto_raptors_game from '../assets/toronto-raptors-game.jpg';
 import paris_eiffel_tower from '../assets/paris-eiffel-tower.jpg';
 import tokyo_sumo from '../assets/tokyo-sumo.jpg';
@@ -18,7 +22,7 @@ import dubai_burj_khalifa from '../assets/dubai-burj-khalifa.jpg';
 export const EventData = [
   {
     title: "Skiing at Lake Louise",
-    images: [lake_louise_skiing, lake_louise_skiing, lake_louise_skiing, lake_louise_skiing, lake_louise_skiing],
+    images: [lake_louise_skiing, lake_louise_skiing2, lake_louise_skiing3, lake_louise_skiing4, lake_louise_skiing5],
     rating: 4,
     reviews: 6,
     location: "Lake Louise, AB, Canada",

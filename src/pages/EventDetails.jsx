@@ -27,6 +27,7 @@ const EventDetails = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [newReview, setNewReview] = useState({ content: "", reviewer: "", rating: "" });
   const [reviews, setReviews] = useState(event1.userReviews || []);
+  const [reviewCount, setReviewCount] = useState(reviews.length);
 
   // Toggle the modal
   const handleModalToggle = () => setIsModalOpen(!isModalOpen);
@@ -50,8 +51,23 @@ const EventDetails = () => {
       ];
       setReviews(updatedReviews); // Update the displayed reviews
       setNewReview({ content: "", reviewer: "", rating: "" }); // Reset the form
+      setReviewCount(updatedReviews.length); // Update the review count
       setIsModalOpen(false); // Close the modal
     }
+  };
+
+  const [largeImage, setLargeImage] = useState(event1.images[0]); // Track current large image
+  const [smallImages, setSmallImages] = useState(event1.images.slice(1)); // Track remaining small images
+
+  const handleImageClick = (clickedImage) => {
+    // Swap the large image with the clicked small image
+    const updatedSmallImages = smallImages.filter(image => image !== clickedImage); // Remove clicked image from small images
+    setSmallImages([largeImage, ...updatedSmallImages]); // Add the previous large image as a small image
+    setLargeImage(clickedImage); // Set the clicked image as the large image
+  };
+
+  const handleClick = () => {
+    window.location.reload();
   };
 
   return (
@@ -65,12 +81,18 @@ const EventDetails = () => {
           </Link>
           <img
             className="event-large-image"
-            src={event1.images[0]}
+            src={largeImage} // Display the current large image
             alt={event1.title}
           />
           <div className="event-small-images">
-            {event1.images.slice(1).map((img, index) => (
-              <img key={index} src={img} alt={`Event thumbnail ${index + 1}`} />
+            {smallImages.map((img, index) => (
+              <img
+                key={index}
+                src={img}
+                alt={`Event thumbnail ${index + 1}`}
+                className="small-image"
+                onClick={() => handleImageClick(img)} // Swap the image on click
+              />
             ))}
           </div>
         </div>
@@ -86,10 +108,17 @@ const EventDetails = () => {
               </span>
             ))}
           </p>
-          <p className="event-reviews">{event1.reviews} Reviews</p>
+          <p className="event-reviews">{reviewCount} Reviews</p>
           <Link to="#" className="write-review-link" onClick={handleModalToggle}>
             Write a Review
           </Link>
+          <p className="event-date">
+            {event1.date}
+          </p>
+          <p className="event-time">
+            {event1.startTime} - {event1.endTime}
+          </p>
+
           {isModalOpen && (
             <div className="modal-overlay">
               <div className="modal-content">
@@ -178,17 +207,19 @@ const EventDetails = () => {
       {/* Related Events Section */}
       <div className="related-events-section">
         <h2 className="related-events-header">Related Events</h2>
-        <div className="related-events-container">
+        <div className="related-events-container" onClick={handleClick}>
           {relatedEvents.map((event) => (
             <DestinationCard
               key={event.id}
               image={event.images[0]}
               city={event.title}
               country={event.location}
+              link={`/event-details/${event.id}`} // Custom link to event details page
             />
           ))}
         </div>
       </div>
+
       {/* Reviews Section */}
       <div className="reviews-section">
         <h2>Reviews</h2>
