@@ -1,15 +1,16 @@
-import { Link } from 'react-router-dom';
-import ChipContainer from '../components/ChipContainer';
-import styles from './SearchEvents.module.css';
-import cardstyles from './SearchEventsCard.module.css';
-import { EventData } from '../data/EventData';
 import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { EventData } from '../data/EventData';
+import styles from './SearchEvents.module.css';
+import ChipContainer from '../components/ChipContainer';
+import cardstyles from './SearchEventsCard.module.css';
 import DropDown from '../components/DropDown';
 
 const SearchBar = () => {
   return (
     <form className={`${styles.search_bar} ${styles.shadow_bottom}`}>
-      <input type="text" id="search" name="search"></input>
+      <input type="text" id="search" name="search" placeholder="Event name, location, keyword..." />
+      <button className={styles.search_btn}>Search</button>
     </form>
   );
 }
@@ -23,6 +24,11 @@ const EventCard = ({ data, id }) => {
           <h3 className={cardstyles.title}>
             {data.title}
           </h3>
+          <p className={cardstyles.star_container}>
+            {Array.from({ length: 5 }).map((_, starIndex) => (
+              <span key={starIndex} className={starIndex < data.rating ? 'star filled' : cardstyles.star}>★</span>
+            ))}
+          </p>
           <p className={cardstyles.location}>
             {data.location}
           </p>
@@ -51,8 +57,10 @@ const SearchEvents = () => {
       </div>
       <div className={styles.page_content}>
         <div className={styles.events}>
-          <h1 className={styles.title}>Find Your Next Adventure!</h1>
-          <SearchBar />
+          <div className={styles.header}>
+            <h1>Find Your Next Adventure!</h1>
+            <SearchBar />
+          </div>
           <div className={styles.card_container}>
             {EventData.map((data, i) => {
               return (

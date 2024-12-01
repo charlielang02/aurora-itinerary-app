@@ -350,7 +350,7 @@ button {
 
 button:hover {
   background-color: #004573; /* Darker shade for hover */
-  transform: scale(1.1); /* Enlarge by 10% on hover */
+  transform: scale(1.05); /* Enlarge by 10% on hover */
   color: #ebe9ec; /* Keep text color consistent on hover */
   cursor: pointer; /* Show pointer cursor on hover */
 }
