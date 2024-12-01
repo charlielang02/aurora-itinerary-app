@@ -4,6 +4,7 @@ import styles from './SearchEvents.module.css';
 import cardstyles from './SearchEventsCard.module.css';
 import { EventData } from '../data/EventData';
 import { useEffect } from 'react';
+import DropDown from '../components/DropDown';
 
 const SearchBar = () => {
   return (
@@ -38,7 +39,16 @@ const SearchEvents = () => {
 
   return (
     <div>
-      <div className={styles.left_panel}></div>
+      <div className={styles.left_panel}>
+        <div className={styles.filters}>
+          <h2 className={styles.filter_title}>Filters</h2>
+          <DropDown />
+          <div className={`${styles.date_picker} ${styles.filter_item}`}></div>
+          <div className={`${styles.dollar_picker} ${styles.filter_item}`}></div>
+          <div className={`${styles.min_rating} ${styles.filter_item}`}></div>
+          <div className={`${styles.apply_btn} ${styles.filter_item}`}>Apply</div>
+        </div>
+      </div>
       <div className={styles.page_content}>
         <div className={styles.events}>
           <h1 className={styles.title}>Find Your Next Adventure!</h1>

@@ -1,4 +1,3 @@
-import React from 'react';
 import './DestinationCard.css';
 import { Link } from 'react-router-dom';
 import { createSearchParams } from 'react-router-dom';
