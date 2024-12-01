@@ -60,7 +60,8 @@ h2 {
   width: 75%;
   max-width: 1000px;
   height: 60px;
-  background: var(--secondary-clr);
+  background: white;
+  outline: 1px solid rgb(214, 214, 214);
   border-radius: 999px;
 }
 
@@ -82,6 +83,10 @@ h2 {
   font-size: 16px;
 }
 
+.search_bar input:focus {
+  outline: none;
+}
+
 .card_container {
   display: flex;
   flex-wrap: wrap;
@@ -93,13 +98,8 @@ h2 {
 
 .chip_container {
   padding: 10px;
+  padding-top: 0;
   overflow: hidden;
-}
-
-@media screen and (max-width: 1300px) {
-  :root {
-    --left-panel-thickness: 200px;
-  }
 }
 
 .left_panel {
@@ -130,14 +130,14 @@ h2 {
     0 2px 2px var(--box-shadow-color),
     0 4px 4px var(--box-shadow-color),
     0 8px 8px var(--box-shadow-color);
-  outline: 1px solid gray;
+  outline: 1px solid rgb(158, 158, 158);
+  background: white;
   border-radius: 4px;
 }
 
 .apply_btn {
   background: var(--primary-clr);
   text-align: center;
-  width: 150px;
   height: 40px;
   line-height: 40px;
   font-weight: normal;

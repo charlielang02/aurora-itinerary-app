@@ -24,13 +24,19 @@ const EventCard = ({ data, id }) => {
           <h3 className={cardstyles.title}>
             {data.title}
           </h3>
-          <p className={cardstyles.star_container}>
-            {Array.from({ length: 5 }).map((_, starIndex) => (
-              <span key={starIndex} className={starIndex < data.rating ? 'star filled' : cardstyles.star}>★</span>
-            ))}
-          </p>
-          <p className={cardstyles.location}>
+          <div className={cardstyles.star_container}>
+            <p>
+              {[...Array(5)].map((_,i) => (
+                <span key={i} className={i < data.rating ? `${cardstyles.star_filled} star filled` : cardstyles.star}>★</span>
+              ))}
+            </p>
+            <p className={cardstyles.review_count}>{data.userReviews.length} reviews</p>
+          </div>
+          <p className={cardstyles.info}>
             {data.location}
+          </p>
+          <p className={cardstyles.info}>
+            {data.startTime} {data.endTime}
           </p>
         </div>
         <ChipContainer className={styles.chip_container} data={data} />

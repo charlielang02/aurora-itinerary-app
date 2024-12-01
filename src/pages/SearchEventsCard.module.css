@@ -19,6 +19,7 @@
   background: var(--secondary-clr);
   text-decoration: none;
   overflow: hidden;
+  min-width: 200px;
 }
 
 .card:hover {
@@ -63,14 +64,28 @@
 }
 
 .star_container {
+  display: flex;
   margin-bottom: 4px;
+  gap: 8px;
+  font-weight: normal;
+  align-items: center;
+}
+
+.review_count {
+  font-size: 14px;
+  transform: translateY(1px);
 }
 
 .star {
   color: gray;
+  font-size: 20px !important;
 }
 
-.location {
+.star_filled {
+  font-size: 20px !important;
+}
+
+.info {
   font-size: small;
   color: black;
   margin-bottom: var(--card-text-margin);
@@ -80,11 +95,10 @@
   align-items: flex-end;
   font-weight: bold;
   margin: var(--card-text-margin);
-  margin-top: 0;
-  max-height: 52px;
+  overflow: hidden;
 }
 
-@media screen and (max-width: 1300px) {
+@media screen and (max-width: 1500px) {
   .card {
     flex: 0 0 calc(50% - var(--card-gap));
     max-width: calc(50% - var(--card-gap));

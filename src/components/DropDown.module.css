@@ -6,6 +6,7 @@
       0 2px 2px var(--box-shadow-color),
       0 4px 4px var(--box-shadow-color),
       0 8px 8px var(--box-shadow-color);
-    outline: 1px solid gray;
+    outline: 1px solid rgb(158, 158, 158);
+    background: white;
     border-radius: 4px;
   }

@@ -48,7 +48,7 @@ const EventDetails = () => {
   const handleSubmitReview = () => {
     if (newReview.content && newReview.reviewer && newReview.rating) {
       const updatedReviews = [
-        ...reviews,
+        ...reviewCount,
         {
           reviewer: newReview.reviewer,
           rating: parseInt(newReview.rating),
