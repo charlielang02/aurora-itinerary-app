@@ -377,10 +377,11 @@ button:hover {
   .content-section {
     flex-direction: column;
     gap: 20px; /* Increase spacing between sections */
+    align-items: center; /* Center content */
   }
 
   .left-section {
-    width: 100%;
+    width: 80%;
     padding: 10px;
   }
 
@@ -407,7 +408,7 @@ button:hover {
   }
 
   .middle-section {
-    width: 100%;
+    width: 80%;
     align-items: center; /* Center-align content */
     text-align: center; /* Center-align text for better readability */
     padding-top: 20px;
@@ -437,7 +438,7 @@ button:hover {
   }
 
   .right-section {
-    width: 100%;
+    width: 80%;
     margin-top: 20px; /* Add spacing from other sections */
   }
 
