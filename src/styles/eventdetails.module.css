@@ -1,5 +1,3 @@
-/* TODO: Move navbar, default page styling to separate css files */
-
 :root {
   --navbar-thickness: 72px;
   --primary-clr: #003052;
@@ -14,24 +12,12 @@ h1 {
   font-weight: 500;
 }
 
-.nav {
-  position: fixed;
-  z-index: 9999;
-  width: 100%;
-  height: var(--navbar-thickness);
-  background: var(--primary-clr);
-}
-
 .shadow_bottom {
   box-shadow:
     0 1px 1px var(--box-shadow-color),
     0 2px 2px var(--box-shadow-color),
     0 4px 4px var(--box-shadow-color),
     0 8px 8px var(--box-shadow-color)
-}
-
-body {
-  background: #EBE9EC;
 }
 
 .page_content {
