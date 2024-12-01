@@ -346,6 +346,7 @@ button {
   transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition for background color and scale */
   align-self: center;
   margin: 10px;
+  border: none;
 }
 
 button:hover {

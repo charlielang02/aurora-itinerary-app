@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { EventData } from '../data/EventData';
 import styles from './SearchEvents.module.css';
@@ -46,8 +46,21 @@ const EventCard = ({ data, id }) => {
 }
 
 const SearchEvents = () => {
+  const [startDate, setStartDate] = useState(new Date());
+
   // Force scroll to top when page becomes visible
-  useEffect(() => window.scrollTo(0, 0), []);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+      // Set the startDate to today's date at midnight
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      setStartDate(today);
+  }, []);
+
+  const handleDateChange = (e) => {
+    const selectedDate = new Date(e.target.value);
+    setStartDate(selectedDate);
+  };
 
   return (
     <div>
@@ -55,10 +68,45 @@ const SearchEvents = () => {
         <div className={styles.filters}>
           <h2 className={styles.filter_title}>Filters</h2>
           <DropDown />
-          <div className={`${styles.date_picker} ${styles.filter_item}`}></div>
-          <div className={`${styles.dollar_picker} ${styles.filter_item}`}></div>
-          <div className={`${styles.min_rating} ${styles.filter_item}`}></div>
-          <div className={`${styles.apply_btn} ${styles.filter_item}`}>Apply</div>
+          <input
+            type="date"
+            id="search-pick-date"
+            className={`${styles.date_picker} ${styles.filter_item}`}
+            value={startDate.toISOString().split('T')[0]}
+            onChange={handleDateChange}
+          >
+          </input>
+          <div className={styles.dollar_picker_container}>
+            <input
+              type="number"
+              name="min-price"
+              min="0"
+              step=".01"
+              placeholder="Min:"
+              className={`${styles.filter_item} ${styles.dollar_picker}`}
+            />
+            <p className={styles.dash}>-</p>
+            <input
+              type="number"
+              name="max-price"
+              min="0"
+              step=".01"
+              placeholder="Max:"
+              className={`${styles.filter_item} ${styles.dollar_picker}`}
+            />
+          </div>
+          <div className={`${styles.min_rating} ${styles.filter_item}`}>
+            Minimum Rating
+            <p className={styles.min_stars}>
+              {[...Array(5)].map((_,i) => (
+                // Temp condition
+                <span key={i} className={i < 5 ? `${styles.min_star} ${cardstyles.star_filled} star filled` : cardstyles.star}>
+                  ★
+                </span>
+              ))}
+            </p>
+          </div>
+          <button className={`${styles.apply_btn} ${styles.filter_item}`}>Apply</button>
         </div>
       </div>
       <div className={styles.page_content}>
