@@ -118,6 +118,8 @@ const ViewItinerary = () => {
   const [startDate, setStartDate] = useState(new Date());
 
   useEffect(() => {
+    // Force scroll to top when page becomes visible
+    window.scrollTo(0, 0);
     // Set the startDate to today's date at midnight
     const today = new Date();
     today.setHours(0, 0, 0, 0);

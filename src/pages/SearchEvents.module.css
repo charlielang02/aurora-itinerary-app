@@ -46,7 +46,7 @@ h1 {
 }
 
 .title {
-  margin-top: 100px;
+  margin-top: 50px;
 }
 
 .search_bar {
@@ -78,4 +78,15 @@ h1 {
 
 .chip_container {
   padding: 10px;
+  overflow: hidden;
+}
+
+@media screen and (max-width: 1300px) {
+  :root {
+    --left-panel-thickness: 200px;
+  }
+
+  .events {
+    width: calc(100% - 100px);
+  }
 }

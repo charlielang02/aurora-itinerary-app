@@ -19,6 +19,9 @@ const LandingPage = ({setLoggedIn, isLoggedIn, setIsOrganizer, isOrganizer }) =>
     setShowLoginDropdown(!showLoginDropdown);
   };
 
+  // Force scroll to top when page becomes visible
+  useEffect(() => window.scrollTo(0, 0), []);
+
   useEffect(() => {
     if (!isLoggedIn) {
       setShowLoginDropdown(false);

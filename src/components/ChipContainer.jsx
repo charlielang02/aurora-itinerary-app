@@ -1,4 +1,4 @@
-import styles from '../styles/chip.module.css';
+import styles from './ChipContainer.module.css';
 
 // Functions to darken RGB colors based on a given percentage p
 // Optimized for speed instead of readability

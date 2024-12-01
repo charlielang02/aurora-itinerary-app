@@ -3,13 +3,19 @@ import { useParams, Link } from "react-router-dom";
 import "./EventDetails.css";
 import ReviewerIcon from "../assets/person-symbol.png";
 import DestinationCard from "../components/DestinationCard";
-import { EventData } from "./SearchEvents";
-import { useState, useMemo } from "react";
+import { EventData } from "../data/EventData";
+import { useState, useMemo, useEffect } from "react";
 
+const handleClick = () => {
+  window.location.reload();
+};
 
 const EventDetails = () => {
   const { eventId } = useParams();
   const event1 = EventData[eventId];
+
+  // Force scroll to top when page becomes visible
+  useEffect(() => window.scrollTo(0, 0), []);
 
   if (!event1) {
     return <p>Event not found. Please go back to the events page.</p>;
@@ -64,10 +70,6 @@ const EventDetails = () => {
     const updatedSmallImages = smallImages.filter(image => image !== clickedImage); // Remove clicked image from small images
     setSmallImages([largeImage, ...updatedSmallImages]); // Add the previous large image as a small image
     setLargeImage(clickedImage); // Set the clicked image as the large image
-  };
-
-  const handleClick = () => {
-    window.location.reload();
   };
 
   return (
