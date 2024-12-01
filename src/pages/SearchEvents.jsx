@@ -77,23 +77,29 @@ const SearchEvents = () => {
           >
           </input>
           <div className={styles.dollar_picker_container}>
-            <input
-              type="number"
-              name="min-price"
-              min="0"
-              step=".01"
-              placeholder="Min:"
-              className={`${styles.filter_item} ${styles.dollar_picker}`}
-            />
+            <div className={`${styles.filter_item} ${styles.dollar_picker_bg}`}>
+              <div className={styles.dollar_symbol}>$</div>
+              <input
+                type="number"
+                name="min-price"
+                min="0"
+                step=".01"
+                placeholder="Min:"
+                className={`${styles.dollar_picker}`}
+              />
+            </div>
             <p className={styles.dash}>-</p>
-            <input
-              type="number"
-              name="max-price"
-              min="0"
-              step=".01"
-              placeholder="Max:"
-              className={`${styles.filter_item} ${styles.dollar_picker}`}
-            />
+            <div className={`${styles.filter_item} ${styles.dollar_picker_bg}`}>
+              <div className={styles.dollar_symbol}>$</div>
+              <input
+                type="number"
+                name="max-price"
+                min="0"
+                step=".01"
+                placeholder="Min:"
+                className={`${styles.dollar_picker}`}
+              />
+            </div>
           </div>
           <div className={`${styles.min_rating} ${styles.filter_item}`}>
             Minimum Rating
