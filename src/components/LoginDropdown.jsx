@@ -59,7 +59,7 @@ const LoginDropdown = ({ setLoggedIn, setIsOrganizer }) => {
             Don't have an account?
         </p>
         <div>
-            <Link to="/" onClick={handleRegister} className="register-link">
+            <Link to={window.location.pathname} onClick={handleRegister} className="register-link">
                 Register Here
             </Link>
         </div>
