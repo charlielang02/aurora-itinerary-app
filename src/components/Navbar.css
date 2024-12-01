@@ -43,7 +43,7 @@ body {
 
 /* Logo Styling */
 .navbar-left .logo-img {
-    max-height: 8vh;
+    height: 50px;
     /* Scale logo to 80% of the navbar height */
     width: auto;
     /* Maintain aspect ratio */
@@ -51,10 +51,11 @@ body {
     /* Ensure the logo fits within the container without distortion */
     transition: transform 0.3s ease-in-out;
     /* Smooth transition for scaling */
+    margin-left: 20px;
 }
 
 .navbar-left .logo-img:hover {
-    transform: scale(1.1);
+    transform: scale(1.05);
     /* Increase the size by 10% when hovered */
 }
 
@@ -74,13 +75,14 @@ body {
     display: flex;
     flex-grow: 1;
     /* Ensures links take up available space and are evenly spaced */
-    justify-content: space-evenly;
-    /* Evenly spaces the links */
+    justify-content: center;
+    gap: 10%;
+    margin-left: 40px;
 }
 
 .navbar-center .nav-link {
     color: #ebe9ec;
-    font-size: 2vw;
+    font-size: 20px;
     text-decoration: none;
     padding: 10px 20px;
     line-height: 1;
@@ -102,7 +104,7 @@ body {
 
 .navbar-right .nav-link {
     color: #ebe9ec;
-    font-size: 1.5vw;
+    font-size: 20px;
     text-decoration: none;
     border-radius: 5px;
     line-height: 1;

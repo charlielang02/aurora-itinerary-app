@@ -199,6 +199,7 @@ const ViewItinerary = () => {
           id="pick-date"
           value={startDate.toISOString().split('T')[0]}
           onChange={handleDateChange}
+          onClick={(e) => e.currentTarget.showPicker()}
         />
         <button className="scrollButton" onClick={() => handleWeekChange(-1)}>
           &#9664;

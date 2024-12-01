@@ -74,6 +74,7 @@ const SearchEvents = () => {
             className={`${styles.date_picker} ${styles.filter_item}`}
             value={startDate.toISOString().split('T')[0]}
             onChange={handleDateChange}
+            onClick={(e) => e.currentTarget.showPicker()}
           >
           </input>
           <div className={styles.dollar_picker_container}>
