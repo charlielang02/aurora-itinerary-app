@@ -35,6 +35,11 @@ body {
     margin: 20px;
   }
   
+  .date-picker input,
+  .date-picker input::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+  }
+
   .scrollButton {
     color: #D9D9D9;
     background-color: #003052;

@@ -1,63 +1,63 @@
 :root {
-    --navbar-thickness: 70px;
-    --ham-animation-timing: 200ms ease-in-out;
-    --ham-gap: 6px;
-    --ham-bar-thickness: 2px;
+  --navbar-thickness: 70px;
+  --ham-animation-timing: 200ms ease-in-out;
+  --ham-gap: 6px;
+  --ham-bar-thickness: 2px;
 }
 
 .hamburger {
-    display: none;
-    flex-direction: column;
-    position: fixed;
-    gap: 6px;
-    cursor: pointer;
-    z-index: 999999;
-    right: 20px;
-    top: calc((var(--navbar-thickness) - var(--ham-bar-thickness) * 3 - var(--ham-gap) * 2) / 2);
+  display: none;
+  flex-direction: column;
+  position: fixed;
+  gap: 6px;
+  cursor: pointer;
+  z-index: 999999;
+  right: 20px;
+  top: calc((var(--navbar-thickness) - var(--ham-bar-thickness) * 3 - var(--ham-gap) * 2) / 2);
 }
 
 .hamburger input {
-    display: none;
-    appearance: none;
-    pointer-events: none;
-    outline: none;
+  display: none;
+  appearance: none;
+  pointer-events: none;
+  outline: none;
 }
 
 .ham_bar1,
 .ham_bar2,
 .ham_bar3 {
-    width: 28px;
-    height: var(--ham-bar-thickness);
-    background-color: white;
-    border-radius: 9999px;
-    margin-bottom: var(--ham-gap);
+  width: 28px;
+  height: var(--ham-bar-thickness);
+  background-color: white;
+  border-radius: 9999px;
+  margin-bottom: var(--ham-gap);
 }
 
 .ham_bar1,
 .ham_bar3 {
-    transform-origin: center center;
-    transition: transform var(--ham-animation-timing);
+  transform-origin: center center;
+  transition: transform var(--ham-animation-timing);
 }
 
 .ham_bar2 {
-    transition: width var(--ham-animation-timing), opacity var(--ham-animation-timing);
+  transition: width var(--ham-animation-timing), opacity var(--ham-animation-timing);
 }
 
 .hamburger input:checked~.ham_bar1 {
-    transform: translateY(8px) rotate(45deg);
+  transform: translateY(8px) rotate(45deg);
 }
 
 .hamburger input:checked~.ham_bar2 {
-    width: 0;
-    opacity: 0;
+  width: 0;
+  opacity: 0;
 }
 
 .hamburger input:checked~.ham_bar3 {
-    transform: translateY(-8px) rotate(-45deg);
+  transform: translateY(-8px) rotate(-45deg);
 }
 
 @media (max-width: 768px) {
-    .hamburger {
-        display: inline-block;
-    }
+  .hamburger {
+    display: inline-block;
+  }
 }

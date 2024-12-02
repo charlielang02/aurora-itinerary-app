@@ -213,3 +213,8 @@ h2 {
   color: black;
   border: none;
 }
+
+.date_picker,
+.date_picker::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+}

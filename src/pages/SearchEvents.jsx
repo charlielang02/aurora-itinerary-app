@@ -6,27 +6,18 @@ import ChipContainer from '../components/ChipContainer';
 import cardstyles from './SearchEventsCard.module.css';
 import DropDown from '../components/DropDown';
 
-const SearchBar = () => {
-  return (
-    <form className={`${styles.search_bar} ${styles.shadow_bottom}`}>
-      <input type="text" id="search" name="search" placeholder="Event name, location, keyword..." />
-      <button className={styles.search_btn}>Search</button>
-    </form>
-  );
-}
-
 const EventCard = ({ data, id }) => {
   return (
     <Link className={`${cardstyles.card} ${styles.shadow_bottom}`} to={`/event-details/${id}`}>
-       <img src={data.images[0]} alt={data.imageAlt} />
-       <div className={cardstyles.content}>
+      <img src={data.images[0]} alt={data.imageAlt} />
+      <div className={cardstyles.content}>
         <div className={cardstyles.text}>
           <h3 className={cardstyles.title}>
             {data.title}
           </h3>
           <div className={cardstyles.star_container}>
             <p>
-              {[...Array(5)].map((_,i) => (
+              {[...Array(5)].map((_, i) => (
                 <span key={i} className={i < data.rating ? `${cardstyles.star_filled} star filled` : cardstyles.star}>★</span>
               ))}
             </p>
@@ -48,15 +39,15 @@ const EventCard = ({ data, id }) => {
 const SearchEvents = () => {
   const [startDate, setStartDate] = useState(new Date());
   const [minStars, setMinStars] = useState(1);
-  useEffect(() => window.scrollTo(0, 0), []);
+  const [searchedText, setSearchedText] = useState('');
 
   // Force scroll to top when page becomes visible
   useEffect(() => {
     window.scrollTo(0, 0);
-      // Set the startDate to today's date at midnight
-      const today = new Date();
-      today.setHours(0, 0, 0, 0);
-      setStartDate(today);
+    // Set the startDate to today's date at midnight
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    setStartDate(today);
   }, []);
 
   const handleDateChange = (e) => {
@@ -64,13 +55,21 @@ const SearchEvents = () => {
     setStartDate(selectedDate);
   };
 
-  const handleStarClick = (e, star_index) => {
+  const handleStarClick = (star_index) => {
     setMinStars(star_index + 1);
   }
 
   const handleApplyFilters = (e) => {
 
   }
+
+  const handleSearchBtnClicked = (e) => {
+    console.log('search text');
+  }
+
+  const handleSearchTextChanged = (e) => {
+    setSearchedText(e.target.value);
+  };
 
   return (
     <div>
@@ -115,22 +114,19 @@ const SearchEvents = () => {
           <div className={`${styles.min_rating} ${styles.filter_item}`}>
             <p className={styles.min_text}>Minimum Rating</p>
             <p className={styles.min_stars}>
-              {[...Array(5)].map((_,i) => (
+              {[...Array(5)].map((_, i) => (
                 // Temp condition
                 <span
                   key={i}
                   className={i < minStars ? `${styles.min_star} ${cardstyles.star_filled} star filled` : cardstyles.star}
-                  onClick={(e) => handleStarClick(e, i)}
+                  onClick={() => handleStarClick(i)}
                 >
                   ★
                 </span>
               ))}
             </p>
           </div>
-          <button
-            className={`${styles.apply_btn} ${styles.filter_item}`}
-            onClick={handleApplyFilters}
-          >
+          <button className={`${styles.apply_btn} ${styles.filter_item}`} onClick={handleApplyFilters}>
             Apply
           </button>
         </div>
@@ -139,7 +135,19 @@ const SearchEvents = () => {
         <div className={styles.events}>
           <div className={styles.header}>
             <h1>Find Your Next Adventure!</h1>
-            <SearchBar />
+            <form className={`${styles.search_bar} ${styles.shadow_bottom}`}>
+              <input
+                type="text"
+                id="search"
+                name="search"
+                placeholder="Event name, location, keyword..."
+                value={searchedText}
+                onChange={handleSearchTextChanged}
+              />
+              <button className={styles.search_btn} onClick={handleSearchBtnClicked}>
+                Search
+              </button>
+            </form>
           </div>
           <div className={styles.card_container}>
             {EventData.map((data, i) => {

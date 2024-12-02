@@ -10,3 +10,18 @@
     background: white;
     border-radius: 4px;
   }
+
+  .dropdown button {
+    background: white;
+    color: black;
+    border-radius: 0;
+    font-size: 14px;
+    font-weight: normal;
+    width: 20px;
+    margin: 0;
+  }
+
+  .dropdown button:hover {
+    background: white;
+    color: black;
+  }
