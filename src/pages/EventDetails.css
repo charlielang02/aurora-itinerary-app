@@ -179,6 +179,20 @@ body {
   cursor: pointer; /* Show pointer cursor on hover */
 }
 
+.add-to-itinerary-link {
+  display: block;
+  color: #003052;
+  text-decoration: none;
+  cursor: pointer;
+  text-align: center; /* Center the text within its container */
+  margin-left: auto; /* Align link to center horizontally */
+  margin-right: auto;
+  width: fit-content; /* Shrink the link container to the size of the content */
+}
+.add-to-itinerary-link:hover {
+  text-decoration: underline;
+}
+
 /* Right Section */
 .right-section {
   width: 30%;

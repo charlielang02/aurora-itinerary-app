@@ -20,10 +20,11 @@ body {
   
   .date-picker {
     display: flex;
-    align-items: center;
-    justify-content: left;
+    align-items: center; /* Vertically aligns all elements */
+    justify-content: flex-start; /* Align everything to the left */
     margin-bottom: 20px;
     margin-top: -35px;
+    width: fit-content; /* Shrink to fit content */
   }
   
   .date-picker button {
@@ -31,8 +32,11 @@ body {
   }
 
   .date-picker input {
-    width: 150px;
-    margin: 20px;
+    width: 200px; /* Ensure the date picker input has enough space */
+    height: 35px; /* Adjust height for better alignment */
+    margin: 0; /* Remove default margin */
+    padding: 5px; /* Add padding for better visuals */
+    box-sizing: border-box; /* Include padding in the total width/height */
   }
   
   .date-picker input,
@@ -96,14 +100,14 @@ body {
     position: relative;
   }
   
-  .event-title {
-    font-weight: bold;
-    margin-bottom: 5px;
+  .eventTitle {
+  font-weight: bold;
+  margin-bottom: -5px;
   }
-  
   .event-time {
     font-size: 12px;
     color: #000000;
+    margin-bottom: -4px;
   }
   
   .event {
@@ -154,15 +158,16 @@ body {
   background-color: #6d64b986; /* Purple for museums */
 }
 
-/* Add padding and border-radius if needed */
-.popup-content {
-  padding: 15px;
-  border-radius: 8px;
-}
-
-  
-
-  
+/* Popup Card Styles */
+.remove-event-button {
+  font-size: 12px;
+  padding: 8px 16px;
+  border: none;
+  cursor: pointer;
+  display: block; /* Ensures it behaves like a block element */
+  margin: 20px auto; /* Centers the button horizontally */
+  text-align: center;
+  }
 
   /* legend styles */
 

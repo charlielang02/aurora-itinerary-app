@@ -1,6 +1,10 @@
 import calgary_tower from '../assets/calgary-tower.jpg';
 import calgary_stampede from '../assets/stampede.jpg';
-import banff_skiing from '../assets/banff-skiing.jpg';
+import spruce_meadows_1 from '../assets/spruce-meadows-1.jpg';
+import spruce_meadows_2 from '../assets/spruce-meadows-2.png';
+import spruce_meadows_3 from '../assets/spruce-meadows-3.jpg';
+import spruce_meadows_4 from '../assets/spruce-meadows-4.jpg';
+import spruce_meadows_5 from '../assets/spruce-meadows-5.jpg';
 import lake_louise_skiing from '../assets/lake-louise-skiing.jpg';
 import lake_louise_skiing2 from '../assets/lake-louise-skiing2.jpg';
 import lake_louise_skiing3 from '../assets/lake-louise-skiing3.jpg';
@@ -21,11 +25,11 @@ export const EventData = [
         images: [lake_louise_skiing, lake_louise_skiing2, lake_louise_skiing3, lake_louise_skiing4, lake_louise_skiing5],
         rating: 4,
         location: "Lake Louise, AB, Canada",
-        link: "https://www.lakelouise.com",
+        link: "https://www.skilouise.com/",
         tags: ["Skiing", "Winter Sports", "Alberta", "Mountain Views"],
         description: "Experience world-class skiing at the stunning Lake Louise Ski Resort. Enjoy breathtaking views, excellent ski conditions, and top-tier facilities.",
         priceRange: "$90 - $150",
-        date: "2024-12-15",
+        date: "2024-12-02",
         startTime: "8:00 AM",
         endTime: "4:00 PM",
         userReviews: [
@@ -38,25 +42,25 @@ export const EventData = [
         ],
     },
     {
-        title: "Banff Skiing",
-        images: [banff_skiing, banff_skiing, banff_skiing, banff_skiing, banff_skiing],
+        title: "International Christmas Market",
+        images: [spruce_meadows_1, spruce_meadows_2, spruce_meadows_3, spruce_meadows_4, spruce_meadows_5],
         rating: 4,
-        location: "Banff, AB, Canada",
-        link: "https://www.banfflakelouise.com",
-        tags: ["Skiing", "Winter Sports", "Banff", "Alberta", "National Park"],
-        description: "Hit the slopes in Banff National Park. Ski the iconic mountains and explore a winter wonderland in one of Canada’s most famous ski destinations.",
-        priceRange: "$120 - $180",
-        date: "2024-12-16",
-        startTime: "9:00 AM",
-        endTime: "4:00 PM",
+        location: "Calgary, AB, Canada",
+        link: "https://www.sprucemeadows.com/christmasmarket/",
+        tags: ["Festive", "Holiday", "Market", "Alberta"],
+        description: "Immerse yourself in a festive atmosphere, adorned with beautiful seasonal décor—perfect for discovering unique gifts and embracing holiday cheer in both cozy indoor settings and charming outdoor spaces.",
+        priceRange: "$10-16",
+        date: "2024-12-06",
+        startTime: "12:00 PM",
+        endTime: "5:00 PM",
         userReviews: [
-            { reviewer: "George", rating: 4, comment: "Excellent trails and breathtaking scenery." },
-            { reviewer: "Helen", rating: 4, comment: "Very well maintained slopes." },
-            { reviewer: "Irene", rating: 3, comment: "Lovely place but overpriced food." },
-            { reviewer: "Jack", rating: 4, comment: "Had an amazing time skiing here!" },
-            { reviewer: "Karen", rating: 5, comment: "My favorite skiing destination in Canada." },
-            { reviewer: "Leo", rating: 4, comment: "Great slopes but parking was an issue." },
-        ],
+            { "reviewer": "Alice", "rating": 5, "comment": "Absolutely magical! A must-visit for the holidays." },
+            { "reviewer": "Brian", "rating": 4, "comment": "Beautiful decorations and great vendors, but a bit crowded." },
+            { "reviewer": "Catherine", "rating": 3, "comment": "Nice atmosphere, but not much variety in the stalls." },
+            { "reviewer": "David", "rating": 5, "comment": "Perfect way to get into the holiday spirit. Loved it!" },
+            { "reviewer": "Emma", "rating": 4, "comment": "Good mix of indoor and outdoor activities. Worth the visit." },
+            { "reviewer": "Frank", "rating": 4, "comment": "Charming market, but food options were overpriced." }
+        ]
     },
     {
         title: "Calgary Stampede",

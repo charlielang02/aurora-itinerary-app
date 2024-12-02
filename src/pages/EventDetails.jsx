@@ -13,8 +13,7 @@ const handleClick = () => {
 const EventDetails = () => {
   const { eventId } = useParams();
   const event1 = EventData[eventId];
-  useEffect(() => window.scrollTo(0, 0), []);
-
+  const [showAddToItinerary, setShowAddToItinerary] = useState(false);
   // Force scroll to top when page becomes visible
   useEffect(() => window.scrollTo(0, 0), []);
 
@@ -35,7 +34,7 @@ const EventDetails = () => {
   const [newReview, setNewReview] = useState({ content: "", reviewer: "", rating: "" });
   const [reviews, setReviews] = useState(event1.userReviews || []);
   const [reviewCount, setReviewCount] = useState(reviews.length);
-
+  
   // Toggle the modal
   const handleModalToggle = () => setIsModalOpen(!isModalOpen);
 
@@ -44,7 +43,10 @@ const EventDetails = () => {
     const { name, value } = e.target;
     setNewReview({ ...newReview, [name]: value });
   };
-
+  const handleBookNow = () => {
+    window.open(event1.link, "_blank");
+    setShowAddToItinerary(true); // Show the "Add to your itinerary" link
+  };
   // Add a new review
   const handleSubmitReview = () => {
     if (newReview.content && newReview.reviewer && newReview.rating) {
@@ -72,7 +74,16 @@ const EventDetails = () => {
     setSmallImages([largeImage, ...updatedSmallImages]); // Add the previous large image as a small image
     setLargeImage(clickedImage); // Set the clicked image as the large image
   };
-
+  const handleAddToItinerary = () => {
+    if (event1.title === "Skiing at Lake Louise") {
+      localStorage.setItem('addLakeLouise', 'true');
+    } else if (event1.title === "International Christmas Market") {
+      localStorage.setItem('addChristmasMarket', 'true');
+    }
+    alert(`${event1.title} has been added to your itinerary!`);
+  };
+  
+  
   return (
     <div className="event-details-page">
       {/* Content Section */}
@@ -171,7 +182,17 @@ const EventDetails = () => {
             <p>Price Range: {event1.priceRange}</p>
           </div>
           <p className="event-description">{event1.description}</p>
-          <button className="book-now">Book Now</button>
+          
+          {/* Book Now Button */}
+          <button className="book-now" onClick={handleBookNow}>
+            Book Now
+          </button>
+          {/* Link to Add to Itinerary */}
+          {showAddToItinerary && (
+            <Link onClick={handleAddToItinerary} className="add-to-itinerary-link">
+              Booked this event? Add to your itinerary
+            </Link>
+          )}
         </div>
 
         {/* Right Section */}
