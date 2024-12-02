@@ -20,7 +20,7 @@ const DropDown = ({ dropdownOptions, placeholderText, onSelect }) => {
     return () => {
       document.removeEventListener('click', handleClickOutside);
     };
-  }, []);
+  }, [buttonRef.current]);
 
   const onOptionClicked = (optionText) => {
     setselectedItem(optionText);

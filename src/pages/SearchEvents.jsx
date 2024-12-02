@@ -61,6 +61,8 @@ const SearchEvents = () => {
   const [minStars, setMinStars] = useState(1);
   const [searchedText, setSearchedText] = useState('');
   const [selectedCountry, setSelectedCountry] = useState('');
+  const [minCost, setMinCost] = useState(0);
+  const [maxCost, setMaxCost] = useState(0);
 
   // Force scroll to top when page becomes visible
   useEffect(() => {
@@ -80,6 +82,24 @@ const SearchEvents = () => {
     setMinStars(star_index + 1);
   }
 
+  const handleMinCostChange = (e) => {
+    const value = e.target.value ? Number(e.target.value) : 0;
+    if (value != minCost) {
+      setMinCost(value);
+    }
+  }
+
+  const handleMaxCostChange = (e) => {
+    const value = e.target.value ? Number(e.target.value) : 0;
+    if (value != maxCost) {
+      setMaxCost(value);
+    }
+  }
+
+  const handleSearchTextChanged = (e) => {
+    setSearchedText(e.target.value);
+  }
+
   const handleApplyFilters = (e) => {
 
   }
@@ -87,10 +107,6 @@ const SearchEvents = () => {
   const handleSearchBtnClicked = (e) => {
 
   }
-
-  const handleSearchTextChanged = (e) => {
-    setSearchedText(e.target.value);
-  };
 
   return (
     <div>
@@ -121,6 +137,7 @@ const SearchEvents = () => {
                 step=".01"
                 placeholder="Min:"
                 className={`${styles.dollar_picker}`}
+                onChange={handleMinCostChange}
               />
             </div>
             <p className={styles.dash}>-</p>
@@ -133,6 +150,7 @@ const SearchEvents = () => {
                 step=".01"
                 placeholder="Max:"
                 className={`${styles.dollar_picker}`}
+                onChange={handleMaxCostChange}
               />
             </div>
           </div>

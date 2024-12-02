@@ -138,8 +138,13 @@ body {
         display: none;
     }
 
+    .hamburger[class*="open"]~ .navbar .logo-img {
+        margin-left: 0;
+    }
+
     .hamburger[class*="open"]~ .navbar .navbar-center {
         display: initial;
+        margin: 0;
         margin-top: 20px;
     }
 
