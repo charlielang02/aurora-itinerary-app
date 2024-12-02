@@ -34,10 +34,11 @@
   visibility: hidden;
   display: flex;
   flex-direction: column;
+  margin-top: 3px;
 }
 
 .option_btn {
-  outline: 2px solid rgb(158, 158, 158);
+  outline: 1px solid rgb(158, 158, 158);
   height: 24px;
   padding: 0;
 }
@@ -51,14 +52,20 @@
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  text-wrap: nowrap;
 }
 
 .toggle {
-  padding-left: 50px;
+  position: relative;
+  left: 10px;
 }
 
 .arrow {
-  padding: 10px;
+  position: relative;
+  top: 2px;
+  right: 5px;
+  width: 24px;
+  fill: gray;
 }
 
 .visible {
