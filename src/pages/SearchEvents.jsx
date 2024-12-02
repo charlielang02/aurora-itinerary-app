@@ -24,6 +24,8 @@ const GetCountries = () => {
   return Array.from(countriesSet);
 }
 
+const Countries = GetCountries();
+
 const EventCard = ({ data, id }) => {
   return (
     <Link className={`${cardstyles.card} ${styles.shadow_bottom}`} to={`/event-details/${id}`}>
@@ -58,7 +60,7 @@ const SearchEvents = () => {
   const [startDate, setStartDate] = useState(new Date());
   const [minStars, setMinStars] = useState(1);
   const [searchedText, setSearchedText] = useState('');
-  const countries = GetCountries();
+  const [selectedCountry, setSelectedCountry] = useState('');
 
   // Force scroll to top when page becomes visible
   useEffect(() => {
@@ -83,7 +85,7 @@ const SearchEvents = () => {
   }
 
   const handleSearchBtnClicked = (e) => {
-    
+
   }
 
   const handleSearchTextChanged = (e) => {
@@ -95,7 +97,11 @@ const SearchEvents = () => {
       <div className={styles.left_panel}>
         <div className={styles.filters}>
           <h2 className={styles.filter_title}>Filters</h2>
-          <DropDown dropdownOptions={countries} placeholderText={"Select Country"} />
+          <DropDown
+            dropdownOptions={Countries}
+            placeholderText={"Select Country"}
+            onSelect={setSelectedCountry}
+          />
           <input
             type="date"
             id="search-pick-date"

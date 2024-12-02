@@ -53,7 +53,11 @@
   cursor: pointer;
 }
 
-.btn_container p {
+.toggle {
+  padding-left: 50px;
+}
+
+.arrow {
   padding: 10px;
 }
 

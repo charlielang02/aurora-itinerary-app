@@ -2,10 +2,10 @@ import styles from './DropDown.module.css';
 import { useEffect, useRef, useState } from 'react';
 import useBoolean from '../hooks/UseBoolean';
 
-const DropDown = ({ dropdownOptions, placeholderText }) => {
+const DropDown = ({ dropdownOptions, placeholderText, onSelect }) => {
   const { value: isDropdownOpen, toggle: toggleDropdown, setFalse: closeDropdown } = useBoolean(false);
   const buttonRef = useRef(null);
-  const [selection, setSelection] = useState('');
+  const [selectedItem, setselectedItem] = useState('');
 
   useEffect(() => {
     const handleClickOutside = (e) => {
@@ -23,16 +23,17 @@ const DropDown = ({ dropdownOptions, placeholderText }) => {
   }, []);
 
   const onOptionClicked = (optionText) => {
-    setSelection(optionText);
+    setselectedItem(optionText);
+    onSelect(optionText);
   }
 
   return (
     <div className={styles.dropdown}>
       <div ref={buttonRef} className={styles.btn_container} onClick={toggleDropdown}>
         <button className={styles.toggle}>
-          {selection || placeholderText}
+          {selectedItem || placeholderText}
         </button>
-        <p>⮟</p>
+        <p className={styles.arrow}>⮟</p>
       </div>
       <div className={`${styles.options} ${isDropdownOpen ? styles.visible : ''}`}>
         {dropdownOptions.map((option, i) => {
