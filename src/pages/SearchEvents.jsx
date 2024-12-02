@@ -6,19 +6,28 @@ import ChipContainer from '../components/ChipContainer';
 import cardstyles from './SearchEventsCard.module.css';
 import DropDown from '../components/DropDown';
 
+const SearchIcon = ({ className }) => {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M15.7955 15.8111L21 21M18 10.5C18 14.6421 14.6421 18 10.5 18C6.35786 18 3 14.6421 3 10.5C3 6.35786 6.35786 3 10.5 3C14.6421 3 18 6.35786 18 10.5Z"
+        stroke="#000000" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
 const GetCountries = () => {
   const countriesSet = new Set();
-  
+  const countryMapping = {
+    'UK': 'United Kingdom',
+    'USA': 'United States'
+  };
+
   EventData.forEach(event => {
     const locationParts = event.location.split(', ');
-    var country = locationParts[locationParts.length - 1];
+    const country = locationParts[locationParts.length - 1];
 
-    if (country == 'UK') {
-      country = 'United Kingdom';
-    } else if (country == 'USA') {
-      country = 'United States';
-    }
-    countriesSet.add(country);
+    countriesSet.add(countryMapping[country] || country);
   });
 
   return Array.from(countriesSet);
@@ -179,6 +188,7 @@ const SearchEvents = () => {
           <div className={styles.header}>
             <h1>Find Your Next Adventure!</h1>
             <form className={`${styles.search_bar} ${styles.shadow_bottom}`}>
+              <SearchIcon className={styles.search_icon} />
               <input
                 type="text"
                 id="search"

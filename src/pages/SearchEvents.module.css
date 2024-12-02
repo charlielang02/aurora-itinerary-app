@@ -218,3 +218,12 @@ h2 {
 .date_picker::-webkit-calendar-picker-indicator {
   cursor: pointer;
 }
+
+.search_icon {
+  position: relative;
+  top: 2px;
+  left: 24px;
+  margin-right: 4px;
+  width: 24px;
+  stroke: gray;
+}
