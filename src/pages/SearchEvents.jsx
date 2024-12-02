@@ -78,16 +78,15 @@ const EventCard = ({ data, id }) => {
 const SearchEvents = () => {
   const [searchedText, setSearchedText] = useState('');
   const [selectedCountry, setSelectedCountry] = useState('');
-  const [startDate, setStartDate] = useState(new Date());
-  const [minCost, setMinCost] = useState(0);
-  const [maxCost, setMaxCost] = useState(0);
+  const [startDate, setStartDate] = useState(null);
+  const [minCost, setMinCost] = useState('');
+  const [maxCost, setMaxCost] = useState('');
   const [minRating, setMinRating] = useState(0);
   const [filteredEventData, setFilteredEventData] = useState(EventData);
 
   // Force scroll to top when page becomes visible
   useEffect(() => {
     window.scrollTo(0, 0);
-    setStartDate(TodayDate);
   }, []);
 
   const handleDateChange = (e) => {
@@ -125,13 +124,13 @@ const SearchEvents = () => {
       if (selectedCountry && !event.location.includes(selectedCountry)) {
         return false;
       }
-      if (!AreDatesEqual(startDate, TodayDate) && !AreDatesEqual(startDate, new Date(event.date))) {
+      if (startDate !== null && !AreDatesEqual(startDate, new Date(event.date))) {
         return false;
       }
-      if (minCost > 0 && event.minPrice < minCost) {
+      if (minCost !== '' && event.minPrice < minCost) {
         return false;
       }
-      if (maxCost > 0 && event.maxPrice > maxCost) {
+      if (maxCost !== '' && event.maxPrice > maxCost) {
         return false;
       }
       if (minRating > 0 && event.rating < minRating) {
@@ -145,17 +144,17 @@ const SearchEvents = () => {
 
   const IsFilterApplied = () => {
     return selectedCountry !== ''
-      || AreDatesEqual(startDate, TodayDate)
-      || minCost > 0
-      || maxCost > 0
+      || startDate !== null
+      || minCost !== ''
+      || maxCost !== ''
       || minRating > 0;
   }
 
   const ClearFilters = () => {
     setSelectedCountry('');
-    setStartDate(TodayDate);
-    setMinCost(0);
-    setMaxCost(0);
+    setStartDate(null);
+    setMinCost('');
+    setMaxCost('');
     setMinRating(0);
     setFilteredEventData(EventData);
   }
@@ -180,7 +179,7 @@ const SearchEvents = () => {
             type="date"
             id="search-pick-date"
             className={`${styles.date_picker} ${styles.filter_item}`}
-            value={startDate.toISOString().split('T')[0]}
+            value={startDate !== null ? startDate.toISOString().split('T')[0] : 0}
             onChange={handleDateChange}
             onClick={(e) => e.currentTarget.showPicker()}
           >
@@ -196,6 +195,7 @@ const SearchEvents = () => {
                 placeholder="Min:"
                 className={`${styles.dollar_picker}`}
                 onChange={handleMinCostChange}
+                value={minCost}
               />
             </div>
             <p className={styles.dash}>-</p>
@@ -209,6 +209,7 @@ const SearchEvents = () => {
                 placeholder="Max:"
                 className={`${styles.dollar_picker}`}
                 onChange={handleMaxCostChange}
+                value={maxCost}
               />
             </div>
           </div>
