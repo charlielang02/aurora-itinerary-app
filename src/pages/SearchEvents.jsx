@@ -6,16 +6,6 @@ import ChipContainer from '../components/ChipContainer';
 import cardstyles from './SearchEventsCard.module.css';
 import DropDown from '../components/DropDown';
 
-const SearchIcon = ({ className }) => {
-  return (
-    <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M15.7955 15.8111L21 21M18 10.5C18 14.6421 14.6421 18 10.5 18C6.35786 18 3 14.6421 3 10.5C3 6.35786 6.35786 3 10.5 3C14.6421 3 18 6.35786 18 10.5Z"
-        stroke="#000000" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
 const GetCountries = () => {
   const countriesSet = new Set();
   const countryMapping = {
@@ -34,6 +24,26 @@ const GetCountries = () => {
 }
 
 const Countries = GetCountries();
+
+const TodayDate = new Date();
+TodayDate.setHours(0, 0, 0, 0);
+
+const AreDatesEqual = (date1, date2) => {
+  return date1.getDate() === date2.getDate()
+      && date1.getMonth() === date2.getMonth()
+      && date1.getYear() === date2.getYear();
+};
+
+const SearchIcon = ({ className }) => {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M15.7955 15.8111L21 21M18 10.5C18 14.6421 14.6421 18 10.5 18C6.35786 18 3 14.6421 3 10.5C3 6.35786 6.35786 3 10.5 3C14.6421 3 18 6.35786 18 10.5Z"
+        stroke="#000000" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
 
 const EventCard = ({ data, id }) => {
   return (
@@ -66,20 +76,18 @@ const EventCard = ({ data, id }) => {
 }
 
 const SearchEvents = () => {
-  const [startDate, setStartDate] = useState(new Date());
-  const [minStars, setMinStars] = useState(1);
   const [searchedText, setSearchedText] = useState('');
   const [selectedCountry, setSelectedCountry] = useState('');
+  const [startDate, setStartDate] = useState(new Date());
   const [minCost, setMinCost] = useState(0);
   const [maxCost, setMaxCost] = useState(0);
+  const [minRating, setMinRating] = useState(0);
+  const [filteredEventData, setFilteredEventData] = useState(EventData);
 
   // Force scroll to top when page becomes visible
   useEffect(() => {
     window.scrollTo(0, 0);
-    // Set the startDate to today's date at midnight
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-    setStartDate(today);
+    setStartDate(TodayDate);
   }, []);
 
   const handleDateChange = (e) => {
@@ -88,7 +96,7 @@ const SearchEvents = () => {
   };
 
   const handleStarClick = (star_index) => {
-    setMinStars(star_index + 1);
+    setMinRating(star_index + 1);
   }
 
   const handleMinCostChange = (e) => {
@@ -103,14 +111,53 @@ const SearchEvents = () => {
     if (value != maxCost) {
       setMaxCost(value);
     }
+    console.log(maxCost);
   }
 
   const handleSearchTextChanged = (e) => {
     setSearchedText(e.target.value);
   }
 
-  const handleApplyFilters = (e) => {
+  const handleApplyFilters = () => {
+    let events = EventData;
+    
+    events = events.filter(event => {
+      if (selectedCountry && !event.location.includes(selectedCountry)) {
+        return false;
+      }
+      if (!AreDatesEqual(startDate, TodayDate) && !AreDatesEqual(startDate, new Date(event.date))) {
+        return false;
+      }
+      if (minCost > 0 && event.minPrice < minCost) {
+        return false;
+      }
+      if (maxCost > 0 && event.maxPrice > maxCost) {
+        return false;
+      }
+      if (minRating > 0 && event.rating < minRating) {
+        return false;
+      }
+      return true;
+    });
 
+    setFilteredEventData(events);
+  }
+
+  const IsFilterApplied = () => {
+    return selectedCountry !== ''
+      || AreDatesEqual(startDate, TodayDate)
+      || minCost > 0
+      || maxCost > 0
+      || minRating > 0;
+  }
+
+  const ClearFilters = () => {
+    setSelectedCountry('');
+    setStartDate(TodayDate);
+    setMinCost(0);
+    setMaxCost(0);
+    setMinRating(0);
+    setFilteredEventData(EventData);
   }
 
   const handleSearchBtnClicked = (e) => {
@@ -121,7 +168,9 @@ const SearchEvents = () => {
     <div>
       <div className={styles.left_panel}>
         <div className={styles.filters}>
-          <h2 className={styles.filter_title}>Filters</h2>
+          <h2 className={styles.filter_title}>
+            Search Filters
+          </h2>
           <DropDown
             dropdownOptions={Countries}
             placeholderText={"Select Country"}
@@ -170,7 +219,7 @@ const SearchEvents = () => {
                 // Temp condition
                 <span
                   key={i}
-                  className={i < minStars ? `${styles.min_star} ${cardstyles.star_filled} star filled` : cardstyles.star}
+                  className={i < minRating ? `${styles.min_star} ${cardstyles.star_filled} star filled` : cardstyles.star}
                   onClick={() => handleStarClick(i)}
                 >
                   ★
@@ -181,6 +230,11 @@ const SearchEvents = () => {
           <button className={`${styles.apply_btn} ${styles.filter_item}`} onClick={handleApplyFilters}>
             Apply
           </button>
+          {IsFilterApplied() && (
+            <p className={styles.clear} onClick={ClearFilters}>
+              Clear filters
+            </p>
+          )}
         </div>
       </div>
       <div className={styles.page_content}>
@@ -203,7 +257,7 @@ const SearchEvents = () => {
             </form>
           </div>
           <div className={styles.card_container}>
-            {EventData.map((data, i) => {
+            {filteredEventData.map((data, i) => {
               return (
                 <EventCard key={i} data={data} id={i} />
               );

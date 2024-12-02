@@ -179,7 +179,7 @@ const EventDetails = () => {
           )}
 
           <div className="price-range-box">
-            <p>Price Range: {event1.priceRange}</p>
+            <p>Price Range: ${event1.minPrice} - ${event1.maxPrice}</p>
           </div>
           <p className="event-description">{event1.description}</p>
           
