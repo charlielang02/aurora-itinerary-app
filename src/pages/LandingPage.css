@@ -18,7 +18,7 @@ body {
 .landing-page {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   min-height: 100vh;
   /* Full viewport height */
@@ -43,12 +43,14 @@ body {
 .landing-content {
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
   align-items: center;
   margin-top: 20px;
   /* Add margin to space out content sections */
   max-width: 80%;
   z-index: 2;
   margin-top: 100px;
+  flex-grow: 1;
 }
 
 /* filter to darken the image a bit and increase text readability */
@@ -157,7 +159,7 @@ body {
   bottom: 0;
   left: 0;
   width: 100vw;
-  margin-top: 5vh;
+  margin-top: auto;
 }
 
 /* Container for destination cards */

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './LoginDropdown.css';
 
-const LoginDropdown = ({ setLoggedIn, setIsOrganizer }) => {
+const LoginDropdown = ({ setLoggedIn, setIsOrganizer, hideDropdown }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -21,6 +21,7 @@ const LoginDropdown = ({ setLoggedIn, setIsOrganizer }) => {
     if (user) {
       setLoggedIn(true);
       setIsOrganizer(user.role === "organizer");
+      hideDropdown();
     } else {
       alert("Invalid email or password");
     }
