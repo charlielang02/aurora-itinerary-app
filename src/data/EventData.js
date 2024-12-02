@@ -265,7 +265,7 @@ export const EventData = [
         images: [dubai_burj_khalifa, dubai_burj_khalifa, dubai_burj_khalifa, dubai_burj_khalifa, dubai_burj_khalifa],
         rating: 5,
 
-        location: "Dubai, UAE",
+        location: "Dubai, United Arab Emirates",
         link: "https://www.burjkhalifa.ae",
         tags: ["Landmark", "View", "Dubai", "Luxury"],
         description: "Visit the tallest building in the world and enjoy unparalleled views of Dubai from the Burj Khalifa's observation deck.",

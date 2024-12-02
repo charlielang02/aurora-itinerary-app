@@ -6,6 +6,24 @@ import ChipContainer from '../components/ChipContainer';
 import cardstyles from './SearchEventsCard.module.css';
 import DropDown from '../components/DropDown';
 
+const GetCountries = () => {
+  const countriesSet = new Set();
+  
+  EventData.forEach(event => {
+    const locationParts = event.location.split(', ');
+    var country = locationParts[locationParts.length - 1];
+
+    if (country == 'UK') {
+      country = 'United Kingdom';
+    } else if (country == 'USA') {
+      country = 'United States';
+    }
+    countriesSet.add(country);
+  });
+
+  return Array.from(countriesSet);
+}
+
 const EventCard = ({ data, id }) => {
   return (
     <Link className={`${cardstyles.card} ${styles.shadow_bottom}`} to={`/event-details/${id}`}>
@@ -27,7 +45,7 @@ const EventCard = ({ data, id }) => {
             {data.location}
           </p>
           <p className={cardstyles.info}>
-            {data.startTime} {data.endTime}
+            {data.date} at {data.startTime}-{data.endTime}
           </p>
         </div>
         <ChipContainer className={styles.chip_container} data={data} />
@@ -40,6 +58,7 @@ const SearchEvents = () => {
   const [startDate, setStartDate] = useState(new Date());
   const [minStars, setMinStars] = useState(1);
   const [searchedText, setSearchedText] = useState('');
+  const countries = GetCountries();
 
   // Force scroll to top when page becomes visible
   useEffect(() => {
@@ -64,7 +83,7 @@ const SearchEvents = () => {
   }
 
   const handleSearchBtnClicked = (e) => {
-    console.log('search text');
+    
   }
 
   const handleSearchTextChanged = (e) => {
@@ -76,7 +95,7 @@ const SearchEvents = () => {
       <div className={styles.left_panel}>
         <div className={styles.filters}>
           <h2 className={styles.filter_title}>Filters</h2>
-          <DropDown />
+          <DropDown dropdownOptions={countries} placeholderText={"Select Country"} />
           <input
             type="date"
             id="search-pick-date"
