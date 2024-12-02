@@ -13,6 +13,7 @@ const handleClick = () => {
 const EventDetails = () => {
   const { eventId } = useParams();
   const event1 = EventData[eventId];
+  useEffect(() => window.scrollTo(0, 0), []);
 
   // Force scroll to top when page becomes visible
   useEffect(() => window.scrollTo(0, 0), []);

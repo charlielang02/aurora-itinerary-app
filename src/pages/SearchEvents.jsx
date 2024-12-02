@@ -48,6 +48,7 @@ const EventCard = ({ data, id }) => {
 const SearchEvents = () => {
   const [startDate, setStartDate] = useState(new Date());
   const [minStars, setMinStars] = useState(1);
+  useEffect(() => window.scrollTo(0, 0), []);
 
   // Force scroll to top when page becomes visible
   useEffect(() => {

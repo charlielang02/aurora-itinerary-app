@@ -12,17 +12,6 @@ const destinations = [
   ];
 
 const LandingPage = ({setLoggedIn, isLoggedIn, setIsOrganizer, isOrganizer, toggleLoginDropdown, hideDropdown}) => {
-  // const [showLoginDropdown, setShowLoginDropdown] = useState(false);
-
-  // const toggleLoginDropdown = () => {
-  //   setShowLoginDropdown(!showLoginDropdown);
-  // };
-
-  // const hideDropdown = () => {
-  //   setShowLoginDropdown(false);
-  // };
-
-  // Force scroll to top when page becomes visible
   useEffect(() => window.scrollTo(0, 0), []);
 
   useEffect(() => {
