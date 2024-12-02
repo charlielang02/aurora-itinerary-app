@@ -47,6 +47,7 @@ const EventCard = ({ data, id }) => {
 
 const SearchEvents = () => {
   const [startDate, setStartDate] = useState(new Date());
+  const [minStars, setMinStars] = useState(1);
 
   // Force scroll to top when page becomes visible
   useEffect(() => {
@@ -61,6 +62,14 @@ const SearchEvents = () => {
     const selectedDate = new Date(e.target.value);
     setStartDate(selectedDate);
   };
+
+  const handleStarClick = (e, star_index) => {
+    setMinStars(star_index + 1);
+  }
+
+  const handleApplyFilters = (e) => {
+
+  }
 
   return (
     <div>
@@ -97,23 +106,32 @@ const SearchEvents = () => {
                 name="max-price"
                 min="0"
                 step=".01"
-                placeholder="Min:"
+                placeholder="Max:"
                 className={`${styles.dollar_picker}`}
               />
             </div>
           </div>
           <div className={`${styles.min_rating} ${styles.filter_item}`}>
-            Minimum Rating
+            <p className={styles.min_text}>Minimum Rating</p>
             <p className={styles.min_stars}>
               {[...Array(5)].map((_,i) => (
                 // Temp condition
-                <span key={i} className={i < 5 ? `${styles.min_star} ${cardstyles.star_filled} star filled` : cardstyles.star}>
+                <span
+                  key={i}
+                  className={i < minStars ? `${styles.min_star} ${cardstyles.star_filled} star filled` : cardstyles.star}
+                  onClick={(e) => handleStarClick(e, i)}
+                >
                   ★
                 </span>
               ))}
             </p>
           </div>
-          <button className={`${styles.apply_btn} ${styles.filter_item}`}>Apply</button>
+          <button
+            className={`${styles.apply_btn} ${styles.filter_item}`}
+            onClick={handleApplyFilters}
+          >
+            Apply
+          </button>
         </div>
       </div>
       <div className={styles.page_content}>

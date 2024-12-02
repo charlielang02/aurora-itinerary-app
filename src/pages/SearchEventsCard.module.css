@@ -85,6 +85,10 @@
   font-size: 20px !important;
 }
 
+.star:hover {
+  cursor: pointer;
+}
+
 .info {
   font-size: small;
   color: black;

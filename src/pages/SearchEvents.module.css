@@ -129,6 +129,12 @@ h2 {
   height: 40px;
   color: black;
   background: white;
+  box-shadow:
+    0 1px 1px var(--box-shadow-color),
+    0 2px 2px var(--box-shadow-color),
+    0 4px 4px var(--box-shadow-color),
+    0 8px 8px var(--box-shadow-color);
+  outline: 1px solid rgb(158, 158, 158);
   border-radius: 4px;
 }
 
@@ -175,8 +181,12 @@ h2 {
   align-items: center;
   justify-content: center;
   font-weight: normal;
-  height: 70px;
+  height: 60px;
   font-size: 14px;
+}
+
+.min_text {
+  margin-top: 4px;
 }
 
 .min_stars {
@@ -201,9 +211,5 @@ h2 {
 
 .date_picker {
   color: black;
-}
-
-.date_picker:focus,
-.date_picker:active {
-  outline: none;
+  border: none;
 }
