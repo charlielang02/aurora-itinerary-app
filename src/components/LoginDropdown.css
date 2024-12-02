@@ -1,7 +1,8 @@
 .login-dropdown {
-    position: absolute;
-    top: 100%;
-    right: 0;
+    position: fixed;
+    top: 18.5%;
+    left: 93%;
+    transform: translate(-50%, -20%);
     background-color: #003052;
     padding: 20px;
     border-radius: 8px;

@@ -1,8 +1,7 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import DestinationCard from '../components/DestinationCard';
-import LoginDropdown from '../components/LoginDropdown';
 import './LandingPage.css';
 
 const destinations = [
@@ -12,19 +11,23 @@ const destinations = [
     { image: '/sydney.jpg', city: 'Sydney', country: 'Australia' },
   ];
 
-const LandingPage = ({setLoggedIn, isLoggedIn, setIsOrganizer, isOrganizer }) => {
-  const [showLoginDropdown, setShowLoginDropdown] = useState(false);
+const LandingPage = ({setLoggedIn, isLoggedIn, setIsOrganizer, isOrganizer, toggleLoginDropdown, hideDropdown}) => {
+  // const [showLoginDropdown, setShowLoginDropdown] = useState(false);
 
-  const toggleLoginDropdown = () => {
-    setShowLoginDropdown(!showLoginDropdown);
-  };
+  // const toggleLoginDropdown = () => {
+  //   setShowLoginDropdown(!showLoginDropdown);
+  // };
+
+  // const hideDropdown = () => {
+  //   setShowLoginDropdown(false);
+  // };
 
   // Force scroll to top when page becomes visible
   useEffect(() => window.scrollTo(0, 0), []);
 
   useEffect(() => {
     if (!isLoggedIn) {
-      setShowLoginDropdown(false);
+      hideDropdown();
     }
   }, [isLoggedIn]);
 
@@ -46,10 +49,6 @@ const LandingPage = ({setLoggedIn, isLoggedIn, setIsOrganizer, isOrganizer }) =>
               <button className="login-button" onClick={toggleLoginDropdown}>
                 Login
               </button>
-
-              {showLoginDropdown && (
-                    <LoginDropdown setLoggedIn={setLoggedIn} setIsOrganizer={setIsOrganizer} />
-                  )}
             </div>
 
             <p className="register-prompt">
