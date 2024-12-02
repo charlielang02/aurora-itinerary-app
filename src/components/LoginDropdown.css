@@ -1,15 +1,22 @@
 .login-dropdown {
-    position: fixed;
-    top: 18.5%;
-    left: 93%;
-    transform: translate(-50%, -20%);
-    background-color: #003052;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-    width: 200px;
-    z-index: 10;
-  }
+  position: fixed;
+  top: 131px;
+  bottom: auto;
+  left: auto; 
+  right: 0px;
+  transform: translate(0, -20%);
+  background-color: #003052;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  width: 200px;
+  z-index: 10;
+
+  /* Ensure dropdown stays within viewport */
+  max-width: calc(100% - 20px); /* Leaves a little margin */
+  max-height: calc(100% - 20px);
+  overflow: auto;
+}
   
   .login-form .input-group {
     margin-bottom: 10px;
