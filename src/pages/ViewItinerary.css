@@ -72,7 +72,7 @@ body {
 
   .grid-cell {
     border: 1px solid #ccc; /* Ensure grid lines are visible */
-    background-color: #D9D9D9;
+    background-color: #f5f4f6;
   }
   
   
@@ -92,6 +92,7 @@ body {
     text-align: center;
     border-right: 1px solid #ddd;
     font-weight: bold;
+    background-color: #e1dee3;
   }
   
   .event-cell {
