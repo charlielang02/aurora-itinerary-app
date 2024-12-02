@@ -25,7 +25,20 @@ const Navbar = ({ isLoggedIn, isOrganizer, setLoggedIn, setIsOrganizer, toggleLo
           ) : (
             <>
               <Link to="/search-events" className="nav-link" onClick={hideDropdown}>Find Events</Link>
-              <Link to="/view-itinerary" className="nav-link" onClick={hideDropdown}>View Itinerary</Link>
+              <Link
+                to={isLoggedIn ? "/view-itinerary" : "#"}
+                className="nav-link"
+                onClick={(e) => {
+                  if (!isLoggedIn) {
+                    e.preventDefault(); // Prevent navigation
+                    toggleLoginDropdown(); // Show login dropdown
+                  } else {
+                    hideDropdown(); // Hide any dropdown if visible
+                  }
+                }}
+              > 
+                View Itinerary
+              </Link>
             </>
           )}
         </div>
