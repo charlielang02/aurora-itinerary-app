@@ -207,6 +207,15 @@ h2 {
   border-radius: 20px;
   margin: 8px;
   line-height: 100%;
+  width: 140px;
+}
+
+.apply_btn:disabled {
+  background: #b4b4b4;
+  color: #666;
+  cursor: auto;
+  opacity: 0.6;
+  transform: none;
 }
 
 .date_picker {

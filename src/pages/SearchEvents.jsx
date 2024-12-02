@@ -228,7 +228,7 @@ const SearchEvents = () => {
               ))}
             </p>
           </div>
-          <button className={`${styles.apply_btn} ${styles.filter_item}`} onClick={handleApplyFilters}>
+          <button disabled={!IsFilterApplied()} className={`${styles.apply_btn} ${styles.filter_item}`} onClick={handleApplyFilters}>
             Apply
           </button>
           {IsFilterApplied() && (
@@ -263,6 +263,9 @@ const SearchEvents = () => {
                 <EventCard key={i} data={data} id={i} />
               );
             })}
+            {filteredEventData.length === 0 && (
+              <p>No events found</p>
+            )}
           </div>
         </div>
       </div>
