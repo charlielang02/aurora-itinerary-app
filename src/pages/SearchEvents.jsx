@@ -53,6 +53,8 @@ const removeStopWords = (string) => {
 	return string.replace(/^\s+|\s+$/g, "");
 }
 
+const GetEventId = (event) => EventData.findIndex(e => e.title === event.title);
+
 const countryMapping = {
   'UK': 'United Kingdom',
   'USA': 'United States'
@@ -198,12 +200,13 @@ const SearchEvents = () => {
   const [minCost, setMinCost] = useState(minPrice ||'');
   const [maxCost, setMaxCost] = useState(maxPrice ||'');
   const [minRating, setMinRating] = useState(starRating || 0);
-  const [filteredEventData, setFilteredEventData] = useState(SearchableEventData);
-  const eventsFilteredBySearchQuery = getEventsFilteredBySearchQuery(filteredEventData);
+  const [eventData, setEventData] = useState(SearchableEventData);
+  const eventsFilteredBySearchQuery = getEventsFilteredBySearchQuery(eventData);
 
   // Force scroll to top when page becomes visible
   useEffect(() => {
     window.scrollTo(0, 0);
+    handleApplyFilters();
   }, []);
 
   useEffect(() => {
@@ -235,7 +238,6 @@ const SearchEvents = () => {
     if (value != maxCost) {
       setMaxCost(value);
     }
-    console.log(maxCost);
   }
 
   const handleSearchTextChanged = (e) => {
@@ -248,6 +250,7 @@ const SearchEvents = () => {
     setMinPrice(minCost);
     setMaxPrice(maxCost);
     setStarRating(minRating);
+
     const events = eventList.filter(event => {
       if (selectedCountry && !event.location.includes(ToAbbreviatedCountryName(selectedCountry))) {
         return false;
@@ -262,6 +265,7 @@ const SearchEvents = () => {
         return false;
       }
       if (minRating > 0 && event.rating < minRating) {
+        console.log(event.title);
         return false;
       }
       return true;
@@ -278,17 +282,22 @@ const SearchEvents = () => {
       || minRating > 0;
   }
 
+  const handleApplyFilters = () => {
+    setCountry(selectedCountry);
+    setDate(startDate);
+    setMinPrice(minCost);
+    setMaxPrice(maxCost);
+    setStarRating(minRating);
+    setEventData(getEventsFilteredBySearchOptions(SearchableEventData));
+  }
+
   const ClearFilters = () => {
     setSelectedCountry('');
     setStartDate(null);
     setMinCost('');
     setMaxCost('');
     setMinRating(0);
-    setFilteredEventData(SearchableEventData);
-  }
-
-  const handleSearchBtnClicked = (e) => {
-
+    setEventData(SearchableEventData);
   }
 
   return (
@@ -346,7 +355,6 @@ const SearchEvents = () => {
             <p className={styles.min_text}>Minimum Rating</p>
             <p className={styles.min_stars}>
               {[...Array(5)].map((_, i) => (
-                // Temp condition
                 <span
                   key={i}
                   className={i < minRating ? `${styles.min_star} ${cardstyles.star_filled} star filled` : cardstyles.star}
@@ -360,7 +368,7 @@ const SearchEvents = () => {
           <button
             disabled={!IsFilterApplied()}
             className={`${styles.apply_btn} ${styles.filter_item}`}
-            onClick={() => setFilteredEventData(eventsFilteredBySearchQuery)}
+            onClick={handleApplyFilters}
           >
             Apply
           </button>
@@ -393,7 +401,7 @@ const SearchEvents = () => {
           <div className={styles.card_container}>
             {eventsFilteredBySearchQuery.map((data, i) => {
               return (
-                <EventCard key={i} data={data} id={i} />
+                <EventCard key={i} data={data} id={GetEventId(data)} />
               );
             })}
             {eventsFilteredBySearchQuery.length === 0 && (

@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import './Navbar.css';
 import useBoolean from '../hooks/UseBoolean';
 import HamburgerButton from './HamburgerButton';
@@ -6,6 +6,8 @@ import { useGlobalContext } from '../hooks/GlobalContext';
 
 const Navbar = ({ isLoggedIn, isOrganizer, setLoggedIn, setIsOrganizer, toggleLoginDropdown, hideDropdown }) => {
   const { value: isHamburgerOpen, toggle: toggleHamburger, setFalse: closeHamburger } = useBoolean(false);
+  const location = useLocation();
+  const currentUrl = location.pathname + location.hash;
 
   const handleHamburgerToggle = () => {
     hideDropdown(); // Close login dropdown when hamburger is toggled
@@ -48,15 +50,27 @@ const Navbar = ({ isLoggedIn, isOrganizer, setLoggedIn, setIsOrganizer, toggleLo
         <div className="navbar-center">
           {isOrganizer ? (
             <>
-              <Link to="/my-events" className="nav-link" onClick={() => handleLinkClick()}>My Events</Link>
-              <Link to="/create-event" className="nav-link" onClick={() => handleLinkClick()}>Create Event</Link>
+              <Link
+                to="/my-events"
+                className={`nav-link ${currentUrl === '/my-events' ? 'active' : ''}`}
+                onClick={() => handleLinkClick()}
+              >My Events</Link>
+              <Link
+                to="/create-event"
+                className={`nav-link ${currentUrl === '/create-event' ? 'active' : ''}`}
+                onClick={() => handleLinkClick()}
+              >Create Event</Link>
             </>
           ) : (
             <>
-              <Link to="/search-events" className="nav-link" onClick={() => handleLinkClick()}>Find Events</Link>
+              <Link
+                to="/search-events"
+                className={`nav-link ${currentUrl === '/search-events' ? 'active' : ''}`}
+                onClick={() => handleLinkClick()}
+              >Find Events</Link>
               <Link
                 to={isLoggedIn ? "/view-itinerary" : "#"}
-                className="nav-link"
+                className={`nav-link ${currentUrl === '/view-itinerary' ? 'active' : ''}`}
                 onClick={(e) => {
                   if (!isLoggedIn) {
                     handleLinkClick();
