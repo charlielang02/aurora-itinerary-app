@@ -14,7 +14,8 @@
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.28.0",
     "react-select": "^5.8.3",
-    "reactjs-popup": "^2.0.6"
+    "reactjs-popup": "^2.0.6",
+    "remove-stopwords": "^1.0.3"
   },
   "devDependencies": {
     "@eslint/js": "^9.13.0",

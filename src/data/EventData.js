@@ -91,7 +91,6 @@ export const EventData = [
         title: "Calgary Tower Observation Deck",
         images: [calgary_tower, calgary_tower, calgary_tower, calgary_tower, calgary_tower],
         rating: 4,
-
         location: "Calgary, AB, Canada",
         link: "https://www.calgarytower.com",
         tags: ["City Views", "Landmark", "Dining"],
@@ -114,7 +113,6 @@ export const EventData = [
         title: "Toronto Raptors Game",
         images: [toronto_raptors_game, toronto_raptors_game, toronto_raptors_game, toronto_raptors_game, toronto_raptors_game],
         rating: 5,
-
         location: "Scotiabank Arena, Toronto, ON, Canada",
         link: "https://www.nba.com/raptors",
         tags: ["Basketball", "Sports", "Toronto", "NBA"],
@@ -137,7 +135,6 @@ export const EventData = [
         title: "Eiffel Tower Tour",
         images: [paris_eiffel_tower, paris_eiffel_tower, paris_eiffel_tower, paris_eiffel_tower, paris_eiffel_tower],
         rating: 3,
-
         location: "Paris, France",
         link: "https://www.toureiffel.paris",
         tags: ["Landmark", "Tour", "Paris", "Romantic"],
@@ -160,7 +157,6 @@ export const EventData = [
         title: "Sumo Wrestling in Tokyo",
         images: [tokyo_sumo, tokyo_sumo, tokyo_sumo, tokyo_sumo, tokyo_sumo],
         rating: 4,
-
         location: "Tokyo, Japan",
         link: "https://www.sumo.or.jp",
         tags: ["Culture", "Traditional", "Sport", "Tokyo"],
@@ -183,7 +179,6 @@ export const EventData = [
         title: "Broadway Show in New York",
         images: [new_york_broadway, new_york_broadway, new_york_broadway, new_york_broadway, new_york_broadway],
         rating: 5,
-
         location: "Broadway, New York, NY, USA",
         link: "https://www.broadway.com",
         tags: ["Theater", "Musicals", "New York", "Entertainment"],
@@ -206,7 +201,6 @@ export const EventData = [
         title: "Sydney Opera House Tour",
         images: [sydney_opera_house, sydney_opera_house, sydney_opera_house, sydney_opera_house, sydney_opera_house],
         rating: 3,
-
         location: "Sydney, Australia",
         link: "https://www.sydneyoperahouse.com",
         tags: ["Culture", "Tour", "Sydney", "Landmark"],
@@ -229,7 +223,6 @@ export const EventData = [
         title: "London Eye Experience",
         images: [london_eye, london_eye, london_eye, london_eye, london_eye],
         rating: 4,
-
         location: "London, UK",
         link: "https://www.londoneye.com",
         tags: ["Landmark", "Tour", "Views", "London"],
@@ -252,7 +245,6 @@ export const EventData = [
         title: "Granville Island Tour",
         images: [vancouver_granville, vancouver_granville, vancouver_granville, vancouver_granville, vancouver_granville],
         rating: 4,
-
         location: "Vancouver, BC, Canada",
         link: "https://granvilleisland.com",
         tags: ["Food", "Culture", "Vancouver", "Art"],
@@ -275,7 +267,6 @@ export const EventData = [
         title: "Burj Khalifa Observation Deck",
         images: [dubai_burj_khalifa, dubai_burj_khalifa, dubai_burj_khalifa, dubai_burj_khalifa, dubai_burj_khalifa],
         rating: 5,
-
         location: "Dubai, United Arab Emirates",
         link: "https://www.burjkhalifa.ae",
         tags: ["Landmark", "View", "Dubai", "Luxury"],
