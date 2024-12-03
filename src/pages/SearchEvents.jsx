@@ -5,6 +5,7 @@ import styles from './SearchEvents.module.css';
 import ChipContainer from '../components/ChipContainer';
 import cardstyles from './SearchEventsCard.module.css';
 import Dropdown from '../components/DropDown';
+import { useGlobalContext } from '../hooks/GlobalContext';
 import { useLocation } from 'react-router-dom';
 import { StopWords } from '../data/StopWords';
 
@@ -118,8 +119,14 @@ const SearchIcon = ({ className }) => {
 }
 
 const EventCard = ({ data, id }) => {
+  const { setNavigateFromEventCard } = useGlobalContext();
+
+  const handleCardClick = () => {
+    setNavigateFromEventCard(true);
+  };
+
   return (
-    <Link className={`${cardstyles.card} ${styles.shadow_bottom}`} to={`/event-details/${id}`}>
+    <Link className={`${cardstyles.card} ${styles.shadow_bottom}`} to={`/event-details/${id}`} onClick={handleCardClick}>
       <img src={data.images[0]} alt={data.imageAlt} />
       <div className={cardstyles.content}>
         <div className={cardstyles.text}>
@@ -173,6 +180,18 @@ const getEventsFilteredBySearchQuery = (eventList) => {
 const SearchEvents = () => {
   const location = useLocation();
   const searchQuery = new URLSearchParams(location.search);
+  const { country } = useGlobalContext();
+  const { date } = useGlobalContext();
+  const { minPrice } = useGlobalContext();
+  const { maxPrice } = useGlobalContext();
+  const { starRating } = useGlobalContext();
+  const { setCountry } = useGlobalContext();
+  const { setDate } = useGlobalContext();
+  const { setMinPrice } = useGlobalContext();
+  const { setMaxPrice } = useGlobalContext();
+  const { setStarRating } = useGlobalContext();
+  const { navigateFromEventCard } = useGlobalContext();
+  const { setNavigateFromEventCard } = useGlobalContext();
   const [searchBarText, setSearchBarText] = useState(searchQuery);
   const [selectedCountry, setSelectedCountry] = useState('');
   const [startDate, setStartDate] = useState(null);
@@ -223,6 +242,11 @@ const SearchEvents = () => {
   }
 
   const getEventsFilteredBySearchOptions = (eventList) => {
+    setCountry(selectedCountry);
+    setDate(startDate);
+    setMinPrice(minCost);
+    setMaxPrice(maxCost);
+    setStarRating(minRating);
     const events = eventList.filter(event => {
       if (selectedCountry && !event.location.includes(ToAbbreviatedCountryName(selectedCountry))) {
         return false;
