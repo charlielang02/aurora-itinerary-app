@@ -215,6 +215,79 @@ button a {
   appearance: textfield;
 }
 
+/* Responsive adjustments for screens below 768px */
+@media (max-width: 768px) {
+  /* General container adjustments */
+  .create-event-container {
+    padding: 15px;
+    margin-top: 60px; /* Reduce top margin for smaller screens */
+  }
+
+  /* Header styling */
+  .create-event-header {
+    font-size: 1.5rem; /* Reduce font size for smaller screens */
+    margin-bottom: 20px;
+  }
+
+  .create-event-textarea {
+    margin-left: 0; /* Remove left margin for better alignment */
+  }
+
+  /* Input row adjustments */
+  .input-row {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 15px;
+  }
+
+  .input-label {
+    margin-bottom: 5px;
+    width: auto; /* Allow labels to wrap naturally */
+    text-align: left; /* Ensure text remains left-aligned */
+  }
+
+  .create-event-input,
+  .create-event-textarea,
+  .date-picker2 input,
+  .react-select__control {
+    max-width: 100%; /* Full width on smaller screens */
+  }
+
+  /* Event pictures adjustments */
+  .event-pictures-files {
+    flex-wrap: wrap; /* Allow wrapping of elements */
+    padding-left: 0;
+    gap: 5px; /* Reduce gaps between elements */
+  }
+
+  /* Buttons container adjustments */
+  .create-event-buttons {
+    flex-direction: column;
+    align-items: center;
+    width: 100%; /* Full width on smaller screens */
+  }
+
+  .create-event-cancel,
+  .create-event-post {
+    width: 100%; /* Full-width buttons for smaller screens */
+    margin-bottom: 10px;
+  }
+
+  .create-event-post {
+    font-size: 1rem; /* Slightly smaller font size for buttons */
+  }
+
+  .create-event-cancel {
+    font-size: 1rem;
+  }
+
+  /* Word count alignment */
+  .word-count {
+    text-align: left; /* Align word count to the left */
+    font-size: 10px; /* Reduce font size for smaller screens */
+  }
+}
+
 
   /* Responsive adjustments */
   @media (max-width: 500px) {
