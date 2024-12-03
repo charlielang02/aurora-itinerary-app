@@ -5,7 +5,6 @@ import LandingPage from './pages/LandingPage';
 import SearchEvents from './pages/SearchEvents';
 import EventDetails from './pages/EventDetails';
 import ViewItinerary from './pages/ViewItinerary';
-import MyEvents from './pages/MyEvents';
 import CreateEvent from './pages/CreateEvent';
 import LoginDropdown from './components/LoginDropdown';
 import { useLocation } from 'react-router-dom';
