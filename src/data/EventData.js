@@ -41,6 +41,7 @@ export const EventData = [
             { reviewer: "Ella", rating: 4, comment: "Beautiful resort and friendly staff." },
             { reviewer: "Frank", rating: 5, comment: "Best skiing experience in Alberta!" },
         ],
+        organizerID: 1, 
     },
     {
         title: "International Christmas Market",
@@ -62,7 +63,8 @@ export const EventData = [
             { "reviewer": "David", "rating": 5, "comment": "Perfect way to get into the holiday spirit. Loved it!" },
             { "reviewer": "Emma", "rating": 4, "comment": "Good mix of indoor and outdoor activities. Worth the visit." },
             { "reviewer": "Frank", "rating": 4, "comment": "Charming market, but food options were overpriced." }
-        ]
+        ],
+        organizerID: 1,
     },
     {
         title: "Calgary Stampede",
@@ -86,6 +88,7 @@ export const EventData = [
             { reviewer: "Rachel", rating: 5, comment: "So much fun for the whole family." },
             { reviewer: "Sam", rating: 5, comment: "Highlight of my summer!" },
         ],
+        organizerID: 1,
     },
     {
         title: "Calgary Tower Observation Deck",
@@ -108,6 +111,7 @@ export const EventData = [
             { reviewer: "Xander", rating: 4, comment: "Well-maintained and informative." },
             { reviewer: "Yara", rating: 4, comment: "Beautiful scenery, especially at sunset." },
         ],
+        organizerID: 1,
     },
     {
         title: "Toronto Raptors Game",
@@ -130,6 +134,7 @@ export const EventData = [
             { reviewer: "David", rating: 5, comment: "Perfect way to spend an evening." },
             { reviewer: "Ella", rating: 5, comment: "Go Raptors! The atmosphere was insane." },
         ],
+        organizerID: 3,
     },
     {
         title: "Eiffel Tower Tour",
@@ -152,6 +157,7 @@ export const EventData = [
             { reviewer: "Jenna", rating: 2, comment: "Overhyped and overpriced." },
             { reviewer: "Kyle", rating: 3, comment: "Nice experience, but not as romantic as expected." },
         ],
+        organizerID: 2,
     },
     {
         title: "Sumo Wrestling in Tokyo",
@@ -174,6 +180,7 @@ export const EventData = [
             { reviewer: "Patrick", rating: 4, comment: "Fascinating cultural insight." },
             { reviewer: "Quincy", rating: 5, comment: "Loved the atmosphere and tradition." },
         ],
+        organizerID: 4,
     },
     {
         title: "Broadway Show in New York",
@@ -196,6 +203,7 @@ export const EventData = [
             { reviewer: "Vince", rating: 5, comment: "Best musical I’ve ever seen!" },
             { reviewer: "Wendy", rating: 5, comment: "Broadway magic at its finest." },
         ],
+        organizerID: 5,
     },
     {
         title: "Sydney Opera House Tour",
@@ -218,6 +226,7 @@ export const EventData = [
             { reviewer: "Bianca", rating: 4, comment: "Iconic landmark with a great history lesson." },
             { reviewer: "Carl", rating: 2, comment: "Expected more for the ticket price." },
         ],
+        organizerID: 6,
     },
     {
         title: "London Eye Experience",
@@ -240,6 +249,7 @@ export const EventData = [
             { reviewer: "Hannah", rating: 4, comment: "Perfect for first-time visitors to London." },
             { reviewer: "Isaac", rating: 5, comment: "Breathtaking views of the city!" },
         ],
+        organizerID: 7,
     },
     {
         title: "Granville Island Tour",
@@ -262,6 +272,7 @@ export const EventData = [
             { reviewer: "Noah", rating: 5, comment: "The art galleries were stunning!" },
             { reviewer: "Olivia", rating: 4, comment: "Loved the fresh produce market." },
         ],
+        organizerID: 8,
     },
     {
         title: "Burj Khalifa Observation Deck",
@@ -284,5 +295,6 @@ export const EventData = [
             { reviewer: "Tom", rating: 5, comment: "The highlight of our Dubai trip." },
             { reviewer: "Uma", rating: 5, comment: "Absolutely stunning architecture." },
         ],
+        organizerID: 9,
     },
 ];
