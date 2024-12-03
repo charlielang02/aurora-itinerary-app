@@ -84,8 +84,6 @@ const GetCountries = () => {
 
 const Countries = GetCountries();
 
-console.log(Countries);
-
 const GetSearchableEventData = () => {
   let data = EventData;
 
@@ -182,6 +180,7 @@ const SearchEvents = () => {
   const [maxCost, setMaxCost] = useState('');
   const [minRating, setMinRating] = useState(0);
   const [filteredEventData, setFilteredEventData] = useState(SearchableEventData);
+  const eventsFilteredBySearchQuery = getEventsFilteredBySearchQuery(filteredEventData);
 
   // Force scroll to top when page becomes visible
   useEffect(() => {
@@ -333,7 +332,7 @@ const SearchEvents = () => {
           <button
             disabled={!IsFilterApplied()}
             className={`${styles.apply_btn} ${styles.filter_item}`}
-            onClick={() => setFilteredEventData(getEventsFilteredBySearchOptions(filteredEventData))}
+            onClick={() => setFilteredEventData(eventsFilteredBySearchQuery)}
           >
             Apply
           </button>
@@ -364,12 +363,12 @@ const SearchEvents = () => {
             </form>
           </div>
           <div className={styles.card_container}>
-            {getEventsFilteredBySearchQuery(filteredEventData).map((data, i) => {
+            {eventsFilteredBySearchQuery.map((data, i) => {
               return (
                 <EventCard key={i} data={data} id={i} />
               );
             })}
-            {filteredEventData.length === 0 && (
+            {eventsFilteredBySearchQuery.length === 0 && (
               <p>No events found</p>
             )}
           </div>
