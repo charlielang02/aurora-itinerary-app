@@ -1,20 +1,23 @@
 import './DestinationCard.css';
 import { Link } from 'react-router-dom';
-import { createSearchParams } from 'react-router-dom';
+import { useGlobalContext } from '../hooks/GlobalContext';
 
 const DestinationCard = ({ image, city, country, link }) => {
+  const { setCountry } = useGlobalContext(); // Destructure setCountry from context
+
+  const handleClick = () => {
+    setCountry(country); // Update the global country state
+  };
+
   return (
     <Link
       to={
         link || {
-          pathname: "/find-events",
-          search: createSearchParams({
-            city: city,
-            country: country,
-          }).toString(),
+          pathname: "/search-events",
         }
       }
       className="destination-card-link"
+      onClick={handleClick}
     >
       <div className="destination-card">
         <div

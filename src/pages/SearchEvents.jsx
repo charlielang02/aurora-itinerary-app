@@ -5,6 +5,7 @@ import styles from './SearchEvents.module.css';
 import ChipContainer from '../components/ChipContainer';
 import cardstyles from './SearchEventsCard.module.css';
 import Dropdown from '../components/DropDown';
+import { useGlobalContext } from '../hooks/GlobalContext';
 
 const countryMapping = {
   'UK': 'United Kingdom',
@@ -60,8 +61,14 @@ const SearchIcon = ({ className }) => {
 }
 
 const EventCard = ({ data, id }) => {
+  const { setNavigateFromEventCard } = useGlobalContext();
+
+  const handleCardClick = () => {
+    setNavigateFromEventCard(true);
+  };
+
   return (
-    <Link className={`${cardstyles.card} ${styles.shadow_bottom}`} to={`/event-details/${id}`}>
+    <Link className={`${cardstyles.card} ${styles.shadow_bottom}`} to={`/event-details/${id}`} onClick={handleCardClick}>
       <img src={data.images[0]} alt={data.imageAlt} />
       <div className={cardstyles.content}>
         <div className={cardstyles.text}>
@@ -90,12 +97,24 @@ const EventCard = ({ data, id }) => {
 }
 
 const SearchEvents = () => {
+  const { country } = useGlobalContext();
+  const { date } = useGlobalContext();
+  const { minPrice } = useGlobalContext();
+  const { maxPrice } = useGlobalContext();
+  const { starRating } = useGlobalContext();
+  const { setCountry } = useGlobalContext();
+  const { setDate } = useGlobalContext();
+  const { setMinPrice } = useGlobalContext();
+  const { setMaxPrice } = useGlobalContext();
+  const { setStarRating } = useGlobalContext();
+  const { navigateFromEventCard } = useGlobalContext();
+  const { setNavigateFromEventCard } = useGlobalContext();
   const [searchedText, setSearchedText] = useState('');
-  const [selectedCountry, setSelectedCountry] = useState('');
-  const [startDate, setStartDate] = useState(null);
-  const [minCost, setMinCost] = useState('');
-  const [maxCost, setMaxCost] = useState('');
-  const [minRating, setMinRating] = useState(0);
+  const [selectedCountry, setSelectedCountry] = useState(country ||'');
+  const [startDate, setStartDate] = useState(date || null);
+  const [minCost, setMinCost] = useState(minPrice ||'');
+  const [maxCost, setMaxCost] = useState(maxPrice ||'');
+  const [minRating, setMinRating] = useState(starRating || 0);
   const [filteredEventData, setFilteredEventData] = useState(EventData);
 
   // Force scroll to top when page becomes visible
@@ -132,6 +151,11 @@ const SearchEvents = () => {
   }
 
   const handleApplyFilters = () => {
+    setCountry(selectedCountry);
+    setDate(startDate);
+    setMinPrice(minCost);
+    setMaxPrice(maxCost);
+    setStarRating(minRating);
     let events = EventData;
     
     events = events.filter(event => {
@@ -177,6 +201,10 @@ const SearchEvents = () => {
   const handleSearchBtnClicked = (e) => {
 
   }
+
+  useEffect(() => {
+    handleApplyFilters();
+  }, []);
 
   return (
     <div>
