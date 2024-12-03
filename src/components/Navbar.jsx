@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import './Navbar.css';
 import useBoolean from '../hooks/UseBoolean';
 import HamburgerButton from './HamburgerButton';
+import { useGlobalContext } from '../hooks/GlobalContext';
 
 const Navbar = ({ isLoggedIn, isOrganizer, setLoggedIn, setIsOrganizer, toggleLoginDropdown, hideDropdown }) => {
   const { value: isHamburgerOpen, toggle: toggleHamburger, setFalse: closeHamburger } = useBoolean(false);
@@ -22,8 +23,20 @@ const Navbar = ({ isLoggedIn, isOrganizer, setLoggedIn, setIsOrganizer, toggleLo
     hideDropdown();   // Hide any dropdown if needed
   };
 
+  const { setCountry, setDate, setMinPrice, setMaxPrice, setStarRating } = useGlobalContext();
+
+  const handleNavbarClick = () => {
+    console.log('Navbar clicked, resetting filters');
+    setCountry('');
+    setDate(null);
+    setMinPrice('');
+    setMaxPrice('');
+    setStarRating(0);
+  };
+
+
   return (
-    <div className="nav-container">
+    <div className="nav-container" onClick={handleNavbarClick}>
       <HamburgerButton className="hamburger" isOpen={isHamburgerOpen} onToggle={handleHamburgerToggle} />
       <nav className="navbar">
         <div className="navbar-left">
