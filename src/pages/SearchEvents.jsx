@@ -156,8 +156,14 @@ const EventCard = ({ data, id }) => {
   );
 }
 
-const getEventsFilteredBySearchQuery = (eventList) => {
+const getEventsFilteredBySearchQuery = (eventList, isOrganizer) => {
   const events = eventList.filter(event => {
+
+    // If isOrganizer is true, only include events with organizerID === 1
+    if (isOrganizer && event.organizerID !== 1) {
+      return false;
+    }
+
     let searchValue = new URLSearchParams(location.search).get('search');
     if (!searchValue) {
       return true;
@@ -179,7 +185,7 @@ const getEventsFilteredBySearchQuery = (eventList) => {
   return events;
 }
 
-const SearchEvents = () => {
+const SearchEvents = ({ isOrganizer }) => {
   const location = useLocation();
   const searchQuery = new URLSearchParams(location.search);
   const { country } = useGlobalContext();
@@ -201,7 +207,7 @@ const SearchEvents = () => {
   const [maxCost, setMaxCost] = useState(maxPrice ||'');
   const [minRating, setMinRating] = useState(starRating || 0);
   const [eventData, setEventData] = useState(SearchableEventData);
-  const eventsFilteredBySearchQuery = getEventsFilteredBySearchQuery(eventData);
+  const eventsFilteredBySearchQuery = getEventsFilteredBySearchQuery(eventData, isOrganizer);
 
   // Force scroll to top when page becomes visible
   useEffect(() => {
@@ -382,7 +388,7 @@ const SearchEvents = () => {
       <div className={styles.page_content}>
         <div className={styles.events}>
           <div className={styles.header}>
-            <h1>Find Your Next Adventure!</h1>
+          <h1>{isOrganizer ? "Browse Your Created Events" : "Find Your Next Adventure!"}</h1>
             <form className={`${styles.search_bar} ${styles.shadow_bottom}`}>
               <SearchIcon className={styles.search_icon} />
               <input

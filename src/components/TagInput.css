@@ -89,3 +89,8 @@
     user-select: none;
   }
   
+  @media (max-width: 768px) {
+    .tag-input-wrapper{
+      margin-left: 0;
+    }
+  }
