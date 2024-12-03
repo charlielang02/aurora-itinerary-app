@@ -193,11 +193,11 @@ const SearchEvents = () => {
   const { navigateFromEventCard } = useGlobalContext();
   const { setNavigateFromEventCard } = useGlobalContext();
   const [searchBarText, setSearchBarText] = useState(searchQuery);
-  const [selectedCountry, setSelectedCountry] = useState('');
-  const [startDate, setStartDate] = useState(null);
-  const [minCost, setMinCost] = useState('');
-  const [maxCost, setMaxCost] = useState('');
-  const [minRating, setMinRating] = useState(0);
+  const [selectedCountry, setSelectedCountry] = useState(country ||'');
+  const [startDate, setStartDate] = useState(date || null);
+  const [minCost, setMinCost] = useState(minPrice ||'');
+  const [maxCost, setMaxCost] = useState(maxPrice ||'');
+  const [minRating, setMinRating] = useState(starRating || 0);
   const [eventData, setEventData] = useState(SearchableEventData);
   const eventsFilteredBySearchQuery = getEventsFilteredBySearchQuery(eventData);
 
@@ -287,6 +287,19 @@ const SearchEvents = () => {
     setEventData(SearchableEventData);
   }
 
+  const handleApplyFilters = () => {
+    setCountry(selectedCountry);
+    setDate(startDate);
+    setMinPrice(minCost);
+    setMaxPrice(maxCost);
+    setStarRating(minRating);
+    setEventData(getEventsFilteredBySearchOptions(SearchableEventData));
+  }
+
+  useEffect(() => {
+    handleApplyFilters();
+  }, []);
+
   return (
     <div>
       <div className={styles.left_panel}>
@@ -355,7 +368,9 @@ const SearchEvents = () => {
           <button
             disabled={!IsFilterApplied()}
             className={`${styles.apply_btn} ${styles.filter_item}`}
-            onClick={() => setEventData(getEventsFilteredBySearchOptions(SearchableEventData))}
+            onClick={() => {
+              handleApplyFilters();
+            }}
           >
             Apply
           </button>
