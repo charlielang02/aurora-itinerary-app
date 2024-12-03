@@ -102,7 +102,7 @@ const CreateEvent = () => {
 
       {/* Event Name Field */}
       <div className="input-row">
-        <label htmlFor="event-name" className="input-label">Event Name:</label>
+        <label htmlFor="event-name" className="input-label">Event Name*</label>
         <input
           id="event-name"
           type="text"
@@ -110,26 +110,28 @@ const CreateEvent = () => {
           value={eventName}
           onChange={(e) => setEventName(e.target.value)}
           className="create-event-input"
+          required
         />
       </div>
 
       {/* Date Picker Field */}
       <div className="input-row">
         <div className="date-picker2">
-          <label htmlFor="pick-date" className="input-label">Pick a Date:</label>
+          <label htmlFor="pick-date" className="input-label">Pick a Date*</label>
           <input
             type="date"
             id="pick-date"
             value={startDate.toISOString().split("T")[0]}
             onChange={handleDateChange}
             onClick={(e) => e.currentTarget.showPicker()}
+            required
           />
         </div>
       </div>
 
       {/* Location Fields */}
       <div className="input-row">
-        <label htmlFor="country" className="input-label">Country:</label>
+        <label htmlFor="country" className="input-label">Country*</label>
         <Select
           id="country"
           options={countries}
@@ -138,11 +140,12 @@ const CreateEvent = () => {
           placeholder="Select a Country"
           className="react-select-container"
           classNamePrefix="react-select"
+          required
         />
       </div>
 
       <div className="input-row">
-        <label htmlFor="state" className="input-label">State/Province:</label>
+        <label htmlFor="state" className="input-label">State/Province*</label>
         <Select
           id="state"
           options={country ? states[country.value] : []}
@@ -152,11 +155,12 @@ const CreateEvent = () => {
           isDisabled={!country}
           className="react-select-container"
           classNamePrefix="react-select"
+          required
         />
       </div>
 
       <div className="input-row">
-        <label htmlFor="city" className="input-label">City:</label>
+        <label htmlFor="city" className="input-label">City*</label>
         <Select
           id="city"
           options={state ? cities[state.value] : []}
@@ -166,11 +170,12 @@ const CreateEvent = () => {
           isDisabled={!state}
           className="react-select-container"
           classNamePrefix="react-select"
+          required
         />
       </div>
 
       <div className="input-row">
-        <label htmlFor="address" className="input-label">Address:</label>
+        <label htmlFor="address" className="input-label">Address*</label>
         <input
           id="address"
           type="text"
@@ -178,11 +183,12 @@ const CreateEvent = () => {
           value={address}
           onChange={(e) => setAddress(e.target.value)}
           className="create-event-input"
+          required
         />
       </div>
 
       <div className="input-row">
-        <label htmlFor="postal-code" className="input-label">Postal Code:</label>
+        <label htmlFor="postal-code" className="input-label">Postal Code*</label>
         <input
           id="postal-code"
           type="text"
@@ -190,12 +196,13 @@ const CreateEvent = () => {
           value={postalCode}
           onChange={(e) => setPostalCode(e.target.value)}
           className="create-event-input"
+          required
         />
       </div>
 
       {/* Event Link Field with Tooltip */}
       <div className="input-row">
-        <label htmlFor="event-link" className="input-label">Event Link:</label>
+        <label htmlFor="event-link" className="input-label">Event Link*</label>
         <input
           id="event-link"
           type="url"
@@ -204,12 +211,13 @@ const CreateEvent = () => {
           onChange={(e) => setEventLink(e.target.value)}
           className="create-event-input"
           title="Provide the link to the booking site for this event"
+          required
         />
       </div>
 
       {/* Price Range */}
       <div className="input-row">
-        <label htmlFor="currency" className="input-label">Currency:</label>
+        <label htmlFor="currency" className="input-label">Currency*</label>
         <Select
           id="currency"
           options={Object.values(currencies)}
@@ -218,11 +226,12 @@ const CreateEvent = () => {
           placeholder="Select a Currency"
           className="react-select-container"
           classNamePrefix="react-select"
+          required
         />
       </div>
 
       <div className="input-row">
-        <label htmlFor="min-price" className="input-label">Min Price:</label>
+        <label htmlFor="min-price" className="input-label">Min Price*</label>
         <input
           id="min-price"
           type="number"
@@ -230,11 +239,12 @@ const CreateEvent = () => {
           value={minPrice}
           onChange={(e) => setMinPrice(e.target.value)}
           className="create-event-input"
+          required
         />
       </div>
 
       <div className="input-row">
-        <label htmlFor="max-price" className="input-label">Max Price:</label>
+        <label htmlFor="max-price" className="input-label">Max Price*</label>
         <input
           id="max-price"
           type="number"
@@ -242,18 +252,19 @@ const CreateEvent = () => {
           value={maxPrice}
           onChange={(e) => setMaxPrice(e.target.value)}
           className="create-event-input"
+          required
         />
       </div>
 
       <div className="input-row">
-        <label htmlFor="event-pictures" className="input-label">Event Pictures:</label>
+        <label htmlFor="event-pictures" className="input-label">Event Pictures*</label>
         <div className="event-pictures-files">
           <EventPicturesUpload />
         </div>
       </div>
 
       <div className="input-row">
-        <label htmlFor="event-tags" className="input-label">Event Tags:</label>
+        <label htmlFor="event-tags" className="input-label">Event Tags</label>
         <div className="event-tags-list">
           <TagInput />
         </div>
@@ -261,7 +272,7 @@ const CreateEvent = () => {
 
       {/* Event Description Field */}
       <div className="input-row">
-        <label htmlFor="event-description" className="input-label">Event Description:</label>
+        <label htmlFor="event-description" className="input-label">Event Description*</label>
         <textarea
           id="event-description"
           placeholder="Enter event description (Max 200 words)"
@@ -269,6 +280,7 @@ const CreateEvent = () => {
           onChange={handleDescriptionChange}
           className="create-event-textarea"
           maxLength={200}
+          required
         />
         <div className="word-count">{eventDescription.split(/\s+/).length}/200</div>
       </div>

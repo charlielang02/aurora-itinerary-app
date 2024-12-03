@@ -45,6 +45,7 @@ const EventPicturesUpload = () => {
         multiple
         className="hidden-input"
         onChange={handleFileChange}
+        required
       />
       <div className="preview-row">
         {images.map((image, index) => (
