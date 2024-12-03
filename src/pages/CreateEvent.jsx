@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import "./CreateEvent.css";
 import EventPicturesUpload from "../components/EventPicturesUpload";
 import TagInput from "../components/TagInput";
+import { useNavigate } from "react-router-dom";
 
 // Hardcoded data for countries, states/provinces, and cities
 const countries = [
@@ -69,6 +70,7 @@ const CreateEvent = () => {
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
   const [eventDescription, setEventDescription] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => window.scrollTo(0, 0), []);
 
@@ -96,11 +98,16 @@ const CreateEvent = () => {
     }
   };
 
+  const handleSubmit = () => {
+    navigate("/my-events");
+  }
+
   return (
     <div className="create-event-container">
       <h1 className="create-event-header">Create New Event</h1>
 
       {/* Event Name Field */}
+      <form action="" onSubmit={handleSubmit}>
       <div className="input-row">
         <label htmlFor="event-name" className="input-label">Event Name*</label>
         <input
@@ -291,10 +298,9 @@ const CreateEvent = () => {
         <button className="create-event-cancel">
           <Link to="/">Cancel</Link>
         </button>
-        <button className="create-event-post">
-          <Link to="/my-events" id="post">Post</Link>
-        </button>
+        <input className="create-event-post" type="submit"/>
       </div>
+      </form>
     </div>
   );
 };
