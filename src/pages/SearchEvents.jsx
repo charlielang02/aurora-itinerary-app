@@ -179,8 +179,8 @@ const SearchEvents = () => {
   const [minCost, setMinCost] = useState('');
   const [maxCost, setMaxCost] = useState('');
   const [minRating, setMinRating] = useState(0);
-  const [filteredEventData, setFilteredEventData] = useState(SearchableEventData);
-  const eventsFilteredBySearchQuery = getEventsFilteredBySearchQuery(filteredEventData);
+  const [eventData, setEventData] = useState(SearchableEventData);
+  const eventsFilteredBySearchQuery = getEventsFilteredBySearchQuery(eventData);
 
   // Force scroll to top when page becomes visible
   useEffect(() => {
@@ -216,7 +216,6 @@ const SearchEvents = () => {
     if (value != maxCost) {
       setMaxCost(value);
     }
-    console.log(maxCost);
   }
 
   const handleSearchTextChanged = (e) => {
@@ -238,6 +237,7 @@ const SearchEvents = () => {
         return false;
       }
       if (minRating > 0 && event.rating < minRating) {
+        console.log(event.title);
         return false;
       }
       return true;
@@ -260,7 +260,7 @@ const SearchEvents = () => {
     setMinCost('');
     setMaxCost('');
     setMinRating(0);
-    setFilteredEventData(SearchableEventData);
+    setEventData(SearchableEventData);
   }
 
   return (
@@ -318,7 +318,6 @@ const SearchEvents = () => {
             <p className={styles.min_text}>Minimum Rating</p>
             <p className={styles.min_stars}>
               {[...Array(5)].map((_, i) => (
-                // Temp condition
                 <span
                   key={i}
                   className={i < minRating ? `${styles.min_star} ${cardstyles.star_filled} star filled` : cardstyles.star}
@@ -332,7 +331,7 @@ const SearchEvents = () => {
           <button
             disabled={!IsFilterApplied()}
             className={`${styles.apply_btn} ${styles.filter_item}`}
-            onClick={() => setFilteredEventData(eventsFilteredBySearchQuery)}
+            onClick={() => setEventData(getEventsFilteredBySearchOptions(SearchableEventData))}
           >
             Apply
           </button>
