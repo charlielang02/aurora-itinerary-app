@@ -70,7 +70,23 @@ const ToAbbreviatedCountryName = (country) => {
   return country;
 }
 
-const CleanEventData = () => {
+const GetCountries = () => {
+  const countriesSet = new Set();
+
+  EventData.forEach(event => {
+    const locationParts = event.location.replace(',', '').split(' ');
+    const country = locationParts[locationParts.length - 1];
+    countriesSet.add(ToFullCountryName(country));
+  });
+
+  return Array.from(countriesSet);
+}
+
+const Countries = GetCountries();
+
+console.log(Countries);
+
+const GetSearchableEventData = () => {
   let data = EventData;
 
   data.forEach(event => {
@@ -78,19 +94,10 @@ const CleanEventData = () => {
     event.locationKeywords = event.location.replace(/,/g, '').split(' ');
   });
 
-  const countriesSet = new Set();
-
-  data.forEach(event => {
-    const country = event.locationKeywords[event.location.length - 1];
-    countriesSet.add(ToFullCountryName(country));
-  });
-
-  data.countries = Array.from(countriesSet);
-
   return data;
 }
 
-const CleanedEventData = CleanEventData();
+const SearchableEventData = GetSearchableEventData();
 
 const TodayDate = new Date();
 TodayDate.setHours(0, 0, 0, 0);
@@ -174,7 +181,7 @@ const SearchEvents = () => {
   const [minCost, setMinCost] = useState('');
   const [maxCost, setMaxCost] = useState('');
   const [minRating, setMinRating] = useState(0);
-  const [filteredEventData, setFilteredEventData] = useState(CleanedEventData);
+  const [filteredEventData, setFilteredEventData] = useState(SearchableEventData);
 
   // Force scroll to top when page becomes visible
   useEffect(() => {
@@ -254,7 +261,7 @@ const SearchEvents = () => {
     setMinCost('');
     setMaxCost('');
     setMinRating(0);
-    setFilteredEventData(CleanedEventData);
+    setFilteredEventData(SearchableEventData);
   }
 
   return (
@@ -265,7 +272,7 @@ const SearchEvents = () => {
             Search Filters
           </h2>
           <Dropdown
-            dropdownOptions={CleanedEventData.countries}
+            dropdownOptions={Countries}
             placeholderText={"Select Country"}
             onSelect={setSelectedCountry}
             selectedItemRef={selectedCountry}
