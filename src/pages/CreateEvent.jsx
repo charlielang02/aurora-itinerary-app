@@ -3,6 +3,7 @@ import Select from "react-select";
 import { Link } from "react-router-dom";
 import "./CreateEvent.css";
 import EventPicturesUpload from "../components/EventPicturesUpload";
+import TagInput from "../components/TagInput";
 
 // Hardcoded data for countries, states/provinces, and cities
 const countries = [
@@ -248,6 +249,13 @@ const CreateEvent = () => {
         <label htmlFor="event-pictures" className="input-label">Event Pictures:</label>
         <div className="event-pictures-files">
           <EventPicturesUpload />
+        </div>
+      </div>
+
+      <div className="input-row">
+        <label htmlFor="event-tags" className="input-label">Event Tags:</label>
+        <div className="event-tags-list">
+          <TagInput />
         </div>
       </div>
 
