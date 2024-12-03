@@ -150,9 +150,17 @@ body {
   /* Buttons container */
   .create-event-buttons {
     display: flex;
-    justify-content: space-between;
-    width: 300px;
+    justify-content: center; /* Center the buttons as a group horizontally */
+    align-items: center; /* Align buttons vertically if needed */
+    gap: 20px; /* Adjust space between buttons */
     margin-top: 30px;
+    width: 100%; /* Ensures buttons span the full width of their container */
+  }
+  
+  .create-event-post,
+  .create-event-cancel {
+    flex: 0 0 auto; /* Prevent buttons from stretching */
+    width: auto; /* Let buttons size naturally */
   }
   
   .create-event-post {
