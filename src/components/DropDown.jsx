@@ -1,4 +1,4 @@
-import styles from './DropDown.module.css';
+import styles from './Dropdown.module.css';
 import { useEffect, useRef, useState } from 'react';
 import useBoolean from '../hooks/UseBoolean';
 
@@ -10,10 +10,15 @@ const ArrowHeadDown = ({ className }) => {
   );
 }
 
-const DropDown = ({ dropdownOptions, placeholderText, onSelect }) => {
+const Dropdown = ({ dropdownOptions, placeholderText, onSelect, selectedItemRef }) => {
   const { value: isDropdownOpen, toggle: toggleDropdown, setFalse: closeDropdown } = useBoolean(false);
   const buttonRef = useRef(null);
   const [selectedItem, setselectedItem] = useState('');
+
+  // Links the value of the remote selected item variable with the local one. It's not pretty, but it works ¯\_(ツ)_/¯
+  useEffect(() => {
+    setselectedItem(selectedItemRef);
+  }, [selectedItemRef]);
 
   useEffect(() => {
     const handleClickOutside = (e) => {
@@ -41,7 +46,7 @@ const DropDown = ({ dropdownOptions, placeholderText, onSelect }) => {
         <button className={styles.toggle}>
           {selectedItem || placeholderText}
         </button>
-        <ArrowHeadDown className={styles.arrow} />
+        <ArrowHeadDown className={`${styles.arrow} ${isDropdownOpen ? styles.arrow_rotated : ''}`} />
       </div>
       <div className={`${styles.options} ${isDropdownOpen ? styles.visible : ''}`}>
         {dropdownOptions.map((option, i) => {
@@ -56,4 +61,4 @@ const DropDown = ({ dropdownOptions, placeholderText, onSelect }) => {
   );
 };
 
-export default DropDown;
+export default Dropdown;

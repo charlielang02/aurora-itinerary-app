@@ -4,20 +4,34 @@ import { EventData } from '../data/EventData';
 import styles from './SearchEvents.module.css';
 import ChipContainer from '../components/ChipContainer';
 import cardstyles from './SearchEventsCard.module.css';
-import DropDown from '../components/DropDown';
+import Dropdown from '../components/DropDown';
+
+const countryMapping = {
+  'UK': 'United Kingdom',
+  'USA': 'United States'
+};
+
+const ToFullCountryName = (country) => {
+  return countryMapping[country] || country;
+}
+
+const ToAbbreviatedCountryName = (country) => {
+  for (let abbreviation in countryMapping) {
+    if (countryMapping[abbreviation] === country) {
+      return abbreviation;
+    }
+  }
+  return country;
+};
 
 const GetCountries = () => {
   const countriesSet = new Set();
-  const countryMapping = {
-    'UK': 'United Kingdom',
-    'USA': 'United States'
-  };
 
   EventData.forEach(event => {
     const locationParts = event.location.split(', ');
     const country = locationParts[locationParts.length - 1];
 
-    countriesSet.add(countryMapping[country] || country);
+    countriesSet.add(ToFullCountryName(country));
   });
 
   return Array.from(countriesSet);
@@ -121,7 +135,8 @@ const SearchEvents = () => {
     let events = EventData;
     
     events = events.filter(event => {
-      if (selectedCountry && !event.location.includes(selectedCountry)) {
+      console.log(selectedCountry);
+      if (selectedCountry && !event.location.includes(ToAbbreviatedCountryName(selectedCountry))) {
         return false;
       }
       if (startDate !== null && !AreDatesEqual(startDate, new Date(event.date))) {
@@ -170,16 +185,17 @@ const SearchEvents = () => {
           <h2 className={styles.filter_title}>
             Search Filters
           </h2>
-          <DropDown
+          <Dropdown
             dropdownOptions={Countries}
             placeholderText={"Select Country"}
             onSelect={setSelectedCountry}
+            selectedItemRef={selectedCountry}
           />
           <input
             type="date"
             id="search-pick-date"
             className={`${styles.date_picker} ${styles.filter_item}`}
-            value={startDate !== null ? startDate.toISOString().split('T')[0] : 0}
+            value={startDate !== null ? startDate.toISOString().split('T')[0] : ''}
             onChange={handleDateChange}
             onClick={(e) => e.currentTarget.showPicker()}
           >
@@ -191,7 +207,7 @@ const SearchEvents = () => {
                 type="number"
                 name="min-price"
                 min="0"
-                step=".01"
+                step="1"
                 placeholder="Min:"
                 className={`${styles.dollar_picker}`}
                 onChange={handleMinCostChange}
@@ -205,7 +221,7 @@ const SearchEvents = () => {
                 type="number"
                 name="max-price"
                 min="0"
-                step=".01"
+                step="1"
                 placeholder="Max:"
                 className={`${styles.dollar_picker}`}
                 onChange={handleMaxCostChange}

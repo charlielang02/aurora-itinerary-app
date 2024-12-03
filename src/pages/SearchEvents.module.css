@@ -238,11 +238,16 @@ h2 {
 }
 
 .clear {
+  position: relative;
+  bottom: 10px;
   font-size: 14px;
   font-weight: 500;
-  text-decoration: underline;
   color: #2a5997;
   padding: 0;
   margin: 0;
   cursor: pointer;
+}
+
+.clear:hover {
+  text-decoration: underline;
 }
