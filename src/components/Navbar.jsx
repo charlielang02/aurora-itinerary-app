@@ -51,6 +51,11 @@ const Navbar = ({ isLoggedIn, isOrganizer, setLoggedIn, setIsOrganizer, toggleLo
           {isOrganizer ? (
             <>
               <Link
+                to="/"
+                className={`nav-link ${currentUrl === '/' ? 'active' : ''}`}
+                onClick={() => handleLinkClick()}
+              >Home</Link>
+              <Link
                 to="/my-events"
                 className={`nav-link ${currentUrl === '/my-events' ? 'active' : ''}`}
                 onClick={() => handleLinkClick()}
@@ -63,6 +68,11 @@ const Navbar = ({ isLoggedIn, isOrganizer, setLoggedIn, setIsOrganizer, toggleLo
             </>
           ) : (
             <>
+              <Link
+                to="/"
+                className={`nav-link ${currentUrl === '/' ? 'active' : ''}`}
+                onClick={() => handleLinkClick()}
+              >Home</Link>
               <Link
                 to="/search-events"
                 className={`nav-link ${currentUrl === '/search-events' ? 'active' : ''}`}

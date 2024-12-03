@@ -251,3 +251,14 @@ h2 {
 .clear:hover {
   text-decoration: underline;
 }
+
+@media (max-width: 980px) {
+  
+  :root {
+    --left-panel-thickness: 0px;
+  }
+
+  .events {
+    
+  }
+}
