@@ -142,8 +142,8 @@ const EventCard = ({ data, id }) => {
   );
 }
 
-const getEventsFilteredBySearchQuery = () => {
-  const events = CleanedEventData.filter(event => {
+const getEventsFilteredBySearchQuery = (eventList) => {
+  const events = eventList.filter(event => {
     let searchValue = new URLSearchParams(location.search).get('search');
     if (!searchValue) {
       return true;
@@ -217,8 +217,8 @@ const SearchEvents = () => {
     setSearchBarText(e.target.value);
   }
 
-  const handleApplyFilters = () => {
-    const events = CleanedEventData.filter(event => {
+  const getEventsFilteredBySearchOptions = (eventList) => {
+    const events = eventList.filter(event => {
       if (selectedCountry && !event.location.includes(ToAbbreviatedCountryName(selectedCountry))) {
         return false;
       }
@@ -237,7 +237,7 @@ const SearchEvents = () => {
       return true;
     });
 
-    setFilteredEventData(events);
+    return events;
   }
 
   const IsFilterApplied = () => {
@@ -323,7 +323,11 @@ const SearchEvents = () => {
               ))}
             </p>
           </div>
-          <button disabled={!IsFilterApplied()} className={`${styles.apply_btn} ${styles.filter_item}`} onClick={handleApplyFilters}>
+          <button
+            disabled={!IsFilterApplied()}
+            className={`${styles.apply_btn} ${styles.filter_item}`}
+            onClick={() => setFilteredEventData(getEventsFilteredBySearchOptions(filteredEventData))}
+          >
             Apply
           </button>
           {IsFilterApplied() && (
@@ -353,7 +357,7 @@ const SearchEvents = () => {
             </form>
           </div>
           <div className={styles.card_container}>
-            {getEventsFilteredBySearchQuery().map((data, i) => {
+            {getEventsFilteredBySearchQuery(filteredEventData).map((data, i) => {
               return (
                 <EventCard key={i} data={data} id={i} />
               );
