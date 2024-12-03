@@ -5,6 +5,52 @@ import styles from './SearchEvents.module.css';
 import ChipContainer from '../components/ChipContainer';
 import cardstyles from './SearchEventsCard.module.css';
 import Dropdown from '../components/DropDown';
+import { useLocation } from 'react-router-dom';
+import { StopWords } from '../data/StopWords';
+
+/*
+ * String method to remove stop words
+ * Written by GeekLad http://geeklad.com
+ *   Usage: string_variable.removeStopWords();
+ *   Output: The original String with stop words removed
+ */
+const removeStopWords = (string) => {
+	let x;
+	let y;
+	let word;
+	let stop_word;
+	let regex_str;
+	let regex;
+		
+	// Split out all the individual words in the phrase
+	const words = string.match(/[^\s]+|\s+[^\s+]$/g)
+
+	// Review all the words
+	for(x=0; x < words.length; x++) {
+		// For each word, check all the stop words
+		for(y=0; y < StopWords.length; y++) {
+			// Get the current word
+			word = words[x].replace(/\s+|[^a-z]+/ig, "");	// Trim the word and remove non-alpha
+			
+			// Get the stop word
+			stop_word = StopWords[y];
+			
+			// If the word matches the stop word, remove it from the keywords
+			if(word.toLowerCase() == stop_word) {
+				// Build the regex
+				regex_str = "^\\s*"+stop_word+"\\s*$";		// Only word
+				regex_str += "|^\\s*"+stop_word+"\\s+";		// First word
+				regex_str += "|\\s+"+stop_word+"\\s*$";		// Last word
+				regex_str += "|\\s+"+stop_word+"\\s+";		// Word somewhere in the middle
+				regex = new RegExp(regex_str, "ig");
+			
+				// Remove the word from the keywords
+				string = string.replace(regex, " ");
+			}
+		}
+	}
+	return string.replace(/^\s+|\s+$/g, "");
+}
 
 const countryMapping = {
   'UK': 'United Kingdom',
@@ -22,22 +68,29 @@ const ToAbbreviatedCountryName = (country) => {
     }
   }
   return country;
-};
+}
 
-const GetCountries = () => {
+const CleanEventData = () => {
+  let data = EventData;
+
+  data.forEach(event => {
+    event.descriptionKeywords = removeStopWords(event.description).split(' ');
+    event.locationKeywords = event.location.replace(/,/g, '').split(' ');
+  });
+
   const countriesSet = new Set();
 
-  EventData.forEach(event => {
-    const locationParts = event.location.split(', ');
-    const country = locationParts[locationParts.length - 1];
-
+  data.forEach(event => {
+    const country = event.locationKeywords[event.location.length - 1];
     countriesSet.add(ToFullCountryName(country));
   });
 
-  return Array.from(countriesSet);
+  data.countries = Array.from(countriesSet);
+
+  return data;
 }
 
-const Countries = GetCountries();
+const CleanedEventData = CleanEventData();
 
 const TodayDate = new Date();
 TodayDate.setHours(0, 0, 0, 0);
@@ -89,19 +142,52 @@ const EventCard = ({ data, id }) => {
   );
 }
 
+const getEventsFilteredBySearchQuery = () => {
+  const events = CleanedEventData.filter(event => {
+    let searchValue = new URLSearchParams(location.search).get('search');
+    if (!searchValue) {
+      return true;
+    }
+    searchValue = searchValue.toLowerCase();
+
+    if (event.tags.some(t => searchValue.includes(t))) {
+      return true;
+    }
+    if (event.locationKeywords.some(w => searchValue.includes(w.toLowerCase()))) {
+      return true;
+    }
+    if (event.descriptionKeywords.some(w => searchValue.includes(w.toLowerCase()))) {
+      return true;
+    }
+    return false;
+  });
+
+  return events;
+}
+
 const SearchEvents = () => {
-  const [searchedText, setSearchedText] = useState('');
+  const location = useLocation();
+  const searchQuery = new URLSearchParams(location.search);
+  const [searchBarText, setSearchBarText] = useState(searchQuery);
   const [selectedCountry, setSelectedCountry] = useState('');
   const [startDate, setStartDate] = useState(null);
   const [minCost, setMinCost] = useState('');
   const [maxCost, setMaxCost] = useState('');
   const [minRating, setMinRating] = useState(0);
-  const [filteredEventData, setFilteredEventData] = useState(EventData);
+  const [filteredEventData, setFilteredEventData] = useState(CleanedEventData);
 
   // Force scroll to top when page becomes visible
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  useEffect(() => {
+    const queryParams = new URLSearchParams(location.search);
+    const search = queryParams.get('search');
+    if (search !== null) {
+      setSearchBarText(search);
+    }
+  }, [location.search]);
 
   const handleDateChange = (e) => {
     const selectedDate = new Date(e.target.value);
@@ -128,14 +214,11 @@ const SearchEvents = () => {
   }
 
   const handleSearchTextChanged = (e) => {
-    setSearchedText(e.target.value);
+    setSearchBarText(e.target.value);
   }
 
   const handleApplyFilters = () => {
-    let events = EventData;
-    
-    events = events.filter(event => {
-      console.log(selectedCountry);
+    const events = CleanedEventData.filter(event => {
       if (selectedCountry && !event.location.includes(ToAbbreviatedCountryName(selectedCountry))) {
         return false;
       }
@@ -171,11 +254,7 @@ const SearchEvents = () => {
     setMinCost('');
     setMaxCost('');
     setMinRating(0);
-    setFilteredEventData(EventData);
-  }
-
-  const handleSearchBtnClicked = (e) => {
-
+    setFilteredEventData(CleanedEventData);
   }
 
   return (
@@ -186,7 +265,7 @@ const SearchEvents = () => {
             Search Filters
           </h2>
           <Dropdown
-            dropdownOptions={Countries}
+            dropdownOptions={CleanedEventData.countries}
             placeholderText={"Select Country"}
             onSelect={setSelectedCountry}
             selectedItemRef={selectedCountry}
@@ -265,16 +344,16 @@ const SearchEvents = () => {
                 id="search"
                 name="search"
                 placeholder="Event name, location, keyword..."
-                value={searchedText}
+                value={searchBarText}
                 onChange={handleSearchTextChanged}
               />
-              <button className={styles.search_btn} onClick={handleSearchBtnClicked}>
+              <button className={styles.search_btn}>
                 Search
               </button>
             </form>
           </div>
           <div className={styles.card_container}>
-            {filteredEventData.map((data, i) => {
+            {getEventsFilteredBySearchQuery().map((data, i) => {
               return (
                 <EventCard key={i} data={data} id={i} />
               );
