@@ -56,7 +56,7 @@
   transform: translateY(-8px) rotate(-45deg);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 980px) {
   .hamburger {
     display: inline-block;
   }
