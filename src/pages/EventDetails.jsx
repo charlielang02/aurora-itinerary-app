@@ -10,7 +10,7 @@ const handleClick = () => {
   window.location.reload();
 };
 
-const EventDetails = () => {
+const EventDetails = ({ isLoggedIn, toggleLoginDropdown }) => {
   const { eventId } = useParams();
   const event1 = EventData[eventId];
   const [showAddToItinerary, setShowAddToItinerary] = useState(false);
@@ -44,8 +44,13 @@ const EventDetails = () => {
     setNewReview({ ...newReview, [name]: value });
   };
   const handleBookNow = () => {
-    window.open(event1.link, "_blank");
-    setShowAddToItinerary(true); // Show the "Add to your itinerary" link
+    if (!isLoggedIn) {
+      toggleLoginDropdown();
+      alert("Please log in to book this event.");
+    } else {
+      window.open(event1.link, "_blank");
+      setShowAddToItinerary(true); // Show the "Add to your itinerary" link
+    }
   };
   // Add a new review
   const handleSubmitReview = () => {

@@ -41,7 +41,7 @@ function App() {
       <Routes>
       <Route path="/" element={<LandingPage setLoggedIn={setLoggedIn} isLoggedIn={isLoggedIn} setIsOrganizer={setIsOrganizer} isOrganizer={isOrganizer} toggleLoginDropdown={toggleLoginDropdown} hideDropdown={hideDropdown}/>} />
         <Route path="/search-events" element={<SearchEvents />} />
-        <Route path="/event-details/:eventId" element={<EventDetails />} />
+        <Route path="/event-details/:eventId" element={<EventDetails isLoggedIn={isLoggedIn} toggleLoginDropdown={toggleLoginDropdown}/>} />
         <Route path="/view-itinerary" element={<ViewItinerary />} />
         <Route path="/my-events" element={<MyEvents />} />
         <Route path="/create-event" element={<CreateEvent />} />
