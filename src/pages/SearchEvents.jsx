@@ -53,6 +53,8 @@ const removeStopWords = (string) => {
 	return string.replace(/^\s+|\s+$/g, "");
 }
 
+const GetEventId = (event) => EventData.findIndex(e => e.title === event.title);
+
 const countryMapping = {
   'UK': 'United Kingdom',
   'USA': 'United States'
@@ -204,6 +206,7 @@ const SearchEvents = () => {
   // Force scroll to top when page becomes visible
   useEffect(() => {
     window.scrollTo(0, 0);
+    handleApplyFilters();
   }, []);
 
   useEffect(() => {
@@ -247,6 +250,7 @@ const SearchEvents = () => {
     setMinPrice(minCost);
     setMaxPrice(maxCost);
     setStarRating(minRating);
+
     const events = eventList.filter(event => {
       if (selectedCountry && !event.location.includes(ToAbbreviatedCountryName(selectedCountry))) {
         return false;
@@ -278,15 +282,6 @@ const SearchEvents = () => {
       || minRating > 0;
   }
 
-  const ClearFilters = () => {
-    setSelectedCountry('');
-    setStartDate(null);
-    setMinCost('');
-    setMaxCost('');
-    setMinRating(0);
-    setEventData(SearchableEventData);
-  }
-
   const handleApplyFilters = () => {
     setCountry(selectedCountry);
     setDate(startDate);
@@ -296,9 +291,14 @@ const SearchEvents = () => {
     setEventData(getEventsFilteredBySearchOptions(SearchableEventData));
   }
 
-  useEffect(() => {
-    handleApplyFilters();
-  }, []);
+  const ClearFilters = () => {
+    setSelectedCountry('');
+    setStartDate(null);
+    setMinCost('');
+    setMaxCost('');
+    setMinRating(0);
+    setEventData(SearchableEventData);
+  }
 
   return (
     <div>
@@ -368,9 +368,7 @@ const SearchEvents = () => {
           <button
             disabled={!IsFilterApplied()}
             className={`${styles.apply_btn} ${styles.filter_item}`}
-            onClick={() => {
-              handleApplyFilters();
-            }}
+            onClick={handleApplyFilters}
           >
             Apply
           </button>
@@ -403,7 +401,7 @@ const SearchEvents = () => {
           <div className={styles.card_container}>
             {eventsFilteredBySearchQuery.map((data, i) => {
               return (
-                <EventCard key={i} data={data} id={i} />
+                <EventCard key={i} data={data} id={GetEventId(data)} />
               );
             })}
             {eventsFilteredBySearchQuery.length === 0 && (
