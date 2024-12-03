@@ -126,6 +126,10 @@ body {
     position: relative;
 }
 
+.active {
+    text-decoration: underline !important;
+}
+
 /* Responsive styles for smaller screens */
 @media (max-width: 768px) {
     .navbar {
