@@ -5,6 +5,9 @@ const TagInput = () => {
   const [tags, setTags] = useState([]);
 
   const handleKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+    }
     if (event.key === "Enter" && event.target.value.trim() !== "" && tags.length < 10) {
       setTags([...tags, event.target.value.trim()]);
       event.target.value = ""; // Clear input field
