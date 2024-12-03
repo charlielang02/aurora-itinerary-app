@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Select from "react-select";
 import { Link } from "react-router-dom";
 import "./CreateEvent.css";
+import EventPicturesUpload from "../components/EventPicturesUpload";
 
 // Hardcoded data for countries, states/provinces, and cities
 const countries = [
@@ -241,6 +242,13 @@ const CreateEvent = () => {
           onChange={(e) => setMaxPrice(e.target.value)}
           className="create-event-input"
         />
+      </div>
+
+      <div className="input-row">
+        <label htmlFor="event-pictures" className="input-label">Event Pictures:</label>
+        <div className="event-pictures-files">
+          <EventPicturesUpload />
+        </div>
       </div>
 
       {/* Event Description Field */}

@@ -10,7 +10,7 @@ body {
     justify-content: center;
     padding: 20px;
     min-height: 100vh;
-    background-color: #f7f7f7;
+    background-color: #EBE9EC;
     font-family: 'DM Sans', sans-serif;
     margin-top: 80px;
   }
@@ -44,13 +44,13 @@ body {
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
-  margin-bottom: 20px; /* Ensure space between fields */
 }
 
 /* Event Description Field */
 .create-event-textarea {
   height: 150px; /* Adjust the height for better visibility */
   resize: vertical; /* Allow resizing vertically */
+  margin-left: 54px;
 }
 
 /* Word count styling */
@@ -138,6 +138,14 @@ body {
     background-color: #007bff;
     color: #fff;
   }
+
+  .event-pictures-files {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: none;
+    gap: 10px;
+    padding-left: 80px;
+  }
   
   /* Buttons container */
   .create-event-buttons {
@@ -171,7 +179,7 @@ body {
   }
   
   .create-event-cancel {
-    background-color: #ebe9ec;
+    background-color: #e1dee3;
     color: #333;
   }
   
