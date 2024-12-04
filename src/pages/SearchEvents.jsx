@@ -8,6 +8,8 @@ import Dropdown from '../components/DropDown';
 import { useGlobalContext } from '../hooks/GlobalContext';
 import { useLocation } from 'react-router-dom';
 import { StopWords } from '../data/StopWords';
+import { useNavigate } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 
 /*
  * String method to remove stop words
@@ -186,6 +188,7 @@ const getEventsFilteredBySearchQuery = (eventList, isOrganizer) => {
 
 const SearchEvents = ({ isOrganizer }) => {
   const location = useLocation();
+  const navigate = useNavigate();
   const searchQuery = new URLSearchParams(location.search);
   const { country } = useGlobalContext();
   const { date } = useGlobalContext();
@@ -280,12 +283,23 @@ const SearchEvents = ({ isOrganizer }) => {
   }
 
   const IsFilterApplied = () => {
-    return selectedCountry !== ''
-      || startDate !== null
-      || minCost !== ''
-      || maxCost !== ''
-      || minRating > 0;
-  }
+    const [searchParams] = useSearchParams();
+  
+    // Check if any query parameters exist
+    const hasQueryParams = [...searchParams.keys()].length > 0;
+  
+    // Check filter-related states
+    const hasFiltersApplied = 
+      selectedCountry !== '' ||
+      startDate !== null ||
+      minCost !== '' ||
+      maxCost !== '' ||
+      minRating > 0;
+  
+    // Return true if either condition is met
+    return hasQueryParams || hasFiltersApplied;
+  };
+  
 
   const handleApplyFilters = () => {
     setCountry(selectedCountry);
@@ -302,7 +316,10 @@ const SearchEvents = ({ isOrganizer }) => {
     setMinCost('');
     setMaxCost('');
     setMinRating(0);
+    setSearchBarText('');
     setEventData(SearchableEventData);
+
+    navigate(location.pathname, { replace: true });
   }
 
   return (
