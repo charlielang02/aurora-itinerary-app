@@ -16,41 +16,41 @@ import { StopWords } from '../data/StopWords';
  *   Output: The original String with stop words removed
  */
 const removeStopWords = (string) => {
-	let x;
-	let y;
-	let word;
-	let stop_word;
-	let regex_str;
-	let regex;
-		
-	// Split out all the individual words in the phrase
-	const words = string.match(/[^\s]+|\s+[^\s+]$/g)
+  let x;
+  let y;
+  let word;
+  let stop_word;
+  let regex_str;
+  let regex;
 
-	// Review all the words
-	for(x=0; x < words.length; x++) {
-		// For each word, check all the stop words
-		for(y=0; y < StopWords.length; y++) {
-			// Get the current word
-			word = words[x].replace(/\s+|[^a-z]+/ig, "");	// Trim the word and remove non-alpha
-			
-			// Get the stop word
-			stop_word = StopWords[y];
-			
-			// If the word matches the stop word, remove it from the keywords
-			if(word.toLowerCase() == stop_word) {
-				// Build the regex
-				regex_str = "^\\s*"+stop_word+"\\s*$";		// Only word
-				regex_str += "|^\\s*"+stop_word+"\\s+";		// First word
-				regex_str += "|\\s+"+stop_word+"\\s*$";		// Last word
-				regex_str += "|\\s+"+stop_word+"\\s+";		// Word somewhere in the middle
-				regex = new RegExp(regex_str, "ig");
-			
-				// Remove the word from the keywords
-				string = string.replace(regex, " ");
-			}
-		}
-	}
-	return string.replace(/^\s+|\s+$/g, "");
+  // Split out all the individual words in the phrase
+  const words = string.match(/[^\s]+|\s+[^\s+]$/g)
+
+  // Review all the words
+  for (x = 0; x < words.length; x++) {
+    // For each word, check all the stop words
+    for (y = 0; y < StopWords.length; y++) {
+      // Get the current word
+      word = words[x].replace(/\s+|[^a-z]+/ig, "");	// Trim the word and remove non-alpha
+
+      // Get the stop word
+      stop_word = StopWords[y];
+
+      // If the word matches the stop word, remove it from the keywords
+      if (word.toLowerCase() == stop_word) {
+        // Build the regex
+        regex_str = "^\\s*" + stop_word + "\\s*$";		// Only word
+        regex_str += "|^\\s*" + stop_word + "\\s+";		// First word
+        regex_str += "|\\s+" + stop_word + "\\s*$";		// Last word
+        regex_str += "|\\s+" + stop_word + "\\s+";		// Word somewhere in the middle
+        regex = new RegExp(regex_str, "ig");
+
+        // Remove the word from the keywords
+        string = string.replace(regex, " ");
+      }
+    }
+  }
+  return string.replace(/^\s+|\s+$/g, "");
 }
 
 const GetEventId = (event) => EventData.findIndex(e => e.title === event.title);
@@ -105,8 +105,8 @@ TodayDate.setHours(0, 0, 0, 0);
 
 const AreDatesEqual = (date1, date2) => {
   return date1.getDate() === date2.getDate()
-      && date1.getMonth() === date2.getMonth()
-      && date1.getYear() === date2.getYear();
+    && date1.getMonth() === date2.getMonth()
+    && date1.getYear() === date2.getYear();
 };
 
 const SearchIcon = ({ className }) => {
@@ -201,10 +201,10 @@ const SearchEvents = ({ isOrganizer }) => {
   const { navigateFromEventCard } = useGlobalContext();
   const { setNavigateFromEventCard } = useGlobalContext();
   const [searchBarText, setSearchBarText] = useState(searchQuery);
-  const [selectedCountry, setSelectedCountry] = useState(country ||'');
+  const [selectedCountry, setSelectedCountry] = useState(country || '');
   const [startDate, setStartDate] = useState(date || null);
-  const [minCost, setMinCost] = useState(minPrice ||'');
-  const [maxCost, setMaxCost] = useState(maxPrice ||'');
+  const [minCost, setMinCost] = useState(minPrice || '');
+  const [maxCost, setMaxCost] = useState(maxPrice || '');
   const [minRating, setMinRating] = useState(starRating || 0);
   const [eventData, setEventData] = useState(SearchableEventData);
   const eventsFilteredBySearchQuery = getEventsFilteredBySearchQuery(eventData, isOrganizer);
@@ -307,9 +307,12 @@ const SearchEvents = ({ isOrganizer }) => {
   }
 
   return (
-    <div>
+    <div className={styles.page}>
       <div className={styles.left_panel}>
         <div className={styles.filters}>
+          <h1 className={styles.mobile_title}>
+            {isOrganizer ? "Browse Your Created Events" : "Find Your Next Adventure!"}
+          </h1>
           <h2 className={styles.filter_title}>
             Search Filters
           </h2>
@@ -388,7 +391,9 @@ const SearchEvents = ({ isOrganizer }) => {
       <div className={styles.page_content}>
         <div className={styles.events}>
           <div className={styles.header}>
-          <h1>{isOrganizer ? "Browse Your Created Events" : "Find Your Next Adventure!"}</h1>
+            <h1 className={styles.title}>
+              {isOrganizer ? "Browse Your Created Events" : "Find Your Next Adventure!"}
+            </h1>
             <form className={`${styles.search_bar} ${styles.shadow_bottom}`}>
               <SearchIcon className={styles.search_icon} />
               <input
