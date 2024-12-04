@@ -1,0 +1,323 @@
+body {
+    height: 100%;
+}
+
+/* General container styling */
+.create-event-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    min-height: 100vh;
+    background-color: #EBE9EC;
+    font-family: 'DM Sans', sans-serif;
+    margin-top: 80px;
+  }
+  
+  /* Header styling */
+  .create-event-header {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+
+  /* Event Description Field */
+  .create-event-textarea {
+    width: 100%;
+    height: 150px;
+    padding: 10px;
+    font-size: 14px;
+    resize: vertical;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+/* Ensure all input fields (text, number, textarea) are the same width and alignment */
+.create-event-input,
+.create-event-textarea {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+/* Event Description Field */
+.create-event-textarea {
+  height: 150px; /* Adjust the height for better visibility */
+  resize: vertical; /* Allow resizing vertically */
+  margin-left: 54px;
+}
+
+/* Word count styling */
+.word-count {
+  font-size: 12px;
+  color: #777;
+  margin-top: 5px;
+  text-align: right;
+}
+
+  
+  /* Input row styling */
+  .input-row {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 20px;
+    width: 100%;
+    max-width: 500px;
+  }
+  
+  .input-label {
+    font-size: 1rem;
+    color: #555;
+    margin-right: 20px; /* Space between label and input */
+    width: 150px; /* Ensures labels are aligned in a vertical line */
+    text-align: left;
+  }
+  
+  /* Input field styling */
+  .create-event-input,
+  .date-picker2 input,
+  .react-select__control {
+    width: 100%;
+    max-width: 300px;
+    height: 40px;
+    padding: 5px 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+  }
+  
+  .date-picker2 {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    max-width: 500px;
+  }
+  
+  /* React Select container */
+  .react-select-container {
+    width: 100%;
+    max-width: 300px;
+    cursor: pointer;
+  }
+  
+  .react-select__control {
+    height: 40px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    padding: 0;
+  }
+  
+  .react-select__menu {
+    z-index: 10;
+  }
+  
+  .react-select__placeholder {
+    color: #aaa;
+  }
+  
+  .react-select__option {
+    font-size: 1rem;
+    color: #333;
+  }
+  
+  .react-select__option--is-focused {
+    background-color: #f0f0f0;
+  }
+  
+  .react-select__option--is-selected {
+    background-color: #007bff;
+    color: #fff;
+  }
+
+  .event-pictures-files {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: none;
+    gap: 10px;
+    padding-left: 80px;
+  }
+  
+  /* Buttons container */
+  .create-event-buttons {
+    display: flex;
+    justify-content: center; /* Center the buttons as a group horizontally */
+    align-items: center; /* Align buttons vertically if needed */
+    gap: 20px; /* Adjust space between buttons */
+    margin-top: 30px;
+    width: 100%; /* Ensures buttons span the full width of their container */
+  }
+  
+  .create-event-post,
+  .create-event-cancel {
+    flex: 0 0 auto; /* Prevent buttons from stretching */
+    width: auto; /* Let buttons size naturally */
+  }
+  
+  .create-event-post {
+    display: inline-block; /* Already as wide as its content */
+    padding: 10px 20px;
+    background-color: #003052; /* Button background color */
+    color: #ebe9ec !important; /* Keep text color consistent on hover */
+    font-size: 1.2rem;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    border-radius: 100px; /* Rounded corners */
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition for background color and scale */
+    align-self: center;
+    margin: 10px;
+    border: none;
+  }
+  
+  .create-event-post:hover {
+    background-color: #004573; /* Darker shade for hover */
+    transform: scale(1.05); /* Enlarge by 10% on hover */
+    color: #ebe9ec; /* Keep text color consistent on hover */
+    cursor: pointer; /* Show pointer cursor on hover */
+  }
+  
+  .create-event-cancel {
+    background-color: #e1dee3;
+    color: #333;
+  }
+  
+  .create-event-cancel:hover {
+    background-color: #f44336;
+  }
+  
+button a {
+    cursor: pointer;
+    color: #333;
+    text-decoration: none;
+    }
+
+#post {
+    cursor: pointer;
+    color: #ebe9ec !important;
+    text-decoration: none;
+}
+
+  /* Ensure alignment and spacing of all input rows */
+  .input-row{
+    margin-bottom: 20px;
+  }
+  
+/* Remove spinner controls for numeric inputs */
+.create-event-input[type="number"]::-webkit-inner-spin-button,
+.create-event-input[type="number"]::-webkit-outer-spin-button {
+  appearance: none;
+  margin: 0;
+}
+
+.create-event-input[type="number"] {
+  appearance: textfield;
+}
+
+/* Responsive adjustments for screens below 768px */
+@media (max-width: 768px) {
+  /* General container adjustments */
+  .create-event-container {
+    padding: 15px;
+    margin-top: 60px; /* Reduce top margin for smaller screens */
+  }
+
+  /* Header styling */
+  .create-event-header {
+    font-size: 1.5rem; /* Reduce font size for smaller screens */
+    margin-bottom: 20px;
+  }
+
+  .create-event-textarea {
+    margin-left: 0; /* Remove left margin for better alignment */
+  }
+
+  /* Input row adjustments */
+  .input-row {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 15px;
+  }
+
+  .input-label {
+    margin-bottom: 5px;
+    width: auto; /* Allow labels to wrap naturally */
+    text-align: left; /* Ensure text remains left-aligned */
+  }
+
+  .create-event-input,
+  .create-event-textarea,
+  .date-picker2 input,
+  .react-select__control {
+    max-width: 100%; /* Full width on smaller screens */
+  }
+
+  /* Event pictures adjustments */
+  .event-pictures-files {
+    flex-wrap: wrap; /* Allow wrapping of elements */
+    padding-left: 0;
+    gap: 5px; /* Reduce gaps between elements */
+  }
+
+  /* Buttons container adjustments */
+  .create-event-buttons {
+    flex-direction: column;
+    align-items: center;
+    width: 100%; /* Full width on smaller screens */
+  }
+
+  .create-event-cancel,
+  .create-event-post {
+    width: 100%; /* Full-width buttons for smaller screens */
+    margin-bottom: 10px;
+  }
+
+  .create-event-post {
+    font-size: 1rem; /* Slightly smaller font size for buttons */
+  }
+
+  .create-event-cancel {
+    font-size: 1rem;
+  }
+
+  /* Word count alignment */
+  .word-count {
+    text-align: left; /* Align word count to the left */
+    font-size: 10px; /* Reduce font size for smaller screens */
+  }
+}
+
+
+  /* Responsive adjustments */
+  @media (max-width: 500px) {
+    .input-row {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .input-label {
+      margin-bottom: 5px;
+      width: auto;
+    }
+  
+    .create-event-buttons {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .create-event-cancel,
+    .create-event-post {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+  }
+  

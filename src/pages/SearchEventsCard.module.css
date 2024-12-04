@@ -18,6 +18,8 @@
   transition: var(--card-transition);
   background: var(--secondary-clr);
   text-decoration: none;
+  overflow: hidden;
+  min-width: 200px;
 }
 
 .card:hover {
@@ -27,10 +29,6 @@
   -moz-transform: translateY(var(--card-shift-y));
   -ms-transform: translateY(var(--card-shift-y));
   -o-transform: translateY(var(--card-shift-y));
-}
-
-.card:hover .arrow svg {
-  transform: translate(4px, -4px);
 }
 
 .card img {
@@ -46,8 +44,8 @@
   flex-direction: column;
   justify-content: space-between;
   padding: 10px;
+  height: 14em;
   overflow: hidden;
-  height: 13em;
   background: var(--shadow-gradient);
   border-bottom-left-radius: var(--card-border-radius);
   border-bottom-right-radius: var(--card-border-radius);
@@ -59,23 +57,39 @@
 
 .title {
   display: flex;
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 500;
-  margin-bottom: var(--card-text-margin);
-  text-wrap: nowrap;
+  text-wrap: wrap;
   overflow: hidden;
 }
 
-.arrow svg {
-  position: relative;
-  width: 18px;
-  height: 18px;
-  stroke: white;
-  left: 3px;
-  transition: var(--card-transition);
+.star_container {
+  display: flex;
+  margin-bottom: 4px;
+  gap: 8px;
+  font-weight: normal;
+  align-items: center;
 }
 
-.location {
+.review_count {
+  font-size: 14px;
+  transform: translateY(1px);
+}
+
+.star {
+  color: gray;
+  font-size: 20px !important;
+}
+
+.star_filled {
+  font-size: 20px !important;
+}
+
+.star:hover {
+  cursor: pointer;
+}
+
+.info {
   font-size: small;
   color: black;
   margin-bottom: var(--card-text-margin);
@@ -85,35 +99,23 @@
   align-items: flex-end;
   font-weight: bold;
   margin: var(--card-text-margin);
-  margin-top: 0;
-  max-height: 52px;
+  overflow: hidden;
 }
 
-@media screen and (max-width: 1300px) {
+@media screen and (max-width: 1500px) {
   .card {
     flex: 0 0 calc(50% - var(--card-gap));
     max-width: calc(50% - var(--card-gap));
   }
 }
 
-@media screen and (max-width: 980px) {
+@media screen and (max-width: 1100px) {
   .card {
-    flex-direction: row;
     flex: 0 0 100%;
     max-width: 100%;
-    height: 13rem;
-    overflow: hidden;
   }
 
-  .card img {
-    width: 13rem;
-    height: 100%;
-    object-position: top left;
-    border-top-right-radius: 0;
-    border-bottom-left-radius: var(--card-border-radius);
-  }
-
-  .title {
-    font-size: 16px;
+  .content {
+    height: auto;
   }
 }

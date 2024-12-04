@@ -1,0 +1,494 @@
+html, body {
+  font-family: 'DM Sans', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+body {
+  overflow-y: auto;
+}
+
+.event-details-page {
+  display: flex;
+  padding-top: 10px;
+  flex-direction: column;
+  max-width: 100vw;
+  margin: 10vh auto 0;
+  color: #333;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+
+/* Content Section */
+.content-section {
+  display: flex;
+  gap: 10px;
+}
+
+/* Left Section */
+.left-section {
+  width: 30%;
+  padding: 20px; /* Adds space inside the section */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centers content horizontally */
+  justify-content: center; /* Centers content vertically */
+  gap: 20px; /* Space between the large image and the small images */
+  box-sizing: border-box; /* Includes padding in width/height calculation */
+}
+
+/* Large Image */
+.event-large-image {
+  width: 80%; /* 80% of the left section's width */
+  aspect-ratio: 1 / 1; /* Ensures a square box */
+  object-fit: cover; /* Ensures the image fits inside the box */
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Small Images */
+.event-small-images {
+  display: flex;
+  flex-wrap: wrap; /* Allows images to flow to the next line */
+  gap: 12px; /* Space between small images */
+  justify-content: center; /* Center small images horizontally */
+  width: 80%; /* 80% of the left section's width */
+}
+
+.event-small-images img {
+  width: calc(25% - 9px); /* Each small image is half the width of the large image */
+  aspect-ratio: 1 / 1; /* Ensures small images are square */
+  object-fit: cover;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.small-image {
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.small-image:hover {
+  transform: scale(1.05);
+}
+
+/* Back Link */
+.back-link {
+  width: 80%;
+  text-align: left;
+  margin-bottom: 20px; /* Adds space between the link and the large image */
+  color: #003366;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.back-link:hover {
+  text-decoration: underline;
+}
+
+
+/* Middle Section */
+.middle-section {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Aligns content to the left */
+  gap: 5px;
+  padding-top: 50px;
+}
+
+.event-location {
+  font-size: 18px;
+}
+
+.event-title {
+  font-size: 36px;
+}
+
+.event-stars {
+  display: flex;
+  justify-content: center; /* Optional: centers the stars horizontally */
+  align-items: center; /* Optional: aligns stars vertically if necessary */
+}
+
+.event-stars .star {
+  font-size: 2rem; /* Adjust this value to make the stars larger */
+  margin: 0 2px; /* Optional: adjust the space between stars */
+  color: #ed8a19; /* You can adjust the color of the filled stars here */
+}
+
+.event-stars .star.filled {
+  color: #ed8a19; /* Color of filled stars */
+}
+
+.event-stars .star {
+  color: #ccc; /* Color of unfilled stars */
+}
+
+.event-date {
+  padding: 5px 0;
+}
+
+.event-time {
+  padding: 5px 0;
+}
+
+.event-reviews {
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.event-description {
+  font-weight: 400;
+  padding-top: 10px;
+  padding-right: 10px;
+}
+
+.write-review-link {
+  padding-bottom: 10px;
+}
+.price-range-box {
+  display: inline-flex; /* Makes the box as wide as its content */
+  padding: 10px;
+  background-color: rgba(28, 156, 122, 0.6);
+  border-radius: 100px;
+  flex-shrink: 0;
+}
+
+.book-now {
+  display: inline-block; /* Already as wide as its content */
+  padding: 10px 20px;
+  background-color: #003052; /* Button background color */
+  color: #ebe9ec !important; /* Keep text color consistent on hover */
+  font-size: 1.2rem;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  border-radius: 100px; /* Rounded corners */
+  text-decoration: none;
+  margin-bottom: 20px; /* Space below the button */
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition for background color and scale */
+  align-self: center;
+}
+
+.book-now:hover {
+  background-color: #004573; /* Darker shade for hover */
+  transform: scale(1.1); /* Enlarge by 10% on hover */
+  color: #ebe9ec !important; /* Keep text color consistent on hover */
+  cursor: pointer; /* Show pointer cursor on hover */
+}
+
+.add-to-itinerary-link {
+  display: block;
+  color: #003052;
+  text-decoration: none;
+  cursor: pointer;
+  text-align: center; /* Center the text within its container */
+  margin-left: auto; /* Align link to center horizontally */
+  margin-right: auto;
+  width: fit-content; /* Shrink the link container to the size of the content */
+}
+.add-to-itinerary-link:hover {
+  text-decoration: underline;
+}
+
+/* Right Section */
+.right-section {
+  width: 30%;
+  display: flex;
+  justify-content: center; /* Center content horizontally */
+  align-items: center; /* Center content vertically */
+}
+
+/* Top Reviews Section */
+.top-reviews {
+  padding: 10px 15px;
+  background-color: rgba(109, 100, 185, 0.6);
+  border-radius: 10px;
+  width: 80%; /* Adjust to fit the right-section */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px; /* Smaller gap between reviews */
+  box-sizing: border-box;
+  overflow: hidden; /* Prevent any content from overflowing */
+  height: fit-content;
+}
+
+/* Title Style */
+.reviews-header {
+  font-size: 1.5rem; /* Slightly smaller title */
+  font-weight: bold;
+  text-align: center;
+  color: #000;
+  margin-bottom: 10px;
+}
+
+/* Individual Review */
+.review {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%; /* Fit within the section */
+  gap: 10px; /* Small spacing between elements */
+  box-sizing: border-box;
+}
+
+/* Reviewer Icon */
+.review-icon {
+  width: 35px; /* Smaller icon size */
+  height: 35px;
+  border-radius: 50%; /* Make the icon circular */
+  object-fit: cover; /* Ensure the image fits nicely */
+}
+
+/* Review Text */
+.review-text {
+  flex: 1; /* Take up remaining space */
+  font-size: 0.9rem; /* Reduce font size for compactness */
+  font-style: italic;
+  color: #333;
+  margin: 0 10px; /* Small spacing around text */
+  text-align: left; /* Align text to the left */
+  white-space: normal; /* Allow text wrapping */
+  overflow: visible; /* Ensure no hidden content */
+  word-wrap: break-word; /* Break long words if needed */
+}
+
+/* Star Ratings */
+.review-stars {
+  display: flex;
+  gap: 2px; /* Minimal spacing between stars */
+}
+
+.star {
+  font-size: 1rem; /* Smaller star size */
+  color: #ccc; /* Default star color (unfilled) */
+}
+
+.star.filled {
+  color: #ed8a19; /* Filled star color */
+}
+
+
+
+/* Related Events Section */
+.related-events-section {
+  background-color: #e1dee3;
+  padding: 40px 20px; /* Add vertical padding */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center title horizontally */
+  justify-content: center; /* Center content vertically */
+  box-sizing: border-box;
+  min-height: 300px; /* Ensure a minimum height for vertical centering */
+}
+
+/* Section Header */
+.related-events-header {
+  font-size: 1.5rem;
+  margin-bottom: 20px; /* Add space between header and cards */
+  text-align: center;
+  color: #333;
+}
+
+/* Related Events Container */
+.related-events-container {
+  display: grid; /* Use grid for even spacing */
+  grid-template-columns: repeat(5, 1fr); /* 5 evenly spaced columns */
+  gap: 20px; /* Space between cards */
+  width: 100%; /* Ensure it spans the section */
+  max-width: 100vw; /* Limit the container width */
+  align-items: center; /* Vertically align cards */
+  justify-content: center; /* Center grid within the section */
+  box-sizing: border-box;
+}
+
+
+/* Reviews Section */
+.reviews-section {
+  background-color: #f1f1f1;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 5px;
+  width: 90%;
+  max-width: 500px;
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+textarea,
+input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+button {
+  display: inline-block; /* Already as wide as its content */
+  padding: 10px 20px;
+  background-color: #003052; /* Button background color */
+  color: #ebe9ec; /* Keep text color consistent on hover */
+  font-size: 1.2rem;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+  border-radius: 100px; /* Rounded corners */
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition for background color and scale */
+  align-self: center;
+  margin: 10px;
+  border: none;
+}
+
+button:hover {
+  background-color: #004573; /* Darker shade for hover */
+  transform: scale(1.05); /* Enlarge by 10% on hover */
+  color: #ebe9ec; /* Keep text color consistent on hover */
+  cursor: pointer; /* Show pointer cursor on hover */
+}
+
+.close-modal {
+  background-color: #ebe9ec;
+  color: #333;
+}
+
+.close-modal:hover {
+  background-color: #f44336;
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 768px) {
+  .event-details-page {
+    flex-direction: column;
+    margin: 0 auto;
+    padding: 0 10px; /* Add some padding for smaller screens */
+    margin-top: 25vh;
+  }
+
+  .content-section {
+    flex-direction: column;
+    gap: 20px; /* Increase spacing between sections */
+    align-items: center; /* Center content */
+  }
+
+  .left-section {
+    width: 80%;
+    padding: 10px;
+  }
+
+  .back-link {
+    width: 100%; /* Make the back link full width */
+    text-align: center; /* Center-align the link */
+  }
+
+  .event-large-image {
+    width: 100%; /* Make the large image take up the full width */
+  }
+
+  .event-small-images {
+    width: 100%; /* Small images container matches the full width */
+    gap: 10px; /* Reduce spacing between small images */
+  }
+
+  .event-small-images img {
+    width: calc(25% - 7.5px); /* 3 small images per row */
+  }
+
+  .back-link {
+    font-size: 14px; /* Reduce text size for smaller screens */
+  }
+
+  .middle-section {
+    width: 80%;
+    align-items: center; /* Center-align content */
+    text-align: center; /* Center-align text for better readability */
+    padding-top: 20px;
+    order: -1;
+  }
+
+  .event-title {
+    font-size: 28px; /* Adjust title size */
+  }
+
+  .event-stars .star {
+    font-size: 1.5rem; /* Adjust star size */
+  }
+
+  .price-range-box {
+    width: 100%;
+    margin: 10px 0; /* Add some spacing around the price box */;
+  }
+
+  .price-range-box p {
+    width: 100%;
+    text-align: center; /* Center the price range text */
+  }
+
+  .book-now {
+    width: 100%; /* Make the button full width */
+  }
+
+  .right-section {
+    width: 80%;
+    margin-top: 20px; /* Add spacing from other sections */
+  }
+
+  .top-reviews {
+    width: 100%;
+  }
+
+  .related-events-section {
+    width: 100%;
+  }
+
+  .related-events-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px; /* Add spacing between cards */
+    justify-content: center; /* Center the cards */
+    align-items: center; /* Center the cards */
+  }
+
+  /* EventDetails-specific styles */
+  .related-events-section .related-events-container .destination-card {
+    width: 80vw; /* Each card takes 80% of the viewport width */
+    margin: 0 auto; /* Centers the cards horizontally */
+    box-sizing: border-box; /* Ensures padding/border doesn't increase width */
+  }
+
+  .reviews-section {
+    padding: 0 10px; /* Add padding for reviews on smaller screens */
+  }
+
+  .modal-overlay {
+    padding: 20px; /* Add padding around modal content */
+  }
+
+  .modal-content {
+    width: 100%; /* Make the modal full-width */
+    box-sizing: border-box; /* Include padding in width calculation */
+  }
+}
