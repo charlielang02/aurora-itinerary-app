@@ -12,7 +12,6 @@ import { StopWords } from '../data/StopWords';
 /*
  * String method to remove stop words
  * Written by GeekLad http://geeklad.com
- *   Usage: string_variable.removeStopWords();
  *   Output: The original String with stop words removed
  */
 const removeStopWords = (string) => {
