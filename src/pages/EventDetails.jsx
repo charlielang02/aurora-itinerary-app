@@ -56,7 +56,7 @@ const EventDetails = ({ isLoggedIn, toggleLoginDropdown }) => {
   const handleSubmitReview = () => {
     if (newReview.content && newReview.reviewer && newReview.rating) {
       const updatedReviews = [
-        ...reviewCount,
+        ...reviews,
         {
           reviewer: newReview.reviewer,
           rating: parseInt(newReview.rating),
