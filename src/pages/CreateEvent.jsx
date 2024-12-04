@@ -63,8 +63,8 @@ const CreateEvent = () => {
   const [country, setCountry] = useState(null);
   const [state, setState] = useState(null);
   const [city, setCity] = useState(null);
-  const [address, setAddress] = useState("");
-  const [postalCode, setPostalCode] = useState("");
+  const [startTime, setStartTime] = useState("");
+  const [endTime, setEndTime] = useState(""); 
   const [eventLink, setEventLink] = useState("");
   const [currency, setCurrency] = useState(null);
   const [minPrice, setMinPrice] = useState("");
@@ -181,32 +181,31 @@ const CreateEvent = () => {
         />
       </div>
 
+      {/* Start Time Field */}
       <div className="input-row">
-        <label htmlFor="address" className="input-label">Address*</label>
+        <label htmlFor="start-time" className="input-label">Start Time*</label>
         <input
-          id="address"
-          type="text"
-          placeholder="Enter street address..."
-          value={address}
-          onChange={(e) => setAddress(e.target.value)}
+          id="start-time"
+          type="time"
+          value={startTime}
+          onChange={(e) => setStartTime(e.target.value)}
           className="create-event-input"
           required
         />
       </div>
 
+      {/* End Time Field */}
       <div className="input-row">
-        <label htmlFor="postal-code" className="input-label">Postal Code*</label>
+        <label htmlFor="end-time" className="input-label">End Time*</label>
         <input
-          id="postal-code"
-          type="text"
-          placeholder="Enter postal code..."
-          value={postalCode}
-          onChange={(e) => setPostalCode(e.target.value)}
+          id="end-time"
+          type="time"
+          value={endTime}
+          onChange={(e) => setEndTime(e.target.value)}
           className="create-event-input"
           required
         />
       </div>
-
       {/* Event Link Field with Tooltip */}
       <div className="input-row">
         <label htmlFor="event-link" className="input-label">Event Link*</label>
