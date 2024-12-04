@@ -322,6 +322,19 @@ const SearchEvents = ({ isOrganizer }) => {
     navigate(location.pathname, { replace: true });
   }
 
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    const queryParams = new URLSearchParams(location.search);
+    if (searchBarText.trim()) {
+      queryParams.set("search", searchBarText.trim());
+    } else {
+      queryParams.delete("search");
+    }
+    navigate(`${location.pathname}?${queryParams.toString()}`, { replace: true });
+ 
+    setEventData(getEventsFilteredBySearchOptions(SearchableEventData));
+  };  
+
   return (
     <div className={styles.page}>
       <div className={styles.left_panel}>
@@ -410,7 +423,7 @@ const SearchEvents = ({ isOrganizer }) => {
             <h1 className={styles.title}>
               {isOrganizer ? "Browse Your Created Events" : "Find Your Next Adventure!"}
             </h1>
-            <form className={`${styles.search_bar} ${styles.shadow_bottom}`}>
+            <form className={`${styles.search_bar} ${styles.shadow_bottom}`} onSubmit={handleSearchSubmit}>
               <SearchIcon className={styles.search_icon} />
               <input
                 type="text"
@@ -420,7 +433,7 @@ const SearchEvents = ({ isOrganizer }) => {
                 value={searchBarText}
                 onChange={handleSearchTextChanged}
               />
-              <button className={styles.search_btn}>
+              <button className={styles.search_btn} onClick={handleApplyFilters}>
                 Search
               </button>
             </form>
