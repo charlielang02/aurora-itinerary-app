@@ -100,9 +100,9 @@ const events = [
     date: '2024-12-02',
     startHour: 8,
     duration: 8,
-    title: "Skiing at Lake Louis",
+    title: "Skiing at Lake Louise",
     type: "sports",
-    location: "Lake Louis - 1 Whitehorn Rd, Lake Louise, AB T0L 1E0"
+    location: "Lake Louise - 1 Whitehorn Rd, Lake Louise, AB T0L 1E0"
   },
 
   {
@@ -136,7 +136,7 @@ const ViewItinerary = () => {
   
     return events.filter(
       (event) =>
-        (event.title !== "Skiing at Lake Louis" || isLakeLouiseAdded) &&
+        (event.title !== "Skiing at Lake Louise" || isLakeLouiseAdded) &&
         (event.title !== "International Christmas Market" || isChristmasMarketAdded)
     );
   });
@@ -164,7 +164,7 @@ const ViewItinerary = () => {
     setItineraryEvents(
       events.filter(
         (event) =>
-          (event.title !== "Skiing at Lake Louis" || isLakeLouiseAdded) &&
+          (event.title !== "Skiing at Lake Louise" || isLakeLouiseAdded) &&
           (event.title !== "International Christmas Market" || isChristmasMarketAdded)
       )
     );
@@ -241,7 +241,7 @@ const ViewItinerary = () => {
       setItineraryEvents(itineraryEvents.filter((e) => e !== event));
   
       // Update localStorage based on the event title
-      if (event.title === "Skiing at Lake Louis") {
+      if (event.title === "Skiing at Lake Louise") {
         localStorage.removeItem("addLakeLouise");
       } else if (event.title === "International Christmas Market") {
         localStorage.removeItem("addChristmasMarket");
