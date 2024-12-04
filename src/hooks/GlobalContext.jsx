@@ -11,6 +11,7 @@ export const GlobalProvider = ({ children }) => {
   const [maxPrice, setMaxPrice] = useState(0);
   const [starRating, setStarRating] = useState(0);
   const [navigateFromEventCard, setNavigateFromEventCard] = useState(false);
+  const [createdEvents, setCreatedEvents] = useState([]);
 
   return (
     <GlobalContext.Provider
@@ -27,6 +28,8 @@ export const GlobalProvider = ({ children }) => {
         setStarRating,
         navigateFromEventCard,
         setNavigateFromEventCard,
+        createdEvents,
+        setCreatedEvents,
       }}
     >
       {children}

@@ -309,7 +309,7 @@ export const EventData = [
         location: "Calgary, AB, Canada",
         link: "https://www.ticketmaster.ca/scott-helman-calgary-alberta-12-06-2024/event/1100614FB37232D9",
         tags: ["Music", "Concert", "Live Performance", "Pop"],
-        description : "Experience the electrifying performance of Scott Helman live in concert at Commonwalth Bar. Enjoy an evening of great music and entertainment. NO MINORS",
+        description : "Experience the electrifying performance of Scott Helman live in concert at Commonwealth Bar. Enjoy an evening of great music and entertainment. NO MINORS",
         minPrice: 38.75,
         maxPrice: 38.75,
         date: "2024-12-06",
