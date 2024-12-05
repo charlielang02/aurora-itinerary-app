@@ -290,6 +290,7 @@ h2 {
     align-items: center;
     justify-content: center;
     z-index: 10;
+    margin-top: 80px;
   }
 
   .filters {
