@@ -5,6 +5,7 @@ import "./CreateEvent.css";
 import EventPicturesUpload from "../components/EventPicturesUpload";
 import TagInput from "../components/TagInput";
 import { useNavigate } from "react-router-dom";
+import { useGlobalContext } from "../hooks/GlobalContext";
 
 // Hardcoded data for countries, states/provinces, and cities
 const countries = [
@@ -70,6 +71,7 @@ const CreateEvent = () => {
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
   const [eventDescription, setEventDescription] = useState("");
+  const { createdEvents, setCreatedEvents } = useGlobalContext();
   const navigate = useNavigate();
 
   useEffect(() => window.scrollTo(0, 0), []);
@@ -98,7 +100,14 @@ const CreateEvent = () => {
     }
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault(); // Prevent default form submission behavior
+
+    // Check if the event name matches "Scott Helman Concert"
+    if (eventName === "Scott Helman Concert") {
+      // Update the createdEvents array in the global context
+      setCreatedEvents((prev) => [...prev, eventName]);
+    }
     navigate("/my-events");
   }
 
@@ -297,7 +306,7 @@ const CreateEvent = () => {
         <button className="create-event-cancel">
           <Link to="/">Cancel</Link>
         </button>
-        <input className="create-event-post" type="submit"/>
+        <input className="create-event-post" type="submit" value="Post Event" />
       </div>
       </form>
     </div>

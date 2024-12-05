@@ -18,6 +18,11 @@ import sydney_opera_house from '../assets/sydney-opera-house.jpg';
 import london_eye from '../assets/london-eye.jpg';
 import vancouver_granville from '../assets/vancouver-granville.jpg';
 import dubai_burj_khalifa from '../assets/dubai-burj-khalifa.jpg';
+import scott_helman from '../assets/scott_helman.jpg';
+import scott_helman2 from '../assets/scott_helman2.jpg';
+import scott_helman3 from '../assets/scott_helman3.jpg';
+import scott_helman4 from '../assets/scott_helman4.jpg';
+import scott_helman5 from '../assets/scott_helman5.jpg';
 
 export const EventData = [
     {
@@ -297,4 +302,28 @@ export const EventData = [
         ],
         organizerID: 9,
     },
+    {
+        title: "Scott Helman Concert",
+        images: [scott_helman, scott_helman2, scott_helman3, scott_helman4, scott_helman5],
+        rating: 4,
+        location: "Calgary, AB, Canada",
+        link: "https://www.ticketmaster.ca/scott-helman-calgary-alberta-12-06-2024/event/1100614FB37232D9",
+        tags: ["Music", "Concert", "Live Performance", "Pop"],
+        description : "Experience the electrifying performance of Scott Helman live in concert at Commonwealth Bar. Enjoy an evening of great music and entertainment. NO MINORS",
+        minPrice: 38.75,
+        maxPrice: 38.75,
+        date: "2024-12-06",
+        startTime: "7:00 PM",
+        endTime: "11:00 PM",
+        userReviews: [
+            { reviewer: "Vivian", rating: 5, comment: "Scott Helman absolutely killed it on stage!" },
+            { reviewer: "Walter", rating: 4, comment: "Great show, but the venue was a bit crowded." },
+            { reviewer: "Xavier", rating: 5, comment: "The opening act was amazing, and Scott Helman was even better!" },
+            { reviewer: "Yolanda", rating: 4, comment: "Loved the energy and vibe of the concert." },
+            { reviewer: "Zara", rating: 4, comment: "Scott Helman's voice is even better live!" },
+            { reviewer: "Aaron", rating: 5, comment: "The concert was a blast! Would definitely go again." },
+            { reviewer: "Bella", rating: 4, comment: "Scott Helman is a fantastic performer!" },
+        ],
+        organizerID: 1,
+        },
 ];
