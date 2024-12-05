@@ -88,8 +88,13 @@ const GetCountries = () => {
 
 const Countries = GetCountries();
 
-const GetSearchableEventData = () => {
-  let data = EventData;
+const GetSearchableEventData = (createdEvents) => {
+  let data = EventData.filter(event => {
+    if (event.title === "Scott Helman Concert" && !createdEvents.includes(event.title)) {
+      return false;
+    }
+    return true;
+  });
 
   data.forEach(event => {
     event.descriptionKeywords = removeStopWords(event.description).split(' ');
@@ -98,8 +103,6 @@ const GetSearchableEventData = () => {
 
   return data;
 }
-
-const SearchableEventData = GetSearchableEventData();
 
 const TodayDate = new Date();
 TodayDate.setHours(0, 0, 0, 0);
@@ -190,6 +193,8 @@ const SearchEvents = ({ isOrganizer }) => {
   const location = useLocation();
   const navigate = useNavigate();
   const searchQuery = new URLSearchParams(location.search);
+  const { createdEvents } = useGlobalContext();
+  const SearchableEventData = GetSearchableEventData(createdEvents);
   const { country } = useGlobalContext();
   const { date } = useGlobalContext();
   const { minPrice } = useGlobalContext();
