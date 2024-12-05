@@ -16,12 +16,12 @@ Core users for this app are:
 
 1. Tourists.
    - Log in with:
-     . Username: tourist@travel.com
-     . Password: vacation
+     1. Username: tourist@travel.com
+     2. Password: vacation
 2. Event Organizers.
    - Log in with:
-     . Username: organizer@event.com
-     . Password: events
+     1. Username: organizer@event.com
+     2. Password: events
 
 ---
 
