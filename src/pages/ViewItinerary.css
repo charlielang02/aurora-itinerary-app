@@ -180,7 +180,7 @@ body {
     gap: 20px;
     margin-right: 20px;
     order: 1;
-    margin-top: -400px;
+    margin-top: -450px;
   }
   
   .legend-item {
@@ -242,7 +242,7 @@ body {
 
   .itinerary-legend {
     order: 1;
-    margin-top: -400px;
+    margin-top: -450px;
   }
 }
 
@@ -278,7 +278,7 @@ body {
 
     .itinerary-legend {
     order: 1;
-    margin-top: -400px;
+    margin-top: -450px;
   }
 }
 
@@ -326,6 +326,6 @@ body {
 
   .itinerary-legend {
     order: 1;
-    margin-top: -400px;
+    margin-top: -450px;
   }
 }
