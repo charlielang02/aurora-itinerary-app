@@ -231,8 +231,12 @@ const SearchEvents = ({ isOrganizer }) => {
   }, [location.search]);
 
   const handleDateChange = (e) => {
-    const selectedDate = new Date(e.target.value);
-    setStartDate(selectedDate);
+    if (e.target.value) {
+      setStartDate(new Date(e.target.value));
+    } else {
+      setStartDate(null);
+      setEventData(getEventsFilteredBySearchOptions(SearchableEventData));
+    }
   };
 
   const handleStarClick = (star_index) => {
@@ -259,7 +263,7 @@ const SearchEvents = ({ isOrganizer }) => {
 
   const getEventsFilteredBySearchOptions = (eventList) => {
     setCountry(selectedCountry);
-    setDate(startDate);
+    setStartDate(startDate);
     setMinPrice(minCost);
     setMaxPrice(maxCost);
     setStarRating(minRating);
@@ -308,7 +312,7 @@ const SearchEvents = ({ isOrganizer }) => {
 
   const handleApplyFilters = () => {
     setCountry(selectedCountry);
-    setDate(startDate);
+    setStartDate(startDate);
     setMinPrice(minCost);
     setMaxPrice(maxCost);
     setStarRating(minRating);
@@ -360,7 +364,7 @@ const SearchEvents = ({ isOrganizer }) => {
             type="date"
             id="search-pick-date"
             className={`${styles.date_picker} ${styles.filter_item}`}
-            value={startDate !== null ? startDate.toISOString().split('T')[0] : ''}
+            value={startDate ? startDate.toISOString().split('T')[0] : ''}
             onChange={handleDateChange}
             onClick={(e) => e.currentTarget.showPicker()}
           >

@@ -116,7 +116,7 @@ const CreateEvent = () => {
       <h1 className="create-event-header">Create New Event</h1>
 
       {/* Event Name Field */}
-      <form action="" onSubmit={handleSubmit}>
+      <form name="create-event" onSubmit={handleSubmit}>
       <div className="input-row">
         <label htmlFor="event-name" className="input-label">Event Name*</label>
         <input

@@ -121,10 +121,10 @@ const events = [
     type: "music",
     location: "Crossroads Market - 1235 26 Ave SE, Calgary, AB T2G 1R7"
   },
-
-
-
 ];
+
+const Today = new Date();
+Today.setHours(0, 0, 0, 0);
 
 const ViewItinerary = () => {
 
@@ -146,9 +146,7 @@ const ViewItinerary = () => {
 
   useEffect(() => {
     // Set the startDate to today's date at midnight
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-    setStartDate(today);
+    setStartDate(Today);
 
     // Scroll to 7 AM position
     const scrollContainer = itineraryScrollContainerRef.current;
@@ -192,8 +190,11 @@ const ViewItinerary = () => {
   };
   
   const handleDateChange = (e) => {
-    const selectedDate = new Date(e.target.value);
-    setStartDate(selectedDate);
+    if (e.target.value) {
+      setStartDate(new Date(e.target.value));
+    } else {
+      setStartDate(Today);
+    }
   };
 
   const handleWeekChange = (direction) => {
@@ -209,7 +210,14 @@ const ViewItinerary = () => {
     eventDay.setUTCHours(0, 0, 0, 0); // Normalize to midnight UTC
   
     return weekDates.findIndex(
-      (weekDate) => weekDate.toISOString().split('T')[0] === eventDay.toISOString().split('T')[0]
+      (weekDate) => {
+        if (weekDate && eventDay) {
+          const weekDateStr = weekDate.toISOString().split('T')[0];
+          const eventDayStr = eventDay.toISOString().split('T')[0];
+          return weekDateStr === eventDayStr;
+        }
+        return false; // This ensures we return false if either is invalid
+      }
     );
   };
 
@@ -277,7 +285,7 @@ const ViewItinerary = () => {
         <input
           type="date"
           id="pick-date"
-          value={startDate.toISOString().split('T')[0]}
+          value={startDate && startDate instanceof Date && !isNaN(startDate) ? startDate.toISOString().split('T')[0] : ''}
           onChange={handleDateChange}
           onClick={(e) => e.currentTarget.showPicker()}
         />

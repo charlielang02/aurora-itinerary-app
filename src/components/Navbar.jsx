@@ -28,7 +28,7 @@ const Navbar = ({ isLoggedIn, isOrganizer, setLoggedIn, setIsOrganizer, toggleLo
   const { setCountry, setDate, setMinPrice, setMaxPrice, setStarRating } = useGlobalContext();
 
   const handleNavbarClick = () => {
-    console.log('Navbar clicked, resetting filters');
+    //console.log('Navbar clicked, resetting filters');
     setCountry('');
     setDate(null);
     setMinPrice('');
