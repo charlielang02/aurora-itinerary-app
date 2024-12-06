@@ -13,7 +13,7 @@ import { useSearchParams } from 'react-router-dom';
 
 /*
  * String method to remove stop words
- * Written by GeekLad http://geeklad.com
+ * Written by GeekLad https://stackoverflow.com/questions/40819153/javascript-load-txt-word-list-wont-populate-array
  *   Output: The original String with stop words removed
  */
 const removeStopWords = (string) => {
