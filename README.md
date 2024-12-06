@@ -2,6 +2,14 @@
 
 Welcome to the **Aurora Itinerary App**, your go-to platform for planning and discovering exciting events. Whether you're exploring local happenings or organizing your itinerary for a big trip, this app makes the process seamless and enjoyable.
 
+## Team Members (T4G4)
+
+- Charlie Lang (charlie.lang@ucalgary.ca)
+- Anil Mawji (anil.mawji@ucalgary.ca)
+- Hareem Khan (hareem.khan@ucalgary.ca)
+- Fardin Sami (fardin.sami@ucalgary.ca)
+- Shaan Samresh (shaan.samresh@ucalgary.ca)
+
 ---
 
 ## **🌐 Visit the Site**
